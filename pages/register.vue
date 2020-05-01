@@ -1,17 +1,17 @@
 <template>
   <el-container>
     <!-- <StudentRegister :department-list="departmentList" /> -->
-    <StudentRegister  />
+    <Register />
   </el-container>
 </template>
 
 <script>
-import StudentRegister from '@/components/Register';
+import Register from '@/components/Register';
 // import { getDepartments } from '@/api/department';
 
 export default {
   components: {
-    StudentRegister,
+    Register,
   },
   // async asyncData() {
   //   const { data } = await getDepartments({
