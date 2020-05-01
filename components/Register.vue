@@ -73,7 +73,10 @@ export default {
         userID: [
           { required: true, message: '請輸入帳號', trigger: 'blur' },
           {
-            min: 4, pattern: '^[a-zA-z0-9]*$', message: '帳號格式錯誤', trigger: 'blur',
+            pattern: '^[a-zA-z0-9]*$', message: '帳號格式錯誤', trigger: 'blur',
+          },
+          {
+            min: 4, message: '帳號過短', trigger: 'blur',
           },
         ],
       },
