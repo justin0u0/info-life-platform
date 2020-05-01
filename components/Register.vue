@@ -63,7 +63,7 @@ export default {
         ],
         password: [
           { required: true, message: '請輸入密碼', trigger: 'blur' },
-          { min: 6, message: '密碼過短', trigger: 'blur' },
+          { min: 6, message: '密碼過短(至少6位)', trigger: 'blur' },
         ],
         email: [
           {
@@ -76,7 +76,7 @@ export default {
             pattern: '^[a-zA-z0-9]*$', message: '帳號格式錯誤', trigger: 'blur',
           },
           {
-            min: 4, message: '帳號過短', trigger: 'blur',
+            min: 4, message: '帳號過短(至少4位)', trigger: 'blur',
           },
         ],
       },
