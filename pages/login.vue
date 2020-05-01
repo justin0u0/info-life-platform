@@ -1,15 +1,15 @@
 <template>
   <el-container>
-    <StudentLogin />
+    <Login />
   </el-container>
 </template>
 
 <script>
-import StudentLogin from '@/components/Login';
+import Login from '@/components/Login';
 
 export default {
   components: {
-    StudentLogin,
+    Login,
   },
 };
 </script>

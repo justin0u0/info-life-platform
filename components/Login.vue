@@ -5,8 +5,8 @@
     </div>
     <el-form ref="form" :model="form" label-width="70px">
       <el-form-item label="帳號：">
-        <el-input v-model="form.student_id" />
-        <el-alert v-show="error.student_id" type="error" :title="error.message" />
+        <el-input v-model="form._id" />
+        <el-alert v-show="error._id" type="error" :title="error.message" />
       </el-form-item>
       <el-form-item label="密碼：">
         <el-input v-model="form.password" show-password />
@@ -20,7 +20,7 @@
       </el-form-item>
     </el-form>
     <div class="register-link">
-      <el-link href="/student/register">還沒有帳號，點此註冊</el-link>
+      <el-link href="/register">還沒有帳號，點此註冊</el-link>
     </div>
   </div>
 </template>
@@ -30,11 +30,11 @@ export default {
   data() {
     return {
       form: {
-        student_id: '',
+        _id: '',
         password: '',
       },
       error: {
-        student_id: false,
+        _id: false,
         password: false,
         message: '',
       },
@@ -42,14 +42,14 @@ export default {
   },
   methods: {
     async handleLogin() {
-      const { student_id, password } = this.form;
+      const { _id, password } = this.form;
       // 0. Set full page loading
       this.$store.dispatch('setIsProcessing', true);
       try {
         // 1. Reset error
-        this.error = { student_id: false, password: false, message: '' };
+        this.error = { _id: false, password: false, message: '' };
         // 2. Try login
-        await this.$store.dispatch('studentLogin', { student_id, password });
+        await this.$store.dispatch('Login', { _id, password });
         // 3. Show success message
         this.$message({ type: 'success', message: '登入成功' });
         // 4. Redirect
@@ -57,8 +57,8 @@ export default {
       } catch (error) {
         switch (error.statusCode) {
           case 2000:
-            this.error.student_id = true;
-            this.error.message = '此學生帳號尚未註冊';
+            this.error._id = true;
+            this.error.message = '此帳號尚未註冊';
             break;
           case 2001:
             this.error.password = true;
