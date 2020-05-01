@@ -8,8 +8,8 @@
         <el-input v-model="form.name" />
       </el-form-item>
       
-      <el-form-item label="帳號：" prop="userID">
-        <el-input v-model="form.userID" />
+      <el-form-item label="帳號：" prop="user_id">
+        <el-input v-model="form.user_id" />
       </el-form-item>
       <el-form-item label="密碼：" prop="password">
         <el-input v-model="form.password" show-password />
@@ -19,18 +19,12 @@
       </el-form-item>
      
       <el-form-item class="register-button-group">
-        <!-- <el-button @click="$router.push('/student/login')">
-          返回登入頁
-        </el-button> -->
         <el-button @click="$router.push('/')">
           返回登入頁
         </el-button>
         <el-button type="primary" @click="handleRegister('form')" >
           註冊
         </el-button>
-        <!-- <el-button type="primary" @click="handleRegister('form')">
-          註冊
-        </el-button> -->
       </el-form-item>
     </el-form>
   </div>
@@ -40,13 +34,6 @@
 // import { addStudent } from '@/api/student';
 
 export default {
-  props: {
-    // departmentList: {
-    //   type: Array,
-    //   required: true,
-    //   default: () => ([]),
-    // },
-  },
   data() {
     return {
       // user input data
@@ -54,7 +41,7 @@ export default {
         name: '',
         password: '',
         email: '',
-        userID: '',
+        user_id: '',
       },
       // form rules
       rules: {
@@ -70,7 +57,7 @@ export default {
             type: 'email', required: true, message: '請輸入信箱', trigger: 'blur',
           },
         ],
-        userID: [
+        user_id: [
           { required: true, message: '請輸入帳號', trigger: 'blur' },
           {
             pattern: '^[a-zA-z0-9]*$', message: '帳號格式錯誤', trigger: 'blur',
