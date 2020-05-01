@@ -53,15 +53,6 @@ html {
   background-color: #35495e;
 }
 
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  max-width: 100%;
-}
-
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
