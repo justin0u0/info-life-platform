@@ -3,11 +3,11 @@
     <div class="form-title">
       註冊
     </div>
-    <el-form ref="form" :rules="rules" :model="form" label-width="70px" >
+    <el-form ref="form" :rules="rules" :model="form" label-width="70px">
       <el-form-item label="姓名：" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
-      
+
       <el-form-item label="帳號：" prop="user_id">
         <el-input v-model="form.user_id" />
       </el-form-item>
@@ -17,12 +17,12 @@
       <el-form-item label="信箱：" prop="email">
         <el-input v-model="form.email" />
       </el-form-item>
-     
+
       <el-form-item class="register-button-group">
         <el-button @click="$router.push('/')">
           返回登入頁
         </el-button>
-        <el-button type="primary" @click="handleRegister('form')" >
+        <el-button type="primary" @click="handleRegister('form')">
           註冊
         </el-button>
       </el-form-item>
@@ -67,7 +67,7 @@ export default {
           },
         ],
       },
-      
+
     };
   },
   methods: {
