@@ -86,6 +86,10 @@ export default {
   border: 0.5px rgb(180, 180, 180) solid;
   padding: 20px;
   background-color: rgb(171, 211, 250);
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .login-button-group {
   display: flex;
