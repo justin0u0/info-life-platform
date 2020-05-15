@@ -30,23 +30,19 @@ export default {
       isActive: [false, false, false, false]
     }
   },
-  // watch: {
-  //   '$route'() {
-  //     console.log(this.$route.path);
-
-  //     for (i = 0; i < isActive.length; i++)
-  //       isActive[i] = false;
-  //     if (this.$route.path === '/blog') {
-  //       isActive[0] = true;
-  //     } else if (this.$route.path === '/qa') {
-  //       isActive[1] = true;
-  //     } else if (this.$route.path === '/play') {
-  //       isActive[2] = true;
-  //     } else if (this.$route.path === '/login') {
-  //       isActive[3] = true;
-  //     }
-  //   }
-  // }
+  mounted() {
+    for (let i = 0; i < this.isActive.length; i++)
+      this.$set(this.isActive, i, false);
+    if (this.$route.path === '/blog') {
+      this.$set(this.isActive, 0, true);
+    } else if (this.$route.path === '/qa') {
+      this.$set(this.isActive, 1, true);
+    } else if (this.$route.path === '/play') {
+      this.$set(this.isActive, 2, true);
+    } else if (this.$route.path === '/login') {
+      this.$set(this.isActive, 3, true);
+    }
+  }
 };
 </script>
 
