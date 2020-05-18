@@ -12,9 +12,8 @@ const app = {
     },
   },
   actions: {
-    setIsProcessing({ commit }, isProcessing, title = '') {
+    setIsProcessing({ commit }, isProcessing) {
       commit('SET_IS_PROCESSING', isProcessing);
-      commit('SET_PROCESS_TITLE', isProcessing ? title : '')
     },
   },
 };
