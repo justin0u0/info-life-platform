@@ -1,3 +1,3 @@
-if (process.BROWSER_BUILD) {
+if (process.client) {
     require('bootstrap')
 }
