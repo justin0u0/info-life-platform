@@ -1,7 +1,7 @@
 <template>
-<nav class="navbar navbar-expand-md pb-3 my-3 aaa">
+<nav class="navbar navbar-expand-md pb-3 my-3">
   <a class="navbar-brand font-weight-normal brand ml-3" href="/"><span class="info-deco">Info</span><span class="life-deco">Life</span></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+  <button class="navbar-toggler toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon navbar-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -19,7 +19,7 @@
         <a class="nav-link" :class="{ active: isActive[3] }" href="/login">登入/註冊</a>
       </li>
     </ul>
-  </div>  
+  </div> 
 </nav>
 </template>
 
@@ -47,9 +47,6 @@ export default {
 </script>
 
 <style scoped>
-.aaa {
-  background-color: white;
-}
 .header-tag a {
   color: #111;
   border-bottom: 3px solid transparent;
@@ -57,14 +54,16 @@ export default {
 .header-tag a:hover {
   border-bottom:3px solid rgb(64, 158, 255);
 }
+.toggler {
+  border-color: rgba(0, 0, 0, 0.1);
+}
 .navbar-icon {
-  color: black;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .info-deco {
   color: rgb(97, 97, 99);
 }
 .life-deco {
-  /* color: rgb(218, 245, 255); */
   color: rgb(64, 158, 255);
 }
 .active {
