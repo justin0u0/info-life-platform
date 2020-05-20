@@ -16,7 +16,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
     script: [
-    ]
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -36,7 +36,7 @@ export default {
     '@/plugins/element-ui',
     {
       src: '@/plugins/bootstrap.js',
-      ssr: false
+      ssr: false,
     },
     '@/plugins/font-awesome',
   ],
@@ -49,7 +49,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    'nuxt-fontawesome'
+    'nuxt-fontawesome',
   ],
   /*
   ** fontawesome
@@ -59,17 +59,17 @@ export default {
     imports: [
       {
         set: '@fortawesome/free-solid-svg-icons',
-        icons: ['fas']
+        icons: ['fas'],
       },
       {
         set: '@fortawesome/free-regular-svg-icons',
-        icons: ['far']
+        icons: ['far'],
       },
       {
         set: '@fortawesome/free-brands-svg-icons',
-        icons: ['fab']
-      }
-    ]
+        icons: ['fab'],
+      },
+    ],
   },
   /*
   ** Build configuration
@@ -82,11 +82,11 @@ export default {
     */
     plugins: [
       new webpack.ProvidePlugin({
-        '$': 'jquery',
+        $: 'jquery',
         jQuery: 'jquery',
         jquery: 'jquery',
-        'window.jQuery': 'jquery'
-      })
+        'window.jQuery': 'jquery',
+      }),
     ],
     extend(/* config, ctx */) {
     },

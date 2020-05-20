@@ -1,7 +1,7 @@
 const app = {
   state: {
     isProcessing: false,
-    processTitle: ''
+    processTitle: '',
   },
   mutations: {
     SET_IS_PROCESSING: (state, isProcessing) => {

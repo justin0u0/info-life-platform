@@ -1,3 +1,1 @@
-if (process.client) {
-    require('bootstrap')
-}
+require('bootstrap');
