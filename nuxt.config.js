@@ -39,8 +39,14 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-  ],
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass'],
+      },
+    ],
+  },
   /*
   ** Build configuration
   */

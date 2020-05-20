@@ -23,7 +23,6 @@
         >
           GitHub
         </a>
-        <a href="/login">Login</a>
       </div>
     </div>
   </div>

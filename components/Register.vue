@@ -19,7 +19,7 @@
       </el-form-item>
 
       <el-form-item class="register-button-group">
-        <el-button @click="$router.push('/')">
+        <el-button @click="$router.push('/Login')">
           返回登入頁
         </el-button>
         <el-button type="primary" @click="handleRegister('form')">
@@ -113,6 +113,7 @@ export default {
   background-color: rgb(171, 211, 250);
   padding: 20px;
   margin: auto;
+  width:100%;
 }
 .register-button-group {
   display: flex;
