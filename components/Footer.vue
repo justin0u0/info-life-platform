@@ -9,7 +9,7 @@
           <p>Share the knowledge.<br>Learn the knowledge.</p>
         </div>
       </div>
-      <hr class="clearfix w-100 d-md-none pb-3">
+      <hr class="w-100 d-md-none pb-3">
       <div class="col-md-3 mb-md-0 mb-md-3">
         <h5 class="font-weight-bold mb-3"><span class="underline pl-0 pr-2">關於</span></h5>
         <ul class="list-unstyled">
@@ -43,13 +43,11 @@ export default {
 }
 .list-unstyled a {
   color: white;
+  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
 }
 .underline {
   border-bottom: 2px solid rgb(35, 113, 192);
   padding-bottom: 5px;
+  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
 }
-/* .footer-copyright {
-    background-color: rgb(35, 113, 192);
-    color: #83a6c9;
-} */
 </style>
