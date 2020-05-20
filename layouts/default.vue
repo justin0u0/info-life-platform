@@ -19,14 +19,14 @@ export default {
   name: 'Default',
   components: {
     Header,
-    Footer
+    Footer,
   },
   computed: {
     ...mapGetters([
       'isProcessing',
       'processTitle',
     ]),
-  }
+  },
 };
 </script>
 

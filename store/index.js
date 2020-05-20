@@ -5,13 +5,13 @@ import app from './modules/app';
 Vue.use(Vuex);
 
 const store = () => new Vuex.Store({
-    modules: {
-        app,
-    },
-    getters: {
-        isProcessing: (state) => state.app.isProcessing,
-        processTitle: (state) => state.app.processTitle,
-    },
+  modules: {
+    app,
+  },
+  getters: {
+    isProcessing: (state) => state.app.isProcessing,
+    processTitle: (state) => state.app.processTitle,
+  },
 });
 
 export default store;

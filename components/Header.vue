@@ -1,34 +1,34 @@
 <template>
-<nav class="navbar navbar-expand-md pb-3 my-3">
-  <a class="navbar-brand font-weight-normal brand ml-3 pb-2 pt-0" href="/"><span class="info-deco">Info</span><span class="life-deco">Life</span></a>
-  <button class="navbar-toggler toggler pb-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"><font-awesome-icon icon="bars" /></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav header-tag ml-auto">
-      <li class="nav-item px-2 pl-sm-3">
-        <a class="nav-link" :class="{ active: isActive[0] }" href="/blog">主題專欄</a>
-      </li>
-      <li class="nav-item px-2 pl-sm-3">
-        <a class="nav-link" :class="{ active: isActive[1] }" href="/qa">QA問答</a>
-      </li>
-      <li class="nav-item px-2 pl-sm-3">
-        <a class="nav-link" :class="{ active: isActive[2] }" href="/play">哈拉場外</a>
-      </li>  
-      <li class="nav-item px-2 pl-sm-3">
-        <a class="nav-link" :class="{ active: isActive[3] }" href="/login">登入/註冊</a>
-      </li>
-    </ul>
-  </div> 
-</nav>
+  <nav class="navbar navbar-expand-md pb-3 my-3">
+    <a class="navbar-brand font-weight-normal brand ml-3 pb-2 pt-0" href="/"><span class="info-deco">Info</span><span class="life-deco">Life</span></a>
+    <button class="navbar-toggler toggler pb-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"><font-awesome-icon icon="bars" /></span>
+    </button>
+    <div id="collapsibleNavbar" class="collapse navbar-collapse">
+      <ul class="navbar-nav header-tag ml-auto">
+        <li class="nav-item px-2 pl-sm-3">
+          <a class="nav-link" :class="{ active: isActive[0] }" href="/blog">主題專欄</a>
+        </li>
+        <li class="nav-item px-2 pl-sm-3">
+          <a class="nav-link" :class="{ active: isActive[1] }" href="/qa">QA問答</a>
+        </li>
+        <li class="nav-item px-2 pl-sm-3">
+          <a class="nav-link" :class="{ active: isActive[2] }" href="/play">哈拉場外</a>
+        </li>
+        <li class="nav-item px-2 pl-sm-3">
+          <a class="nav-link" :class="{ active: isActive[3] }" href="/login">登入/註冊</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      isActive: [false, false, false, false]
-    }
+      isActive: [false, false, false, false],
+    };
   },
   mounted() {
     if (this.$route.path === '/blog') {
@@ -40,7 +40,7 @@ export default {
     } else if (this.$route.path === '/login') {
       this.$set(this.isActive, 3, true);
     }
-  }
+  },
 };
 </script>
 
