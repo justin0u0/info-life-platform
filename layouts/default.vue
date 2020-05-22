@@ -1,8 +1,34 @@
 <template>
-  <div>
+  <div
+    v-loading.fullscreen="isProcessing"
+    class="layout"
+    :element-loading-text="processTitle"
+  >
+    <Header />
     <nuxt />
+    <Footer />
   </div>
 </template>
+
+<script>
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'Default',
+  components: {
+    Header,
+    Footer,
+  },
+  computed: {
+    ...mapGetters([
+      'isProcessing',
+      'processTitle',
+    ]),
+  },
+};
+</script>
 
 <style>
 html {

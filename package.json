@@ -13,22 +13,31 @@
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.13.0",
+    "@fortawesome/free-regular-svg-icons": "^5.13.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/vue-fontawesome": "^0.1.9",
+    "bootstrap": "^4.5.0",
     "element-ui": "^2.4.11",
-    "highlight.js": "^10.0.3",
+    "jquery": "^3.5.1",
     "nuxt": "^2.0.0",
+    "nuxt-fontawesome": "^0.4.0",
+    "popper.js": "^1.16.1",
+    "webpack": "^4.43.0",
     "tiptap": "^1.27.1",
-    "tiptap-extensions": "^1.29.1"
+    "tiptap-extensions": "^1.29.1",
+    "highlight.js": "^10.0.3"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
-    "eslint-auto-fix": "^1.0.1",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-nuxt": "^0.5.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
+    "eslint-auto-fix": "^1.0.1",
     "ss-loader": "^1.0.1",
     "style-loader": "^1.2.1"
   }
