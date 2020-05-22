@@ -1,3 +1,4 @@
+import webpack from 'webpack';
 
 export default {
   mode: 'universal',
@@ -14,6 +15,8 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
+    script: [
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -26,12 +29,18 @@ export default {
     'element-ui/lib/theme-chalk/index.css',
     '@/assets/css/editor.min.css',
     '@/assets/css/highlight.scss',
+    '@/assets/scss/all.scss',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '@/plugins/element-ui',
+    {
+      src: '@/plugins/bootstrap.js',
+      ssr: false,
+    },
+    '@/plugins/font-awesome',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -41,12 +50,32 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  module: {
-    rules: [
+  modules: [
+    'nuxt-fontawesome',
+  ],
+  /*
+  ** fontawesome
+  */
+  fontawesome: {
+    component: 'fa',
+    imports: [
       {
-        test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas'],
       },
+      {
+        set: '@fortawesome/free-regular-svg-icons',
+        icons: ['far'],
+      },
+      {
+        set: '@fortawesome/free-brands-svg-icons',
+        icons: ['fab'],
+      },[rules: [
+        {
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'sass'],
+        },
+      ],
     ],
   },
   /*
@@ -54,9 +83,18 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
+    vendor: ['jquery', 'bootstrap'],
     /*
     ** You can extend webpack config here
     */
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        jquery: 'jquery',
+        'window.jQuery': 'jquery',
+      }),
+    ],
     extend(/* config, ctx */) {
     },
   },
