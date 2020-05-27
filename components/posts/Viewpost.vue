@@ -1,28 +1,33 @@
 <template>
-  <div ref="contentEl" class="container" @scroll="calcProgress()">
-    <div class="reading-progress" :style="{right:progress}"></div>
+  <div class="container">
     <div class="row">
-      <div class="like-collect">
-        <el-button>
-          收藏
-        </el-button>
-        <el-button>
-          按讚
-        </el-button>
-      </div>
-      <div class="article">
-        <div class="title">
-          {{ post.title }}
+      <div class="like-collect col-2 d-flex justify-content-center align-items-center flex-column">
+        <div v-if="heartShow" @click="heartShow=!heartShow">
+          <font-awesome-icon :icon="['far', 'heart']" size="3x" :style="{color: 'black'}" />
         </div>
-        <div class="subtitle">
-          {{ post.subtitle }}
+        <div v-if="!heartShow" @click="heartShow=!heartShow">
+          <font-awesome-icon :icon="['fas', 'heart']" size="3x" :style="{color: 'black'}" />
+        </div>
+        <div v-if="bookmarkShow" @click="bookmarkShow=!bookmarkShow">
+          <font-awesome-icon :icon="['far', 'bookmark']" size="3x" :style="{color: 'black'}" />
+        </div>
+        <div v-if="!bookmarkShow" @click="bookmarkShow=!bookmarkShow">
+          <font-awesome-icon :icon="['fas', 'bookmark']" size="3x" :style="{color: 'black'}" />
+        </div>
+      </div>
+      <div class="article col-8">
+        <div class="text-center">
+          <h1>{{ post.title }}</h1>
+        </div>
+        <div class="text-center">
+          <h2>{{ post.subtitle }}</h2>
         </div>
         <div class="content">
           {{ post.content }}
         </div>
       </div>
-      <div class="list">
-        TOC
+      <div class="list col-2">
+        list
       </div>
     </div>
   </div>
@@ -34,14 +39,13 @@
 export default {
   props: {
     postId: {
-      type: Number,
+      type: String,
       required: true,
-      default: () => ([]),
     },
   },
   data() {
     return {
-      progress: '100%',
+      // progress: '100%',
       post: {
         title: 'title',
         subtitle: 'subtitle',
@@ -52,79 +56,37 @@ export default {
         is_published: false,
         created_at: 0,
       },
+      heartShow: true,
+      bookmarkShow: true,
     };
   },
   async mounted() {
     // this.post = await getPost(this.postId);
-    this.calcProgress();
+    // this.calcProgress();
   },
   methods: {
-    calcProgress() {
-      const { contentEl } = this.$refs;
-      const fullHeight = contentEl.scrollHeight;
-      const viewHeight = contentEl.offsetHeight;
-      const scrollPosition = contentEl.scrollTop;
-      const progressValue = ((scrollPosition + viewHeight) / fullHeight) * 100;
-      const progressValuePercentage = `${100 - progressValue}%`;
-      this.progress = progressValuePercentage;
-    },
+    // calcProgress() {
+    //   const { contentEl } = this.$refs;
+    //   const fullHeight = contentEl.scrollHeight;
+    //   const viewHeight = contentEl.offsetHeight;
+    //   const scrollPosition = contentEl.scrollTop;
+    //   const progressValue = ((scrollPosition + viewHeight) / fullHeight) * 100;
+    //   const progressValuePercentage = `${100 - progressValue}%`;
+    //   this.progress = progressValuePercentage;
+    // },
   },
 };
 </script>
 
 <style scoped>
-.container {
-    width: 100%;
-    max-width: 100vw;
-    margin: 0 auto;
-    overflow-y: scroll;
-    height: 100vh;
-}
-.row {
-    display: flex;
-}
+
 .like-collect {
     background-color: rgb(171, 211, 250);
-    display: flex;
-    text-align: center;
-    align-items: center;
-    flex: 2;
-}
-el-button {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
 }
 .article {
-    background-color: rgb(233, 138, 14);
-    flex: 8;
+  background-color: rgb(233, 138, 14);
 }
 .list {
-    background-color: rgb(250, 171, 208);
-    flex: 2;
-}
-.title {
-    background-color: chocolate;
-    text-align: center;
-    font-size: 4rem;
-    font-weight: bold;
-}
-.subtitle {
-    background-color: darkgreen;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-.content {
-    font-size: 1.5rem;
-}
-.reading-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 5px;
-  /* background-color: #41b883; */
-  transition: right 0.5s ease;
-  background-image: linear-gradient(to right, #cce0ff, #0047b3);
+  background-color: rgb(250, 171, 208);
 }
 </style>
