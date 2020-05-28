@@ -2,17 +2,21 @@
   <div class="container">
     <div class="row">
       <div class="like-collect col-2 d-flex justify-content-center align-items-center flex-column">
-        <div v-if="heartShow" @click="heartShow=!heartShow">
-          <font-awesome-icon :icon="['far', 'heart']" size="3x" :style="{color: 'black'}" />
+        <div v-if="!heartShow" class="py-2" @click="modifyHeartState">
+          <font-awesome-icon :icon="['far', 'heart']" size="2x" :style="{color: 'black'}" />
+          <span class="align-top font-weight-bold likes">{{likes}}</span>
         </div>
-        <div v-if="!heartShow" @click="heartShow=!heartShow">
-          <font-awesome-icon :icon="['fas', 'heart']" size="3x" :style="{color: 'black'}" />
+        <div v-if="heartShow" class="py-2" @click="modifyHeartState">
+          <font-awesome-icon :icon="['fas', 'heart']" size="2x" :style="{color: 'black'}" />
+          <span class="align-top font-weight-bold likes">{{likes}}</span>
         </div>
-        <div v-if="bookmarkShow" @click="bookmarkShow=!bookmarkShow">
-          <font-awesome-icon :icon="['far', 'bookmark']" size="3x" :style="{color: 'black'}" />
+        <div v-if="!bookmarkShow" class="py-2" @click="modifyBookmarkState">
+          <font-awesome-icon :icon="['far', 'bookmark']" size="2x" :style="{color: 'black'}" />
+          <span class="align-top font-weight-bold likes">{{collects}}</span>
         </div>
-        <div v-if="!bookmarkShow" @click="bookmarkShow=!bookmarkShow">
-          <font-awesome-icon :icon="['fas', 'bookmark']" size="3x" :style="{color: 'black'}" />
+        <div v-if="bookmarkShow" class="py-2" @click="modifyBookmarkState">
+          <font-awesome-icon :icon="['fas', 'bookmark']" size="2x" :style="{color: 'black'}" />
+          <span class="align-top font-weight-bold likes">{{collects}}</span>
         </div>
       </div>
       <div class="article col-8">
@@ -56,8 +60,10 @@ export default {
         is_published: false,
         created_at: 0,
       },
-      heartShow: true,
-      bookmarkShow: true,
+      heartShow: false,
+      bookmarkShow: false,
+      likes: 0,
+      collects: 0,
     };
   },
   async mounted() {
@@ -74,6 +80,14 @@ export default {
     //   const progressValuePercentage = `${100 - progressValue}%`;
     //   this.progress = progressValuePercentage;
     // },
+    modifyHeartState() {
+      this.heartShow=!this.heartShow;
+      this.likes=(this.heartShow) ? this.likes+1 : this.likes-1;
+    },
+    modifyBookmarkState() {
+      this.bookmarkShow=!this.bookmarkShow;
+      this.collects=(this.bookmarkShow) ? this.collects+1 : this.collects-1;
+    },
   },
 };
 </script>
@@ -88,5 +102,8 @@ export default {
 }
 .list {
   background-color: rgb(250, 171, 208);
+}
+.likes {
+  font-size: 1.5rem;
 }
 </style>
