@@ -9,17 +9,16 @@
         註冊
       </div>
       <el-form ref="form" :rules="rules" :model="form" label-width="70px">
-        <el-form-item label="姓名：" prop="name">
+        <el-form-item label="姓名：" prop="name" class="formItem">
           <el-input v-model="form.name" />
         </el-form-item>
-
-        <el-form-item label="帳號：" prop="user_id">
+        <el-form-item label="帳號：" prop="user_id" class="formItem">
           <el-input v-model="form.user_id" />
         </el-form-item>
-        <el-form-item label="密碼：" prop="password">
+        <el-form-item label="密碼：" prop="password" class="formItem">
           <el-input v-model="form.password" show-password />
         </el-form-item>
-        <el-form-item label="信箱：" prop="email">
+        <el-form-item label="信箱：" prop="email" class="formItem">
           <el-input v-model="form.email" />
         </el-form-item>
 
@@ -149,5 +148,7 @@ nav a:hover {
     color: black;
     text-decoration: underline;
 }
-
+.formItem {
+    margin-bottom: 30px !important;
+}
 </style>

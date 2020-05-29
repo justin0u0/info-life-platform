@@ -1,21 +1,15 @@
 <template>
-  <div class="container">
-    <div class="row">
+  <div class="container mw-100 mx-0 px-0 background">
+    <div class="row mx-0 pb-3">
       <div class="like-collect col-2 d-flex justify-content-center align-items-center flex-column">
-        <div v-if="!heartShow" class="py-2" @click="modifyHeartState">
-          <font-awesome-icon :icon="['far', 'heart']" size="2x" :style="{color: 'black'}" />
+        <div class="py-2 sticky-top">
+          <font-awesome-icon :icon="['far', 'heart']" size="2x" :style="{color: 'black'}" v-if="!heartShow" @click="modifyHeartState" />
+          <font-awesome-icon :icon="['fas', 'heart']" size="2x" :style="{color: 'black'}" v-if="heartShow" @click="modifyHeartState" />
           <span class="align-top font-weight-bold likes">{{likes}}</span>
         </div>
-        <div v-if="heartShow" class="py-2" @click="modifyHeartState">
-          <font-awesome-icon :icon="['fas', 'heart']" size="2x" :style="{color: 'black'}" />
-          <span class="align-top font-weight-bold likes">{{likes}}</span>
-        </div>
-        <div v-if="!bookmarkShow" class="py-2" @click="modifyBookmarkState">
-          <font-awesome-icon :icon="['far', 'bookmark']" size="2x" :style="{color: 'black'}" />
-          <span class="align-top font-weight-bold likes">{{collects}}</span>
-        </div>
-        <div v-if="bookmarkShow" class="py-2" @click="modifyBookmarkState">
-          <font-awesome-icon :icon="['fas', 'bookmark']" size="2x" :style="{color: 'black'}" />
+        <div class="py-2 sticky-offset sticky-top">
+          <font-awesome-icon :icon="['far', 'bookmark']" size="2x" :style="{color: 'black'}" v-if="!bookmarkShow" @click="modifyBookmarkState" />
+          <font-awesome-icon :icon="['fas', 'bookmark']" size="2x" :style="{color: 'black'}"  v-if="bookmarkShow" @click="modifyBookmarkState" />
           <span class="align-top font-weight-bold likes">{{collects}}</span>
         </div>
       </div>
@@ -53,7 +47,7 @@ export default {
       post: {
         title: 'title',
         subtitle: 'subtitle',
-        content: 'The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend',
+        content: 'The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friendefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that beginefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begin',
         _id: null,
         user_id: null,
         tag_id: null,
@@ -95,15 +89,21 @@ export default {
 <style scoped>
 
 .like-collect {
-    background-color: rgb(171, 211, 250);
+  /* background-color: rgb(171, 211, 250); */
 }
 .article {
-  background-color: rgb(233, 138, 14);
+  /* background-color: rgb(233, 138, 14); */
 }
 .list {
-  background-color: rgb(250, 171, 208);
+  /* background-color: rgb(250, 171, 208); */
 }
 .likes {
   font-size: 1.5rem;
+}
+.sticky-offset {
+  top: 9%;
+}
+.background {
+  background-color: lightgrey;
 }
 </style>
