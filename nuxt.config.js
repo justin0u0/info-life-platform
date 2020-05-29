@@ -70,12 +70,7 @@ export default {
       {
         set: '@fortawesome/free-brands-svg-icons',
         icons: ['fab'],
-      },[rules: [
-        {
-          test: /\.scss$/,
-          loaders: ['style', 'css', 'sass'],
-        },
-      ],
+      },
     ],
   },
   /*

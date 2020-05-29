@@ -1,7 +1,16 @@
 <template>
   <no-ssr>
-    <div class="editor">
-      <editor-content class="editor__content" :editor="editor" />
+    <div class="contents">
+      <div class="input-group mb-3">
+        <input type="title" class="form-control" placeholder="Title" maxlength="50" show-word-limit>
+      </div>
+      <div style="margin: 20px 0;"></div>
+      <div class="editor-content mx-auto">
+        <editor-content class="editor__content" :editor="editor" />
+      </div>
+      <div class="d-flex justify-content-end">
+        <el-button class="save-button" type="primary" @click="handleModifyPost">Save</el-button>
+      </div>
     </div>
   </no-ssr>
 </template>
@@ -15,9 +24,11 @@ import {
   Bold,
   Code,
   Italic,
+  // Placeholder,
 } from 'tiptap-extensions';
 import javascript from 'highlight.js/lib/languages/javascript';
 import css from 'highlight.js/lib/languages/css';
+import python from 'highlight.js/lib/languages/python';
 
 export default {
   components: {
@@ -25,30 +36,32 @@ export default {
   },
   data() {
     return {
-      javascriptExample: `
-      function $initHighlight(block, flags) {
-        try {
-          if (block.className.search(/\bno\-highlight\b/) != -1)
-            return processBlock(block, true, 0x0F) + ' class=""';
-        } catch (e) {
-          /* handle exception */
-        }
-        for (var i = 0 / 2; i < classes.length; i++) { // "0 / 2" should not be parsed as regexp
-          if (checkCondition(classes[i]) === undefined)
-            return /\d+/g;
-        }
-      }
-      `,
+      post: {
+        _id: '',
+        user_id: null,
+        tag_id: null,
+        title: '',
+        subtitle: '',
+        content: '',
+        is_published: null,
+        created_at: null,
+      },
       editor: null,
+      contentObj: null,
     };
   },
-  mounted() {
+  async mounted() {
+    this.$store.dispatch('setIsProcessing', true);
+    await Promise.all([
+      this.preGetPost(),
+    ]);
     this.editor = new Editor({
       extensions: [
         new CodeBlockHighlight({
           languages: {
             javascript,
             css,
+            python,
           },
         }),
         new HardBreak(),
@@ -57,23 +70,70 @@ export default {
         new Code(),
         new Italic(),
       ],
-      content: `
-        <h2>
-          Code Highlighting
-        </h2>
-        <p>
-          These are code blocks with <strong>automatic syntax highlighting</strong> based on highlight.js.
-        </p>
-        <pre><code>${this.javascriptExample}</code></pre>
-        <p>
-          Note: tiptap doesn't import syntax highlighting language definitions from highlight.js. You
-          <strong>must</strong> import them and initialize the extension with all languages you want to support:
-        </p>
-      `,
+      content: this.contentObj,
+      onUpdate({ getJSON }) {
+        this.contentObj = getJSON();
+        // console.log(this.contentObj);
+      },
     });
+    this.$store.dispatch('setIsProcessing', false);
+  },
+  methods: {
+    async preGetPost() {
+      // const res = await getPost();
+      const res = {
+        _id: 1234,
+        user_id: 13294823,
+        tag_id: 10384928390,
+        titie: 'hello',
+        subtitle: 'hi',
+        content: '{"type":"doc","content":[{"type":"paragraph","content":[{"type":"text","text":"This is some inserted text. 👋"}]}]}',
+        is_published: true,
+        created_at: 5678,
+      };
+      console.log('....');
+      this.post = res;
+      this.contentObj = JSON.parse(res.content);
+    },
+    async handleModifyPost() {
+      // send to store on save
+      const { type, content } = this.contentObj;
+      const contentStr = JSON.stringify({ type, content });
+      console.log('[handleModifyPost]: ', contentStr);
+      // await modifyPost({ _id: this.post._id, content: contentStr });
+    },
   },
 };
 </script>
 
 <style scoped>
+.contents {
+  width: 60%;
+}
+.editor-content {
+  border-style:ridge;
+  border-width: 1px;
+  border-color: gray;
+  height: 464px !important;
+  max-height: 464px !important;
+  overflow-y: auto !important;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+textarea {
+  resize: none;
+}
+
+#count_message {
+  background-color: smoke;
+  margin-top: -20px;
+  margin-right: 5px;
+}
+
+.save-button {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
 </style>
