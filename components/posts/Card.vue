@@ -36,12 +36,12 @@ export default {
   mounted() {
     // getPost
     // need to transform date
-    const post = {};
+    // const post = {};
 
     // getCollectionsbyPostId
 
     // use post.user_id get user
-    const author = {};
+    // const author = {};
   },
   methods: {
     transformDate(unixEpoch) {
