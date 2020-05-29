@@ -3,14 +3,14 @@
     <div class="row mx-0 pb-3">
       <div class="like-collect col-2 d-flex justify-content-center align-items-center flex-column">
         <div class="py-2 sticky-top">
-          <font-awesome-icon :icon="['far', 'heart']" size="2x" :style="{color: 'black'}" v-if="!heartShow" @click="modifyHeartState" />
-          <font-awesome-icon :icon="['fas', 'heart']" size="2x" :style="{color: 'black'}" v-if="heartShow" @click="modifyHeartState" />
-          <span class="align-top font-weight-bold likes">{{likes}}</span>
+          <font-awesome-icon v-if="!heartShow" :icon="['far', 'heart']" size="2x" :style="{color: 'black'}" @click="modifyHeartState" />
+          <font-awesome-icon v-if="heartShow" :icon="['fas', 'heart']" size="2x" :style="{color: 'black'}" @click="modifyHeartState" />
+          <span class="align-top font-weight-bold likes">{{ likes }}</span>
         </div>
         <div class="py-2 sticky-offset sticky-top">
-          <font-awesome-icon :icon="['far', 'bookmark']" size="2x" :style="{color: 'black'}" v-if="!bookmarkShow" @click="modifyBookmarkState" />
-          <font-awesome-icon :icon="['fas', 'bookmark']" size="2x" :style="{color: 'black'}"  v-if="bookmarkShow" @click="modifyBookmarkState" />
-          <span class="align-top font-weight-bold likes">{{collects}}</span>
+          <font-awesome-icon v-if="!bookmarkShow" :icon="['far', 'bookmark']" size="2x" :style="{color: 'black'}" @click="modifyBookmarkState" />
+          <font-awesome-icon v-if="bookmarkShow" :icon="['fas', 'bookmark']" size="2x" :style="{color: 'black'}" @click="modifyBookmarkState" />
+          <span class="align-top font-weight-bold likes">{{ collects }}</span>
         </div>
       </div>
       <div class="article col-8">
@@ -75,12 +75,12 @@ export default {
     //   this.progress = progressValuePercentage;
     // },
     modifyHeartState() {
-      this.heartShow=!this.heartShow;
-      this.likes=(this.heartShow) ? this.likes+1 : this.likes-1;
+      this.heartShow = !this.heartShow;
+      this.likes = (this.heartShow) ? this.likes + 1 : this.likes - 1;
     },
     modifyBookmarkState() {
-      this.bookmarkShow=!this.bookmarkShow;
-      this.collects=(this.bookmarkShow) ? this.collects+1 : this.collects-1;
+      this.bookmarkShow = !this.bookmarkShow;
+      this.collects = (this.bookmarkShow) ? this.collects + 1 : this.collects - 1;
     },
   },
 };
