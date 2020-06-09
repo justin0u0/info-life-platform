@@ -5,7 +5,9 @@
     :element-loading-text="processTitle"
   >
     <Header />
-    <nuxt />
+    <div style="min-height: 100vh;">
+      <nuxt />
+    </div>
     <Footer />
   </div>
 </template>
