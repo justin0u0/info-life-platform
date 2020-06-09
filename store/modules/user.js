@@ -34,6 +34,14 @@ const user = {
       };
       return loginProcess();
     },
+    logout({ commit }) {
+      const logoutProcess = async() => {
+        window.localStorage.removeItem('auth_token');
+        commit('SET_LOGOUT_STATE');
+        console.log('[Vuex:logout]: Logout successfully');
+      };
+      return logoutProcess();
+    },
   },
 };
 

@@ -15,6 +15,7 @@ const store = () => new Vuex.Store({
     processTitle: (state) => state.app.processTitle,
     currentUserId: (state) => state.user.id,
     isLoggedIn: (state) => state.user.isLoggedIn,
+    currentUser: (state) => state.user.data,
   },
 });
 
