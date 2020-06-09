@@ -13,7 +13,7 @@
         <el-alert v-show="error.password" type="error" :title="error.message" />
       </el-form-item>
       <el-form-item class="d-flex justify-content-end">
-        <el-button type="primary" @click="handleLogin">登入</el-button>
+        <el-button type="primary" @click.prevent="handleLogin">登入</el-button>
       </el-form-item>
     </el-form>
   </el-card>
@@ -47,7 +47,9 @@ export default {
         // 3. Show success message
         this.$message({ type: 'success', message: '登入成功' });
         // 4. Redirect
-        this.$router.push('/');
+        // this.$router.push('/');
+        // 5. Emit success message
+        this.$emit('on-success');
       } catch (error) {
         switch (error.statusCode) {
           case 2000:
@@ -62,6 +64,8 @@ export default {
             // Unknown error
             this.$message({ type: 'error', message: error.message || error.error });
         }
+        // Emit failed message
+        this.$emit('on-fail');
       }
       // 5. Clear full page loading
       this.$store.dispatch('setIsProcessing', false);
