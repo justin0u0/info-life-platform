@@ -23,7 +23,7 @@
         </el-form-item>
 
         <el-form-item class="register-button-group">
-          <el-button @click="$router.push('/')">
+          <el-button @click="$router.push('/Login')">
             返回登入頁
           </el-button>
           <el-button type="primary" @click="handleRegister('form')">
@@ -32,8 +32,7 @@
         </el-form-item>
       </el-form>
     </div>
-  </div>
-</template>
+  </div></template>
 
 <script>
 // import { addStudent } from '@/api/student';
@@ -123,6 +122,7 @@ export default {
 }
 .container {
   margin: auto;
+  width:100%;
 }
 .register-button-group {
   display: flex;

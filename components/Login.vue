@@ -1,31 +1,53 @@
 <template>
   <div class="container">
-    <nav>
-      <a id="login" href="#">登入</a>
-      <a href="/Register">註冊</a>
-    </nav>
-    <div class="form-container">
-      <div class="form-title">
-        <h3>Login</h3>
-      </div>
-      <el-form ref="form" :model="form" label-width="70px">
-        <el-form-item label="帳號：">
-          <el-input v-model="form._id" />
-          <el-alert v-show="error._id" type="error" :title="error.message" />
-        </el-form-item>
-        <el-form-item label="密碼：">
-          <el-input v-model="form.password" show-password />
-          <el-alert v-show="error.password" type="error" :title="error.message" />
-        </el-form-item>
-        <el-form-item class="login-button-group">
-          <el-button @click="$router.push('/')">
-            返回首頁
-          </el-button>
-          <el-button type="primary" @click="handleLogin">登入</el-button>
-        </el-form-item>
-      </el-form>
-      <div class="register-link">
-        <el-link href="/register">還沒有帳號，點此註冊</el-link>
+    <div class="form-title">
+      <h2>Login</h2>
+    </div>
+    <el-form ref="form" :model="form" label-width="70px" style="margin-top: 30px">
+      <el-form-item label="帳號：">
+        <el-input v-model="form._id" />
+        <el-alert v-show="error._id" type="error" :title="error.message" />
+      </el-form-item>
+      <el-form-item label="密碼：">
+        <el-input v-model="form.password" show-password />
+        <el-alert v-show="error.password" type="error" :title="error.message" />
+      </el-form-item>
+      <el-form-item class="login-button-group">
+        <el-button @click="$router.push('/')">
+          返回首頁
+        </el-button>
+        <el-button type="primary" @click="handleLogin">登入</el-button>
+      </el-form-item>
+    </el-form>
+    <div class="register-link">
+      <el-link href="/Register">還沒有帳號，點此註冊</el-link>
+      <nav>
+        <a id="login" href="#">登入</a>
+        <a href="/Register">註冊</a>
+      </nav>
+      <div class="form-container">
+        <div class="form-title">
+          <h3>Login</h3>
+        </div>
+        <el-form ref="form" :model="form" label-width="70px">
+          <el-form-item label="帳號：">
+            <el-input v-model="form._id" />
+            <el-alert v-show="error._id" type="error" :title="error.message" />
+          </el-form-item>
+          <el-form-item label="密碼：">
+            <el-input v-model="form.password" show-password />
+            <el-alert v-show="error.password" type="error" :title="error.message" />
+          </el-form-item>
+          <el-form-item class="login-button-group">
+            <el-button @click="$router.push('/')">
+              返回首頁
+            </el-button>
+            <el-button type="primary" @click="handleLogin">登入</el-button>
+          </el-form-item>
+        </el-form>
+        <div class="register-link">
+          <el-link href="/register">還沒有帳號，點此註冊</el-link>
+        </div>
       </div>
     </div>
   </div>
