@@ -4,16 +4,16 @@
       <h4>註冊</h4>
     </div>
     <el-form ref="form" :rules="rules" :model="form" label-width="70px">
-      <el-form-item label="姓名：" prop="name" class="formItem">
+      <el-form-item label="帳號名稱：" prop="username">
+        <el-input v-model="form.username" />
+      </el-form-item>
+      <el-form-item label="姓名：" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item label="帳號：" prop="user_id" class="formItem">
-        <el-input v-model="form.user_id" />
-      </el-form-item>
-      <el-form-item label="密碼：" prop="password" class="formItem">
+      <el-form-item label="密碼：" prop="password">
         <el-input v-model="form.password" show-password />
       </el-form-item>
-      <el-form-item label="信箱：" prop="email" class="formItem">
+      <el-form-item label="信箱：" prop="email">
         <el-input v-model="form.email" />
       </el-form-item>
 
@@ -27,36 +27,36 @@
 </template>
 
 <script>
-// import { addStudent } from '@/api/student';
+import { addUser } from '@/api/user';
 
 export default {
   data() {
     return {
       // user input data
       form: {
-        name: '',
-        password: '',
-        email: '',
-        user_id: '',
+        username: null,
+        name: null,
+        password: null,
+        email: null,
       },
       // form rules
       rules: {
+        username: [
+          { required: true, message: '請輸入帳號名稱', trigger: 'blur' },
+          { pattern: '^[a-zA-z0-9]*$', message: '帳號格式錯誤', trigger: 'blur' },
+          { min: 6, message: '帳號長度至少為６', trigger: 'blur' },
+        ],
         name: [
           { required: true, message: '請輸入姓名', trigger: 'blur' },
         ],
         password: [
           { required: true, message: '請輸入密碼', trigger: 'blur' },
-          { min: 6, message: '密碼過短(至少6位)', trigger: 'blur' },
+          { min: 6, message: '密碼長度至少為６', trigger: 'blur' },
         ],
         email: [
           {
             type: 'email', required: true, message: '請輸入信箱', trigger: 'blur',
           },
-        ],
-        user_id: [
-          { required: true, message: '請輸入帳號', trigger: 'blur' },
-          { pattern: '^[a-zA-z0-9]*$', message: '帳號格式錯誤', trigger: 'blur' },
-          { min: 6, message: '帳號長度至少為 6', trigger: 'blur' },
         ],
       },
 
@@ -66,28 +66,29 @@ export default {
     async handleRegister(formName) {
       try {
         // 0. Set full page loading
-        // this.$store.dispatch('setIsProcessing', true);
+        this.$store.dispatch('setIsProcessing', true);
         // 1. Validate Form
         this.$refs[formName].validate(async(valid) => {
           if (valid) {
             // 2. Try register
-            // await addStudent(this.form);
+            await addUser(this.form);
             // 3. Show success message
-            // this.$message({ type: 'success', message: '註冊成功' });
+            this.$message({ type: 'success', message: '註冊成功' });
             // 4. Redirect to login page
-            // this.$router.push('/student/login');
+            this.$router.push('/');
             // 5. Clear full page loading
-            // this.$store.dispatch('setIsProcessing', false);
-            console.log('valid');
+            this.$store.dispatch('setIsProcessing', false);
+            // 6. Emit success message
+            this.$emit('onSuccess');
           } else {
-            // this.$store.dispatch('setIsProcessing', false);
-            console.log('invalid');
+            this.$store.dispatch('setIsProcessing', false);
             return false;
           }
           return true;
         });
       } catch (error) {
         this.$message({ type: 'error', message: error.message });
+        this.$emit('onFail');
       }
     },
   },

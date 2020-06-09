@@ -5,7 +5,7 @@
   >
     <div class="d-flex justify-content-center align-items-stretch">
       <template v-if="currentDisplay === 'login'">
-        <Login ref="login" />
+        <Login ref="login" @on-success="handleDialogClose" />
         <el-button
           type="info"
           plain
@@ -16,7 +16,7 @@
         </el-button>
       </template>
       <template v-if="currentDisplay === 'register'">
-        <Register ref="register" />
+        <Register ref="register" @on-success="handleDialogClose" />
         <el-button
           type="info"
           plain
