@@ -12,13 +12,7 @@
         <el-input v-model="form.password" show-password @keyup.enter.native="handleLogin" />
         <el-alert v-show="error.password" type="error" :title="error.message" />
       </el-form-item>
-      <div class="d-flex justify-content-center" style="margin-bottom: 22px">
-        <el-link href="/register">還沒有帳號，點此註冊</el-link>
-      </div>
-      <el-form-item class="login-button-group">
-        <el-button @click="$router.push('/')">
-          返回首頁
-        </el-button>
+      <el-form-item class="d-flex justify-content-end">
         <el-button type="primary" @click="handleLogin">登入</el-button>
       </el-form-item>
     </el-form>
