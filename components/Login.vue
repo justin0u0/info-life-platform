@@ -5,11 +5,11 @@
     </div>
     <el-form ref="form" :model="form" label-width="70px" style="margin-top: 30px">
       <el-form-item label="帳號：">
-        <el-input v-model="form.username" />
+        <el-input v-model="form.username" @keyup.enter.native="handleLogin" />
         <el-alert v-show="error.username" type="error" :title="error.message" />
       </el-form-item>
       <el-form-item label="密碼：">
-        <el-input v-model="form.password" show-password />
+        <el-input v-model="form.password" show-password @keyup.enter.native="handleLogin" />
         <el-alert v-show="error.password" type="error" :title="error.message" />
       </el-form-item>
       <div class="d-flex justify-content-center" style="margin-bottom: 22px">
