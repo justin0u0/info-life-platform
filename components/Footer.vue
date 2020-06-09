@@ -38,8 +38,8 @@ export default {
 
 <style scoped>
 .page-footer {
-    background-color: #041a30;
-    color: white;
+  background-color: #041a30;
+  color: white;
 }
 .list-unstyled a {
   color: white;

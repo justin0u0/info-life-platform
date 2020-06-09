@@ -1,32 +1,37 @@
 <template>
   <div class="container">
-    <div class="form-title">
-      註冊
+    <nav>
+      <a href="/Login">登入</a>
+      <a id="register" href="#">註冊</a>
+    </nav>
+    <div class="form-container">
+      <div class="form-title">
+        註冊
+      </div>
+      <el-form ref="form" :rules="rules" :model="form" label-width="70px">
+        <el-form-item label="姓名：" prop="name" class="formItem">
+          <el-input v-model="form.name" />
+        </el-form-item>
+        <el-form-item label="帳號：" prop="user_id" class="formItem">
+          <el-input v-model="form.user_id" />
+        </el-form-item>
+        <el-form-item label="密碼：" prop="password" class="formItem">
+          <el-input v-model="form.password" show-password />
+        </el-form-item>
+        <el-form-item label="信箱：" prop="email" class="formItem">
+          <el-input v-model="form.email" />
+        </el-form-item>
+
+        <el-form-item class="register-button-group">
+          <el-button @click="$router.push('/')">
+            返回登入頁
+          </el-button>
+          <el-button type="primary" @click="handleRegister('form')">
+            註冊
+          </el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    <el-form ref="form" :rules="rules" :model="form" label-width="70px">
-      <el-form-item label="姓名：" prop="name">
-        <el-input v-model="form.name" />
-      </el-form-item>
-
-      <el-form-item label="帳號：" prop="user_id">
-        <el-input v-model="form.user_id" />
-      </el-form-item>
-      <el-form-item label="密碼：" prop="password">
-        <el-input v-model="form.password" show-password />
-      </el-form-item>
-      <el-form-item label="信箱：" prop="email">
-        <el-input v-model="form.email" />
-      </el-form-item>
-
-      <el-form-item class="register-button-group">
-        <el-button @click="$router.push('/')">
-          返回登入頁
-        </el-button>
-        <el-button type="primary" @click="handleRegister('form')">
-          註冊
-        </el-button>
-      </el-form-item>
-    </el-form>
   </div>
 </template>
 
@@ -107,16 +112,43 @@ export default {
   text-align: center;
   margin: 20px 0;
 }
-.container {
-  max-width: 580px;
+.form-container {
+  max-width: 430px;
   border: 0.5px rgb(180, 180, 180) solid;
   background-color: rgb(171, 211, 250);
-  padding: 20px;
+  padding: 15px;
+  margin: auto;
+  width: 100%;
+  margin-top: 5px;
+}
+.container {
   margin: auto;
 }
 .register-button-group {
   display: flex;
   justify-content: flex-end;
 }
-
+nav {
+  text-align: center;
+}
+nav a {
+    color: rgb(192, 192, 192);
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+    display: inline;
+    padding: 0 0.5rem;
+}
+nav a:hover {
+    /* background-color: rgb(26, 26, 26); */
+    text-decoration: underline;
+    color: black;
+}
+#register {
+    /* background-color: lightgray; */
+    color: black;
+    text-decoration: underline;
+}
+.formItem {
+    margin-bottom: 30px !important;
+}
 </style>
