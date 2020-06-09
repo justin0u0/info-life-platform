@@ -5,8 +5,8 @@
     </div>
     <el-form ref="form" :model="form" label-width="70px" style="margin-top: 30px">
       <el-form-item label="帳號：">
-        <el-input v-model="form._id" />
-        <el-alert v-show="error._id" type="error" :title="error.message" />
+        <el-input v-model="form.username" />
+        <el-alert v-show="error.username" type="error" :title="error.message" />
       </el-form-item>
       <el-form-item label="密碼：">
         <el-input v-model="form.password" show-password />
@@ -30,11 +30,11 @@ export default {
   data() {
     return {
       form: {
-        _id: '',
+        username: '',
         password: '',
       },
       error: {
-        _id: false,
+        username: false,
         password: false,
         message: '',
       },
@@ -42,18 +42,18 @@ export default {
   },
   methods: {
     async handleLogin() {
-      const { _id, password } = this.form;
+      const { username, password } = this.form;
       // 0. Set full page loading
       this.$store.dispatch('setIsProcessing', true);
       try {
         // 1. Reset error
         this.error = { _id: false, password: false, message: '' };
         // 2. Try login
-        await this.$store.dispatch('Login', { _id, password });
+        await this.$store.dispatch('login', { username, password });
         // 3. Show success message
         this.$message({ type: 'success', message: '登入成功' });
         // 4. Redirect
-        this.$router.push('/student');
+        this.$router.push('/');
       } catch (error) {
         switch (error.statusCode) {
           case 2000:
@@ -66,7 +66,7 @@ export default {
             break;
           default:
             // Unknown error
-            this.$message({ type: 'error', message: error.message });
+            this.$message({ type: 'error', message: error.message || error.error });
         }
       }
       // 5. Clear full page loading
@@ -78,7 +78,8 @@ export default {
 
 <style scoped>
 .login-card {
-  width: 100%;
+  width: 90%;
+  margin-bottom: 30px;
 }
 
 @media (min-width: 576px) {
