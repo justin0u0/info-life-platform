@@ -1,5 +1,5 @@
 <template>
-  <el-container class="container justify-content-center">
+  <el-container class="justify-content-center">
     <Login />
   </el-container>
 </template>
