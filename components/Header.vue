@@ -6,20 +6,6 @@
     </button>
     <div id="collapsibleNavbar" class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
-        <!--
-        <li class="nav-item px-2 pl-sm-3">
-          <a class="header-tag nav-link" :class="{ active: isActive[0] }" href="/posts">主題專欄</a>
-        </li>
-        <li class="nav-item px-2 pl-sm-3">
-          <a class="header-tag nav-link" :class="{ active: isActive[1] }" href="/qa">QA問答</a>
-        </li>
-        <li class="nav-item px-2 pl-sm-3">
-          <a class="header-tag nav-link" :class="{ active: isActive[2] }" href="/play">哈拉場外</a>
-        </li>
-        <li v-show="!isLoggedIn" class="nav-item px-2 pl-sm-3">
-          <a class="header-tag nav-link" :class="{ active: isActive[3] }" href="/login">登入/註冊</a>
-        </li>
-        -->
         <li
           v-for="(navLink, index) in navLinks"
           :key="index"
@@ -33,8 +19,11 @@
             {{ navLink.content }}
           </a>
         </li>
+        <li v-if="isLoggedIn" class="nav-item px-2 pl-sm-3">
+          <a class="header-tag nav-link" href="" @click.prevent="handleLogout">登出</a>
+        </li>
         <li class="nav-item px-2 pl-sm-3">
-          <a v-if="!isLoggedIn" class="header-tag nav-link" href="" @click.prevent="handleOpenDialog">登入/登出</a>
+          <a v-if="!isLoggedIn" class="header-tag nav-link" href="" @click.prevent="handleOpenDialog">登入/註冊</a>
           <a v-else class="header-tag nav-link" href="" @click.prevent="() => null">Hello, {{ currentUser.username }}</a>
         </li>
       </ul>
@@ -77,6 +66,11 @@ export default {
     },
     handleOpenDialog() {
       console.log('[Header:handleOpenDialog]');
+    },
+    handleLogout() {
+      this.$store.dispatch('logout');
+      this.$router.push('/');
+      this.$message({ type: 'success', message: '登出成功' });
     },
   },
 };
