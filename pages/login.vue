@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="container justify-content-center">
     <Login />
   </el-container>
 </template>
@@ -15,8 +15,4 @@ export default {
 </script>
 
 <style scoped>
-.el-container {
-  text-align: center;
-  margin: 20px 0;
-}
 </style>
