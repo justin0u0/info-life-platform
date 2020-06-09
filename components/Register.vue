@@ -17,10 +17,7 @@
         <el-input v-model="form.email" />
       </el-form-item>
 
-      <el-form-item class="register-button-group">
-        <el-button @click="$router.push('/Login')">
-          返回登入頁
-        </el-button>
+      <el-form-item class="d-flex justify-content-end">
         <el-button type="primary" @click="handleRegister('form')">
           註冊
         </el-button>

@@ -23,18 +23,26 @@
           <a class="header-tag nav-link" href="" @click.prevent="handleLogout">登出</a>
         </li>
         <li class="nav-item px-2 pl-sm-3">
-          <a v-if="!isLoggedIn" class="header-tag nav-link" href="" @click.prevent="handleOpenDialog">登入/註冊</a>
+          <a v-if="!isLoggedIn" class="header-tag nav-link" href="" @click.prevent="handleDialogOpen">登入/註冊</a>
           <a v-else class="header-tag nav-link" href="" @click.prevent="() => null">Hello, {{ currentUser.username }}</a>
         </li>
       </ul>
     </div>
+
+    <!-- Login/Register Dialog -->
+    <LoginRegisterDialog ref="dialog" />
   </nav>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import LoginRegisterDialog from '@/components/LoginRegisterDialog.vue';
 
 export default {
+  name: 'Header',
+  components: {
+    LoginRegisterDialog,
+  },
   data() {
     return {
       navLinks: [
@@ -64,8 +72,9 @@ export default {
         }
       }
     },
-    handleOpenDialog() {
-      console.log('[Header:handleOpenDialog]');
+    handleDialogOpen() {
+      console.log('[Header:handleDialogOpen]');
+      this.$refs.dialog.handleDialogOpen();
     },
     handleLogout() {
       this.$store.dispatch('logout');
