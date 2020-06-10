@@ -3,7 +3,7 @@
     <div slot="header">
       <h4>註冊</h4>
     </div>
-    <el-form ref="form" :rules="rules" :model="form" label-width="70px">
+    <el-form ref="form" :rules="rules" :model="form" label-width="100px">
       <el-form-item label="帳號名稱：" prop="username">
         <el-input v-model="form.username" />
       </el-form-item>
