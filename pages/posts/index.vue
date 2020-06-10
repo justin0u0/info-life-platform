@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Blog />
+    <ListPosts />
   </div>
 </template>
 
 <script>
-import Blog from '@/components/posts/index';
+import ListPosts from '@/components/posts/ListPosts.vue';
 
 export default {
   components: {
-    Blog,
+    ListPosts,
   },
 };
 </script>
