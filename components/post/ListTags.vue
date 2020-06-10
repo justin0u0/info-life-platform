@@ -15,7 +15,7 @@
 import { getTags } from '@/api/tag';
 
 export default {
-  name: 'PostsListTags',
+  name: 'PostListTags',
   data() {
     return {
       tags: [],

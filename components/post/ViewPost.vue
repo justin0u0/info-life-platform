@@ -35,6 +35,7 @@
 // import { getPost } from '@/api/post';
 
 export default {
+  name: 'PostViewPost',
   props: {
     postId: {
       type: String,

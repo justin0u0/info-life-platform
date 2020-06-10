@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Viewpost from '@/components/posts/Viewpost';
+import Viewpost from '@/components/post/ViewPost.vue';
 
 export default {
   components: {

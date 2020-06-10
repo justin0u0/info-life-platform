@@ -15,11 +15,11 @@
 
 <script>
 import { getPosts } from '@/api/post';
-import ListTags from '@/components/posts/ListTags.vue';
-import PreviewCard from '@/components/posts/PreviewCard.vue';
+import ListTags from '@/components/post/ListTags.vue';
+import PreviewCard from '@/components/post/PreviewCard.vue';
 
 export default {
-  name: 'PostsListPosts',
+  name: 'PostListPosts',
   components: {
     ListTags,
     PreviewCard,
