@@ -1,5 +1,5 @@
 <template>
-  <footer class="page-footer font-small mt-auto pt-4">
+  <footer class="font-small mt-auto pt-4">
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
       <div class="row">
@@ -37,10 +37,6 @@ export default {
 </script>
 
 <style scoped>
-.page-footer {
-  background-color: #041a30;
-  color: white;
-}
 .list-unstyled a {
   color: white;
   font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
