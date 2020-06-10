@@ -1,15 +1,15 @@
 <template>
   <div class="modify-container">
-    <PostsModify />
+    <ModifyPost :post-id="id" />
   </div>
 </template>
 
 <script>
-import PostsModify from '@/components/posts/Modify';
+import ModifyPost from '@/components/post/ModifyPost.vue';
 
 export default {
   components: {
-    PostsModify,
+    ModifyPost,
   },
   asyncData({ params }) {
     return {

@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  name: 'PostPreviewCard',
   props: {
     postData: {
       type: Object,

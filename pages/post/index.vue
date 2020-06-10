@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ListPosts from '@/components/posts/ListPosts.vue';
+import ListPosts from '@/components/post/ListPosts.vue';
 
 export default {
   components: {
