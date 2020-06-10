@@ -1,6 +1,6 @@
 <template>
   <div class="modify-container">
-    <ModifyPost :post-id="id" />
+    <ModifyPost :post-id="$route.params.id" />
   </div>
 </template>
 
@@ -10,11 +10,6 @@ import ModifyPost from '@/components/post/ModifyPost.vue';
 export default {
   components: {
     ModifyPost,
-  },
-  asyncData({ params }) {
-    return {
-      id: params.id,
-    };
   },
 };
 </script>

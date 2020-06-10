@@ -1,13 +1,13 @@
 <template>
-  <Viewpost :post-id="$route.params.id" />
+  <ViewPost :post-id="$route.params.id" />
 </template>
 
 <script>
-import Viewpost from '@/components/post/ViewPost.vue';
+import ViewPost from '@/components/post/ViewPost.vue';
 
 export default {
   components: {
-    Viewpost,
+    ViewPost,
   },
 };
 </script>
