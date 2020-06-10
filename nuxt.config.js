@@ -18,6 +18,12 @@ export default {
     script: [
     ],
   },
+  /**
+   * Process Env Config
+   */
+  env: {
+    baseUrl: process.env.baseUrl || 'http://localhost:7001',
+  },
   /*
   ** Customize the progress-bar color
   */
@@ -41,6 +47,10 @@ export default {
       ssr: false,
     },
     '@/plugins/font-awesome',
+    {
+      src: '@/plugins/localStorage.js',
+      ssr: false,
+    },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -52,6 +62,7 @@ export default {
   */
   modules: [
     'nuxt-fontawesome',
+    '@nuxtjs/axios',
   ],
   /*
   ** fontawesome
