@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <el-card>
-      <Editor :content-data.sync="contentObj" />
+      <Editor ref="editor" :content-data.sync="contentObj" />
     </el-card>
     <div class="mt-3 d-flex justify-content-end">
       <el-button @click="handleModifyPost">儲存</el-button>
@@ -54,6 +54,7 @@ export default {
       console.log('[PostsModifyPost:preGetPost]: ', this.contentObj);
     },
     async handleModifyPost() {
+      this.$refs.editor.onUpdate();
       const { type, content } = this.contentObj;
       const contentStr = JSON.stringify({ type, content });
       console.log('[handleModifyPost]: ', contentStr);
