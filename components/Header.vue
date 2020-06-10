@@ -46,9 +46,9 @@ export default {
   data() {
     return {
       navLinks: [
-        { route: '/posts', content: '主題專欄', isActive: false },
-        { route: '/questions', content: 'QA問答', isActive: false },
-        { route: '/plays', content: '場外哈拉', isActive: false },
+        { route: '/post', content: '主題專欄', isActive: false },
+        { route: '/question', content: 'QA問答', isActive: false },
+        { route: '/play', content: '場外哈拉', isActive: false },
       ],
     };
   },

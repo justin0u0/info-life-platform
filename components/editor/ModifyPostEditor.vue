@@ -1,5 +1,7 @@
 <template>
-  <editor-content class="editor__content" :editor="editor" />
+  <no-ssr>
+    <editor-content ref="editor" class="editor__content" :editor="editor" />
+  </no-ssr>
 </template>
 
 <script>
@@ -19,12 +21,34 @@ import python from 'highlight.js/lib/languages/python';
 
 export default {
   name: 'EditorModifyPostEditor',
+  components: {
+    EditorContent,
+  },
+  props: {
+    contentData: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       editor: null,
     };
   },
+  watch: {
+    contentData: {
+      immediate: true,
+      handler(contentData) {
+        if (Object.prototype.hasOwnProperty.call(contentData, 'type')
+          && Object.prototype.hasOwnProperty.call(contentData, 'content')
+          && this.editor !== null) {
+          this.editor.setContent(contentData);
+        }
+      },
+    },
+  },
   mounted() {
+    const { onUpdate } = this;
     this.editor = new Editor({
       extensions: [
         new CodeBlockHighlight({
@@ -40,12 +64,15 @@ export default {
         new Code(),
         new Italic(),
       ],
-      content: this.contentObj,
-      onUpdate({ getJSON }) {
-        const content = getJSON();
-        console.log(content);
-      },
+      content: '',
+      onUpdate,
     });
+  },
+  methods: {
+    onUpdate() {
+      // console.log('[ModifyPostEditor:onUpdate]');
+      this.$emit('update:contentData', this.editor.getJSON());
+    },
   },
 };
 </script>

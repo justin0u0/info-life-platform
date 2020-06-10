@@ -1,13 +1,13 @@
 <template>
   <div class="card preview-card">
-    <a :href="`/posts/${postData._id}`">
+    <a :href="`/post/${postData._id}`">
       <div
         class="card-image-container"
         :style="{ backgroundImage: `url(${coverUrl})` }"
       />
     </a>
     <div class="card-body px-1">
-      <a class="card-title-link" :href="`/posts/${postData._id}`">
+      <a class="card-title-link" :href="`/post/${postData._id}`">
         <h5 class="card-title mb-2">{{ postData.title }}</h5>
       </a>
       <h6 class="card-subtitle my-2 post-subtitle">{{ transformSubtitle(postData.subtitle) }}</h6>
