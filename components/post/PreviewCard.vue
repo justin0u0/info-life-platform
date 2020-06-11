@@ -10,7 +10,7 @@
       <a class="card-title-link" :href="`/post/${postData._id}`">
         <h5 class="card-title mb-2">{{ postData.title }}</h5>
       </a>
-      <h6 class="card-subtitle my-2 post-subtitle">{{ transformSubtitle(postData.subtitle) }}</h6>
+      <h6 class="card-subtitle my-2">{{ transformSubtitle(postData.subtitle) }}</h6>
       <div class="d-flex my-2 pt-3">
         <div class="mr-2">
           <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png" alt="user image">

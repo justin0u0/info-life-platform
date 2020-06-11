@@ -102,6 +102,11 @@ html, body {
   height: 200px;
 }
 
+.nuxt {
+  /* Distance from footer */
+  margin-bottom: 20px;
+}
+
 @media (max-width: 768px) {
   .footer {
     height: 400px;
