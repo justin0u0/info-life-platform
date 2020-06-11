@@ -4,7 +4,6 @@
     <div
       v-for="tag in tags"
       :key="tag._id"
-      class=""
     >
       {{ tag.name }}
     </div>

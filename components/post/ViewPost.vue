@@ -1,4 +1,5 @@
 <template>
+  <!--
   <div class="container mw-100 mx-0 px-0 background">
     <div class="row mx-0 pb-3">
       <div class="like-collect col-2 d-flex justify-content-center align-items-center flex-column">
@@ -29,13 +30,29 @@
       </div>
     </div>
   </div>
+  -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <h2 class="post-subtitle">{{ post.subtitle }}</h2>
+        <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
+        <Editor :content-data="contentObj" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-// import { getPost } from '@/api/post';
+import { getPost } from '@/api/post';
+import Editor from '@/components/editor/ViewPostEditor.vue';
 
 export default {
   name: 'PostViewPost',
+  components: {
+    Editor,
+  },
   props: {
     postId: {
       type: String,
@@ -46,15 +63,19 @@ export default {
     return {
       // progress: '100%',
       post: {
-        title: 'title',
-        subtitle: 'subtitle',
-        content: 'The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friendefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that beginefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begins with a vowel. The indefinite article indicates that a noun refers to a general idea rather than a particular thing. For example, you might ask your friend, “Should I bring a gift to the party?” Your friend The indefinite article takes two forms. It’s the word a when it precedes a word that begins with a consonant. It’s the word an when it precedes a word that begin',
         _id: null,
         user_id: null,
         tag_id: null,
-        is_published: false,
-        created_at: 0,
+        title: '',
+        subtitle: '',
+        content: '',
+        cover: null,
+        published_at: null,
+        share_count: 0,
+        view_count: 0,
       },
+      contentObj: {},
+      coverUrl: '/assets/previewCardDefaultImage.jpg',
       heartShow: false,
       bookmarkShow: false,
       likes: 0,
@@ -62,10 +83,25 @@ export default {
     };
   },
   async mounted() {
-    // this.post = await getPost(this.postId);
-    // this.calcProgress();
+    this.$store.dispatch('setIsProcessing', true);
+    await Promise.all([
+      this.preGetPost(),
+    ]);
+    this.$store.dispatch('setIsProcessing', false);
   },
   methods: {
+    async preGetPost() {
+      const res = await getPost(this.postId);
+      this.post = res;
+      this.contentObj = JSON.parse(res.content);
+      try {
+        await this.$axios.get(res.cover.fileUrl);
+        this.coverUrl = res.cover.file_url;
+      } catch (error) {
+        this.coverUrl = '/assets/previewCardDefaultImage.jpg';
+      }
+      console.log('[PostViewPost:preGetPost]: ', this.contentObj);
+    },
     // calcProgress() {
     //   const { contentEl } = this.$refs;
     //   const fullHeight = contentEl.scrollHeight;
@@ -88,23 +124,27 @@ export default {
 </script>
 
 <style scoped>
-
-.like-collect {
-  /* background-color: rgb(171, 211, 250); */
+.post-title {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 400;
 }
-.article {
-  /* background-color: rgb(233, 138, 14); */
+.post-cover {
+  position: relative;
+  display: flex;
+  height: 300px;
+  width: 100%;
+  margin-top: 56px;
+  overflow-y: hidden;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.1em;
 }
-.list {
-  /* background-color: rgb(250, 171, 208); */
-}
-.likes {
-  font-size: 1.5rem;
-}
-.sticky-offset {
-  top: 9%;
-}
-.background {
-  background-color: lightgrey;
+.post-subtitle {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
+  font-weight: 300;
+  color: #777;
 }
 </style>

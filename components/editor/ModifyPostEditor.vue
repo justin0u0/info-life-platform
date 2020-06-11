@@ -6,15 +6,7 @@
 
 <script>
 import { Editor, EditorContent } from 'tiptap';
-import {
-  HardBreak,
-  Heading,
-  Bold,
-  Code,
-  Italic,
-} from 'tiptap-extensions';
-
-import highlight from '@/lib/highlight';
+import extensions from '@/lib/extensions';
 
 export default {
   name: 'EditorModifyPostEditor',
@@ -46,14 +38,7 @@ export default {
   },
   mounted() {
     this.editor = new Editor({
-      extensions: [
-        highlight,
-        new HardBreak(),
-        new Heading({ levels: [1, 2, 3] }),
-        new Bold(),
-        new Code(),
-        new Italic(),
-      ],
+      extensions,
       content: '',
     });
   },
