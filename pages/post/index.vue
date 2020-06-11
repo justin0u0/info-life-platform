@@ -1,16 +1,19 @@
 <template>
-  <Viewpost :post-id="$route.params.id" />
+  <div>
+    <ListPosts />
+  </div>
 </template>
 
 <script>
-import Viewpost from '@/components/posts/Viewpost';
+import ListPosts from '@/components/post/ListPosts.vue';
 
 export default {
   components: {
-    Viewpost,
+    ListPosts,
   },
 };
 </script>
 
 <style scoped>
+
 </style>
