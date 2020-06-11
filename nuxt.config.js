@@ -51,6 +51,10 @@ export default {
       src: '@/plugins/localStorage.js',
       ssr: false,
     },
+    {
+      src: '@/plugins/vue-infinite-scroll.js',
+      ssr: false,
+    },
   ],
   /*
   ** Nuxt.js dev-modules

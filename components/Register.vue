@@ -79,7 +79,7 @@ export default {
             // 5. Clear full page loading
             this.$store.dispatch('setIsProcessing', false);
             // 6. Emit success message
-            this.$emit('onSuccess');
+            this.$emit('on-success');
           } else {
             this.$store.dispatch('setIsProcessing', false);
             return false;
@@ -88,7 +88,7 @@ export default {
         });
       } catch (error) {
         this.$message({ type: 'error', message: error.message });
-        this.$emit('onFail');
+        this.$emit('on-fail');
       }
     },
   },
