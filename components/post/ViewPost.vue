@@ -41,17 +41,20 @@
         <Editor :content-data="contentObj" />
       </div>
     </div>
+    <BackToTop />
   </div>
 </template>
 
 <script>
 import { getPost } from '@/api/post';
 import Editor from '@/components/editor/ViewPostEditor.vue';
+import BackToTop from '@/components/BackToTop.vue';
 
 export default {
   name: 'PostViewPost',
   components: {
     Editor,
+    BackToTop,
   },
   props: {
     postId: {
