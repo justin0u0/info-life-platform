@@ -1,9 +1,16 @@
 <template>
   <div class="tag-lists">
-    <div>全部</div>
+    <div
+      :class="{ active: (currentTag === null) }"
+      @click="handleTagClick()"
+    >
+      全部
+    </div>
     <div
       v-for="tag in tags"
       :key="tag._id"
+      :class="{ active: (currentTag === tag._id) }"
+      @click="handleTagClick(tag._id)"
     >
       {{ tag.name }}
     </div>
@@ -15,6 +22,12 @@ import { getTags } from '@/api/tag';
 
 export default {
   name: 'PostListTags',
+  props: {
+    currentTag: {
+      required: true,
+      validator: (prop) => typeof prop === 'string' || prop === null,
+    },
+  },
   data() {
     return {
       tags: [],
@@ -31,6 +44,10 @@ export default {
     async preGetTags() {
       const res = await getTags({});
       this.tags = res.data;
+    },
+    handleTagClick(tagId = null) {
+      console.log('[PostListTags:handleTagClick]: ', tagId);
+      this.$emit('tag-click', tagId);
     },
   },
 };
@@ -55,6 +72,10 @@ export default {
 .tag-lists div:hover {
   color: #000;
   cursor: pointer;
+}
+.tag-lists .active {
+  color: #000;
+  font-weight: bolder;
 }
 
 @media (max-width: 768px) {
