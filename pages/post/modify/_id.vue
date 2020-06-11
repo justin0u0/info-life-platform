@@ -1,20 +1,15 @@
 <template>
   <div class="modify-container">
-    <PostsModify />
+    <ModifyPost :post-id="$route.params.id" />
   </div>
 </template>
 
 <script>
-import PostsModify from '@/components/posts/Modify';
+import ModifyPost from '@/components/post/ModifyPost.vue';
 
 export default {
   components: {
-    PostsModify,
-  },
-  asyncData({ params }) {
-    return {
-      id: params.id,
-    };
+    ModifyPost,
   },
 };
 </script>

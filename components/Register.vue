@@ -3,7 +3,7 @@
     <div slot="header">
       <h4>註冊</h4>
     </div>
-    <el-form ref="form" :rules="rules" :model="form" label-width="70px">
+    <el-form ref="form" :rules="rules" :model="form" label-width="100px">
       <el-form-item label="帳號名稱：" prop="username">
         <el-input v-model="form.username" />
       </el-form-item>
@@ -79,7 +79,7 @@ export default {
             // 5. Clear full page loading
             this.$store.dispatch('setIsProcessing', false);
             // 6. Emit success message
-            this.$emit('onSuccess');
+            this.$emit('on-success');
           } else {
             this.$store.dispatch('setIsProcessing', false);
             return false;
@@ -88,7 +88,7 @@ export default {
         });
       } catch (error) {
         this.$message({ type: 'error', message: error.message });
-        this.$emit('onFail');
+        this.$emit('on-fail');
       }
     },
   },
