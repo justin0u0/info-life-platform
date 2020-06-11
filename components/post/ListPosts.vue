@@ -66,6 +66,7 @@ export default {
       await this.getPostsProcess();
     },
     async getPostsProcess() {
+      if (this.loading === true) return;
       this.loading = true;
       const { total, data } = await getPosts({ filter: this.currentFilter, limit: this.limit, skip: this.countPosts });
       this.totalPosts = total;
