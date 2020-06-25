@@ -43,6 +43,9 @@ export default {
     handleEditorBlur() {
       this.$emit('editor-blur');
     },
+    getJSON() {
+      return this.editor.getJSON();
+    },
   },
 };
 </script>
