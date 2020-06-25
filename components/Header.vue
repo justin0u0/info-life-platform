@@ -1,57 +1,103 @@
 <template>
-  <nav class="navbar navbar-expand-md pb-3 my-3">
-    <a class="navbar-brand font-weight-normal brand ml-3 pb-2 pt-0" href="/"><span class="info-deco">Info</span><span class="life-deco">Life</span></a>
+  <nav class="navbar navbar-expand-md pb-3 mb-3">
+    <a class="navbar-brand font-weight-normal brand ml-3 pb-2 pt-0" href="/">
+      <span class="info-deco">Info</span>
+      <span class="life-deco">Life</span>
+    </a>
     <button class="navbar-toggler toggler pb-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"><font-awesome-icon icon="bars" /></span>
     </button>
     <div id="collapsibleNavbar" class="collapse navbar-collapse">
-      <ul class="navbar-nav header-tag ml-auto">
-        <li class="nav-item px-2 pl-sm-3">
-          <a class="nav-link" :class="{ active: isActive[0] }" href="/blog">主題專欄</a>
+      <ul class="navbar-nav ml-auto">
+        <li
+          v-for="(navLink, index) in navLinks"
+          :key="index"
+          class="nav-item px-2 pl-sm-3"
+        >
+          <a
+            class="header-tag nav-link"
+            :class="{ active: navLink.isActive }"
+            :href="navLink.route"
+          >
+            {{ navLink.content }}
+          </a>
+        </li>
+        <li v-if="isLoggedIn" class="nav-item px-2 pl-sm-3">
+          <a class="header-tag nav-link" href="" @click.prevent="handleLogout">登出</a>
         </li>
         <li class="nav-item px-2 pl-sm-3">
-          <a class="nav-link" :class="{ active: isActive[1] }" href="/qa">QA問答</a>
-        </li>
-        <li class="nav-item px-2 pl-sm-3">
-          <a class="nav-link" :class="{ active: isActive[2] }" href="/play">哈拉場外</a>
-        </li>
-        <li class="nav-item px-2 pl-sm-3">
-          <a class="nav-link" :class="{ active: isActive[3] }" href="/login">登入/註冊</a>
+          <a v-if="!isLoggedIn" class="header-tag nav-link" href="" @click.prevent="handleDialogOpen">登入/註冊</a>
+          <a v-else class="header-tag nav-link" href="" @click.prevent="() => null">Hello, {{ currentUser.username }}</a>
         </li>
       </ul>
     </div>
+
+    <!-- Login/Register Dialog -->
+    <LoginRegisterDialog ref="dialog" />
   </nav>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import LoginRegisterDialog from '@/components/LoginRegisterDialog.vue';
+
 export default {
+  name: 'Header',
+  components: {
+    LoginRegisterDialog,
+  },
   data() {
     return {
-      isActive: [false, false, false, false],
+      navLinks: [
+        { route: '/post', content: '主題專欄', isActive: false },
+        { route: '/question', content: 'QA問答', isActive: false },
+        { route: '/play', content: '場外哈拉', isActive: false },
+      ],
     };
   },
+  computed: {
+    ...mapGetters([
+      'isLoggedIn',
+      'currentUser',
+    ]),
+  },
   mounted() {
-    if (this.$route.path === '/blog') {
-      this.$set(this.isActive, 0, true);
-    } else if (this.$route.path === '/qa') {
-      this.$set(this.isActive, 1, true);
-    } else if (this.$route.path === '/play') {
-      this.$set(this.isActive, 2, true);
-    } else if (this.$route.path === '/login') {
-      this.$set(this.isActive, 3, true);
-    }
+    // Register all 'isActive'
+    this.preRegisterState();
+  },
+  methods: {
+    preRegisterState() {
+      for (let i = 0; i < this.navLinks.length; i += 1) {
+        const navLink = this.navLinks[i];
+        if (this.$route.path.startsWith(navLink.route)) {
+          navLink.isActive = true;
+          this.$set(this.navLinks, i, navLink);
+        }
+      }
+    },
+    handleDialogOpen() {
+      console.log('[Header:handleDialogOpen]');
+      this.$refs.dialog.handleDialogOpen();
+    },
+    handleLogout() {
+      this.$store.dispatch('logout');
+      this.$router.push('/');
+      this.$message({ type: 'success', message: '登出成功' });
+    },
   },
 };
 </script>
 
 <style scoped>
-.header-tag a {
+.header-tag{
   font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
-  color: #111;
   font-size: 1.1rem;
+  color:rgb(0, 0, 0);
+  letter-spacing: 0.05rem;
   border-bottom: 3px solid transparent;
+  /* font-weight: bold; */
 }
-.header-tag a:hover {
+.header-tag:hover {
   border-bottom:3px solid rgb(64, 158, 255);
 }
 .toggler {
@@ -65,5 +111,7 @@ export default {
 }
 .active {
   font-weight: bold;
+  /* color: rgb(0, 0, 0); */
+  /* border-bottom: 3px solid rgb(64, 158, 255); */
 }
 </style>

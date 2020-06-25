@@ -17,12 +17,18 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/vue-fontawesome": "^0.1.9",
+    "@nuxtjs/axios": "^5.11.0",
     "bootstrap": "^4.5.0",
     "element-ui": "^2.4.11",
+    "highlight.js": "^10.0.3",
     "jquery": "^3.5.1",
     "nuxt": "^2.0.0",
     "nuxt-fontawesome": "^0.4.0",
     "popper.js": "^1.16.1",
+    "tiptap": "^1.27.1",
+    "tiptap-extensions": "^1.29.1",
+    "vue-infinite-scroll": "^2.0.2",
+    "vuex-persistedstate": "^3.0.1",
     "webpack": "^4.43.0"
   },
   "devDependencies": {
@@ -33,6 +39,9 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-nuxt": "^0.5.2",
     "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "eslint-auto-fix": "^1.0.1",
+    "ss-loader": "^1.0.1",
+    "style-loader": "^1.2.1"
   }
 }

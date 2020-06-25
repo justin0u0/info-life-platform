@@ -18,6 +18,12 @@ export default {
     script: [
     ],
   },
+  /**
+   * Process Env Config
+   */
+  env: {
+    baseUrl: process.env.baseUrl || 'http://localhost:7001',
+  },
   /*
   ** Customize the progress-bar color
   */
@@ -27,6 +33,8 @@ export default {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
+    '@/assets/css/editor.min.css',
+    '@/assets/css/highlight.scss',
     '@/assets/scss/all.scss',
   ],
   /*
@@ -39,6 +47,14 @@ export default {
       ssr: false,
     },
     '@/plugins/font-awesome',
+    {
+      src: '@/plugins/localStorage.js',
+      ssr: false,
+    },
+    {
+      src: '@/plugins/vue-infinite-scroll.js',
+      ssr: false,
+    },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,6 +66,7 @@ export default {
   */
   modules: [
     'nuxt-fontawesome',
+    '@nuxtjs/axios',
   ],
   /*
   ** fontawesome
