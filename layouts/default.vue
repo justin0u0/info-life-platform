@@ -4,9 +4,11 @@
     class="layout"
     :element-loading-text="processTitle"
   >
-    <Header />
-    <nuxt />
-    <Footer />
+    <div class="wrapper">
+      <Header />
+      <nuxt class="nuxt" />
+    </div>
+    <Footer class="footer" />
   </div>
 </template>
 
@@ -41,6 +43,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
 }
 
 *,
@@ -79,24 +85,35 @@ html {
   background-color: #35495e;
 }
 
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
+#__nuxt, #__layout, .layout {
+  height: 100%;
 }
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
+
+.wrapper {
+  min-height: 100%;
+  /* Related to footer height */
+  margin-bottom: -200px;
+  padding-bottom: 200px;
 }
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
+
+.footer {
+  background-color: #041a30;
+  color: white;
+  height: 200px;
 }
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
+
+.nuxt {
+  /* Distance from footer */
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    height: 400px;
+  }
+  .wrapper {
+    margin-bottom: -400px;
+    padding-bottom: 400px;
   }
 }
 </style>

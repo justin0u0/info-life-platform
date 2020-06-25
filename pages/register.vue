@@ -1,27 +1,16 @@
 <template>
-  <el-container>
-    <!-- <StudentRegister :department-list="departmentList" /> -->
+  <el-container class="justify-content-center">
     <Register />
   </el-container>
 </template>
 
 <script>
 import Register from '@/components/Register';
-// import { getDepartments } from '@/api/department';
 
 export default {
   components: {
     Register,
   },
-  // async asyncData() {
-  //   const { data } = await getDepartments({
-  //     filter: { type: 'teaching' },
-  //     limit: 0, // No limit
-  //   });
-  //   return {
-  //     departmentList: data,
-  //   };
-  // },
 };
 </script>
 
