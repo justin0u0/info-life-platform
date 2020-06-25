@@ -1,6 +1,10 @@
 
 import api from '@/utils/request';
 
+export function addPost(params) {
+  return api('/post/addPost', params);
+}
+
 export function getPosts(params) {
   return api('/post/getPosts', params);
 }
