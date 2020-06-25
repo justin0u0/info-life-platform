@@ -66,7 +66,7 @@ export default {
       this.post = res;
       this.contentObj = JSON.parse(res.content);
       try {
-        await this.$axios.get(res.cover.fileUrl);
+        await this.$axios.get(res.cover.file_url);
         this.coverUrl = res.cover.file_url;
       } catch (error) {
         this.coverUrl = '/assets/previewCardDefaultImage.jpg';

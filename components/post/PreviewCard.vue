@@ -52,7 +52,7 @@ export default {
       async handler(postData) {
         // Update coverUrl
         try {
-          await this.$axios.get(postData.cover.fileUrl);
+          await this.$axios.get(postData.cover.file_url);
           this.coverUrl = postData.cover.file_url;
         } catch (error) {
           this.coverUrl = '/assets/previewCardDefaultImage.jpg';

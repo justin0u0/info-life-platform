@@ -23,6 +23,10 @@ import { getTags } from '@/api/tag';
 export default {
   name: 'PostListTags',
   props: {
+    tagType: {
+      type: String,
+      required: true,
+    },
     currentTag: {
       required: true,
       validator: (prop) => typeof prop === 'string' || prop === null,
@@ -42,7 +46,7 @@ export default {
   },
   methods: {
     async preGetTags() {
-      const res = await getTags({});
+      const res = await getTags({ filter: { type: this.tagType }, sort: { _id: 1 } });
       this.tags = res.data;
     },
     handleTagClick(tagId = null) {
