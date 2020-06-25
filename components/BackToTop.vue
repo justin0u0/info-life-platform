@@ -1,11 +1,24 @@
 <template>
-  <div class="backtop" @click="scrollTop">
+  <div v-show="visible" class="backtop" :style="{position:position, bottom:bottom}" @click="scrollTop">
     <i class="el-icon-caret-top" />
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      visible: false,
+      position: 'fixed',
+      bottom: '20px',
+    };
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleBackToTop);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleBackToTop);
+  },
   methods: {
     scrollTop() {
       window.scrollTo({
@@ -13,6 +26,18 @@ export default {
         left: 0,
         behavior: 'smooth',
       });
+      // console.log(window.scrollTop);
+    },
+    handleBackToTop(e) {
+      this.visible = e.target.scrollingElement.scrollTop > 0;
+      const footerHeight = document.getElementById('footer').getClientRects()[0].height;
+      const limitHeight = e.target.scrollingElement.scrollHeight - footerHeight;
+      const viewHeight = e.target.scrollingElement.offsetHeight;
+      const scrollPosition = e.target.scrollingElement.scrollTop;
+      const nowPosition = viewHeight + scrollPosition;
+      this.position = (nowPosition < limitHeight) ? 'fixed' : 'absolute';
+      this.bottom = (nowPosition < limitHeight) ? '20px' : `${20 + footerHeight}px`;
+      // console.log(nowPosition < limitHeight);
     },
   },
 };

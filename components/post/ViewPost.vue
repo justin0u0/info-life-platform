@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <ProgressBar :title="post.title" />
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
@@ -17,12 +18,14 @@
 import { getPost } from '@/api/post';
 import Editor from '@/components/editor/ViewPostEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
+import ProgressBar from '@/components/ProgressBar.vue';
 
 export default {
   name: 'PostViewPost',
   components: {
     Editor,
     BackToTop,
+    ProgressBar,
   },
   props: {
     postId: {

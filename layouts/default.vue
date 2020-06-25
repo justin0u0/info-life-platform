@@ -4,7 +4,7 @@
     class="layout"
     :element-loading-text="processTitle"
   >
-    <div class="wrapper">
+    <div class="wrapper" style="position: relative">
       <Header />
       <nuxt class="nuxt" />
     </div>
