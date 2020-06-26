@@ -4,7 +4,7 @@
     class="layout"
     :element-loading-text="processTitle"
   >
-    <div class="wrapper" style="position: relative">
+    <div class="wrapper">
       <Header />
       <nuxt class="nuxt" />
     </div>
@@ -90,6 +90,7 @@ html, body {
 }
 
 .wrapper {
+  position: relative;
   min-height: 100%;
   /* Related to footer height */
   margin-bottom: -200px;

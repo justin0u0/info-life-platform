@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <ProgressBar :title="post.title" />
+    <ProgressBar />
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
@@ -69,7 +69,7 @@ export default {
       this.post = res;
       this.contentObj = JSON.parse(res.content);
       try {
-        await this.$axios.get(res.cover.fileUrl);
+        await this.$axios.get(res.cover.file_url);
         this.coverUrl = res.cover.file_url;
       } catch (error) {
         this.coverUrl = '/assets/previewCardDefaultImage.jpg';

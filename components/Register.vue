@@ -87,6 +87,7 @@ export default {
           return true;
         });
       } catch (error) {
+        this.$store.dispatch('setIsProcessing', false);
         this.$message({ type: 'error', message: error.message, duration: 1000 });
         this.$emit('on-fail');
       }
