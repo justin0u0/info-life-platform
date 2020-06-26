@@ -9,7 +9,7 @@
     </div>
     <div class="ml-auto mt-2">
       <div class="wordcolor">
-        <a style="" class="fa-2x mx-2 text-dark" href="#!"><font-awesome-icon :icon="['far', 'heart']" /></a>
+        <a class="fa-2x mx-2 text-dark" href="#!"><font-awesome-icon :icon="['far', 'heart']" /></a>
         <a class="fa-2x mx-2 text-dark" href="#!"><font-awesome-icon :icon="['fas', 'share']" /></a>
         <a class="fa-2x mx-2 text-dark" href="#!"><font-awesome-icon :icon="['fab', 'facebook-square']" /></a>
         <a class="fa-2x mx-2 text-dark" href="#!"><font-awesome-icon :icon="['far', 'bookmark']" /></a>
@@ -34,15 +34,5 @@ export default {
 .user-image {
   height: 50px;
   width: 50px;
-}
-.info {
-  margin-top: 3rem;
-}
-.b {
-  text-align: right;
-  margin-right: 2rem;
-}
-.wordcolor {
-  color: black;
 }
 </style>
