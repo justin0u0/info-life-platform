@@ -3,10 +3,11 @@
     <Jumbotron />
     <div class="container">
       <ListTags :current-tag="currentTag" @tag-click="handleTagClick" />
-      <!-- <div v-infinite-scroll="loadQuestions" class="row infinite-list"> -->
       <transition-group
+        v-infinite-scroll="loadQuestions"
         name="question"
         tag="div"
+        class="infinte-list"
       >
         <div
           v-for="question in questions"
@@ -16,7 +17,6 @@
           <PreviewQuestion :question-data="question" />
         </div>
       </transition-group>
-      <!-- </div> -->
       <div v-show="loading" v-loading="loading" class="loading-block" />
     </div>
   </div>
@@ -39,8 +39,8 @@ export default {
       questions: [],
       totalQuestions: 0,
       countQuestions: 0,
-      currentTag: { name: '最新', filter: {}, sort: { updated_at: -1 } },
-      limit: 20,
+      currentTag: { name: '最新', filter: {}, sort: { created_at: -1 } },
+      limit: 10,
       loading: false,
     };
   },
@@ -84,6 +84,7 @@ export default {
 
 <style scoped>
 .loading-block {
+  margin-top: 10px;
   width: 100%;
   height: 30px;
 }

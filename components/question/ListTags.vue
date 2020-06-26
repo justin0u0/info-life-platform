@@ -23,10 +23,10 @@ export default {
     return {
       tags: [
         // TODO: popular sort
-        { name: '最新', filter: {}, sort: { updated_at: -1 } },
+        { name: '最新', filter: {}, sort: { created_at: -1 } },
         { name: '熱門', filter: {}, sort: {} },
         { name: '未解決', filter: { is_solved: false }, sort: { created_at: -1 } },
-        { name: '已解決', filter: { is_solved: true }, sort: { updated_at: -1 } },
+        { name: '已解決', filter: { is_solved: true }, sort: { created_at: -1 } },
       ],
     };
   },
