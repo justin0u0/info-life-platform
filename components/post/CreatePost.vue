@@ -3,7 +3,7 @@
     <div class="title-container">
       <h1>新增文章草稿</h1>
     </div>
-    <CreateOrModifyPostForm ref="form" :is-creating="true" @submit="handleCreatePost" />
+    <CreateOrModifyPostForm ref="form" @submit="handleCreatePost" />
   </div>
 </template>
 
