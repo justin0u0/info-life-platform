@@ -90,7 +90,7 @@ export default {
 
 <style scoped>
 .header-tag{
-  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+  font-family: "微軟正黑體", sans-serif;
   font-size: 1.1rem;
   color:rgb(0, 0, 0);
   letter-spacing: 0.05rem;
