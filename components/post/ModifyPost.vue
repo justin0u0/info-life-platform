@@ -61,11 +61,11 @@ export default {
       try {
         this.$store.dispatch('setIsProcessing', true);
         await modifyPost({ _id: this.post._id, content: contentStr });
-        this.$message({ type: 'success', message: '儲存貼文成功' });
+        this.$message({ type: 'success', message: '儲存貼文成功', duration: 1000 });
         this.$router.push(`/post/${this.post._id}`);
         this.$store.dispatch('setIsProcessing', false);
       } catch (error) {
-        this.$message({ type: 'error', message: '儲存貼文失敗' });
+        this.$message({ type: 'error', message: '儲存貼文失敗', duration: 1000 });
         this.$store.dispatch('setIsProcessing', false);
       }
     },

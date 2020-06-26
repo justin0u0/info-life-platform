@@ -82,7 +82,7 @@ export default {
     handleLogout() {
       this.$store.dispatch('logout');
       this.$router.push('/');
-      this.$message({ type: 'success', message: '登出成功' });
+      this.$message({ type: 'success', message: '登出成功', duration: 1000 });
     },
   },
 };
