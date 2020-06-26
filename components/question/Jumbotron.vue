@@ -70,7 +70,7 @@ export default {
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
-  font-family: Helvetica, Arial, "LiHei Pro", 黑體-繁, 微軟正黑體, sans-serif;
+  font-family: '微軟正黑體', sans-serif;
 }
 .qa-total {
   font-size: 2rem;

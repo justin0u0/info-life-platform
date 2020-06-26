@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ListQuestions from '@/components/questions/ListQuestions';
+import ListQuestions from '@/components/question/ListQuestions';
 
 export default {
   components: {

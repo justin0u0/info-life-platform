@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       tags: [
-        // TODO: 熱門 sort
+        // TODO: popular sort
         { name: '最新', filter: {}, sort: { updated_at: -1 } },
         { name: '熱門', filter: {}, sort: {} },
         { name: '未解決', filter: { is_solved: false }, sort: { created_at: -1 } },
@@ -42,7 +42,7 @@ export default {
 .tag-lists {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .tag-lists div {
   color: #999;
