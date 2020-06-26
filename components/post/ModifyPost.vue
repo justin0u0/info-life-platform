@@ -1,22 +1,23 @@
 <template>
   <div class="container">
-    <el-card>
-      <Editor ref="editor" :content-data.sync="contentObj" />
-    </el-card>
-    <div class="mt-3 d-flex justify-content-end">
-      <el-button @click="handleModifyPost">儲存</el-button>
+    <div class="title-container">
+      <h1>修改文章</h1>
     </div>
+    <CreateOrModifyPostForm
+      :form-data="formData"
+      :is-creating="false"
+    />
   </div>
 </template>
 
 <script>
-import Editor from '@/components/editor/ModifyPostEditor.vue';
-import { getPost, modifyPost } from '@/api/post';
+import CreateOrModifyPostForm from '@/components/post/CreateOrModifyPostForm.vue';
+import { getPost } from '@/api/post';
 
 export default {
   name: 'PostModifyPost',
   components: {
-    Editor,
+    CreateOrModifyPostForm,
   },
   props: {
     postId: {
@@ -26,6 +27,11 @@ export default {
   },
   data() {
     return {
+      formData: {
+        title: '',
+        subtitle: '',
+        tag_id: '',
+      },
       post: {
         _id: '',
         user_id: null,
@@ -50,6 +56,9 @@ export default {
     async preGetPost() {
       const res = await getPost(this.postId);
       this.post = res;
+      this.formData.title = res.title;
+      this.formData.subtitle = res.subtitle;
+      this.formData.tag_id = res.tag_id;
       this.contentObj = JSON.parse(res.content);
       console.log('[PostsModifyPost:preGetPost]: ', this.contentObj);
     },
@@ -74,4 +83,12 @@ export default {
 </script>
 
 <style scoped>
+.title-container {
+  padding-left: 100px;
+  margin-bottom: 30px;
+}
+.title-container h1 {
+  font-size: 24px;
+  color: #232323;
+}
 </style>
