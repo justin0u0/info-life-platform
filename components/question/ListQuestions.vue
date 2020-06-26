@@ -1,15 +1,21 @@
 <template>
   <div class="question-page">
     <Jumbotron />
-    <div class="container mx-5">
+    <div class="container">
       <ListTags :current-tag="currentTag" @tag-click="handleTagClick" />
       <!-- <div v-infinite-scroll="loadQuestions" class="row infinite-list"> -->
-      <div
-        v-for="question in questions"
-        :key="question._id"
+      <transition-group
+        name="question"
+        tag="div"
       >
-        <PreviewQuestion :question-data="question" />
-      </div>
+        <div
+          v-for="question in questions"
+          :key="question._id"
+          class="question-card"
+        >
+          <PreviewQuestion :question-data="question" />
+        </div>
+      </transition-group>
       <!-- </div> -->
       <div v-show="loading" v-loading="loading" class="loading-block" />
     </div>
@@ -18,9 +24,9 @@
 
 <script>
 import { getQuestions } from '@/api/question';
-import Jumbotron from '@/components/questions/Jumbotron.vue';
-import ListTags from '@/components/questions/ListTags.vue';
-import PreviewQuestion from '@/components/questions/PreviewQuestion.vue';
+import Jumbotron from '@/components/question/Jumbotron.vue';
+import ListTags from '@/components/question/ListTags.vue';
+import PreviewQuestion from '@/components/question/PreviewQuestion.vue';
 
 export default {
   components: {
@@ -83,5 +89,22 @@ export default {
 }
 .question-page {
   font-family: '微軟正黑體', sans-serif;
+}
+.container {
+  max-width: 700px;
+}
+.question-card {
+  border-top: 1px solid #e2e2e2;
+  border-left: 1px solid #e2e2e2;
+  border-right: 1px solid #e2e2e2;
+}
+.question-card:last-child {
+  border-bottom: 1px solid #e2e2e2;
+}
+.question-enter-active, .question-leave-active {
+  transition: all 1s;
+}
+.question-enter, .question-leave-to {
+  opacity: 0;
 }
 </style>
