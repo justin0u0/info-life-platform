@@ -1,7 +1,12 @@
 <template>
   <div class="container">
-    <ListTags :current-tag="currentTag" @tag-click="handleTagClick" />
-    <div v-infinite-scroll="loadPosts" class="row infinite-list">
+    <ListTags tag-type="post" :current-tag="currentTag" @tag-click="handleTagClick" />
+    <transition-group
+      v-infinite-scroll="loadPosts"
+      name="post"
+      tag="div"
+      class="row infinite-list"
+    >
       <div
         v-for="post in posts"
         :key="post._id"
@@ -9,7 +14,7 @@
       >
         <PreviewCard :post-data="post" />
       </div>
-    </div>
+    </transition-group>
     <div v-show="loading" v-loading="loading" class="loading-block" />
   </div>
 </template>
@@ -82,5 +87,11 @@ export default {
 .loading-block {
   width: 100%;
   height: 30px;
+}
+.post-enter-active, .post-leave-active {
+  transition: all 1s;
+}
+.post-enter, .post-leave-to {
+  opacity: 0;
 }
 </style>
