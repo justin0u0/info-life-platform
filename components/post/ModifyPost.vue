@@ -4,15 +4,16 @@
       <h1>修改文章</h1>
     </div>
     <CreateOrModifyPostForm
+      ref="form"
       :form-data="formData"
-      :is-creating="false"
+      @submit="handleModifyPost"
     />
   </div>
 </template>
 
 <script>
 import CreateOrModifyPostForm from '@/components/post/CreateOrModifyPostForm.vue';
-import { getPost } from '@/api/post';
+import { getPost, modifyPost } from '@/api/post';
 
 export default {
   name: 'PostModifyPost',
@@ -42,7 +43,6 @@ export default {
         is_published: null,
         created_at: null,
       },
-      contentObj: {},
     };
   },
   async mounted() {
@@ -59,20 +59,19 @@ export default {
       this.formData.title = res.title;
       this.formData.subtitle = res.subtitle;
       this.formData.tag_id = res.tag_id;
-      this.contentObj = JSON.parse(res.content);
-      console.log('[PostsModifyPost:preGetPost]: ', this.contentObj);
+      this.$refs.form.setContent(res.content);
     },
-    async handleModifyPost() {
-      this.$refs.editor.onUpdate();
-      const { type, content } = this.contentObj;
-      const contentStr = JSON.stringify({ type, content });
-      console.log('[handleModifyPost]: ', contentStr);
+    async handleModifyPost(data) {
+      console.log('[PostModifyPost:handleModifyPost]: ', data);
       try {
-        this.$store.dispatch('setIsProcessing', true);
-        await modifyPost({ _id: this.post._id, content: contentStr });
-        this.$message({ type: 'success', message: '儲存貼文成功' });
-        this.$router.push(`/post/${this.post._id}`);
-        this.$store.dispatch('setIsProcessing', false);
+        const isValid = await this.$refs.form.validateForm();
+        if (isValid) {
+          this.$store.dispatch('setIsProcessing', true);
+          await modifyPost({ _id: this.post._id, ...data });
+          this.$message({ type: 'success', message: '儲存貼文成功' });
+          this.$router.push(`/post/${this.post._id}`);
+          this.$store.dispatch('setIsProcessing', false);
+        }
       } catch (error) {
         this.$message({ type: 'error', message: '儲存貼文失敗' });
         this.$store.dispatch('setIsProcessing', false);

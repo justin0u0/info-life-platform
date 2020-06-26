@@ -32,7 +32,7 @@
       </el-select>
     </el-form-item>
     <el-form-item label="內容：">
-      <CreatePostEditor
+      <CreateOrModifyPostEditor
         ref="editor"
         class="editor-container"
         :class="{ 'editor-focus': editorFocus }"
@@ -49,12 +49,12 @@
 
 <script>
 import { getTags } from '@/api/tag';
-import CreatePostEditor from '@/components/editor/CreatePostEditor.vue';
+import CreateOrModifyPostEditor from '@/components/editor/CreateOrModifyPostEditor.vue';
 
 export default {
   name: 'PostCreateOrModifyPostForm',
   components: {
-    CreatePostEditor,
+    CreateOrModifyPostEditor,
   },
   props: {
     formData: {
@@ -65,10 +65,6 @@ export default {
         tag_id: null,
         contentObj: null,
       }),
-    },
-    isCreating: {
-      type: Boolean,
-      required: true,
     },
   },
   data() {
@@ -99,6 +95,10 @@ export default {
     async preGetTags() {
       const { data } = await getTags({ filter: { type: 'post' }, sort: { _id: 1 } });
       this.tags = data;
+    },
+    setContent(content) {
+      console.log('[PostCreateOrModifyPostForm:updateContent]');
+      this.$refs.editor.setContent(content);
     },
     handleEditorClick() {
       this.$refs.editor.handleEditorClick();
