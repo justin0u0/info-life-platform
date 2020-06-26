@@ -7,7 +7,9 @@ export default {
   data() {
     return {
       progress: '100%',
-      visible: true,
+      visible: false,
+      firstEvent: true,
+      firstProgressValue: null,
     };
   },
   mounted() {
@@ -20,7 +22,11 @@ export default {
     handleScroll(e) {
       const { scrollHeight, offsetHeight, scrollTop } = e.target.scrollingElement;
       const progressValue = ((scrollTop + offsetHeight) / scrollHeight) * 100;
-      this.visible = progressValue > 20;
+      if (this.firstEvent) {
+        this.firstEvent = false;
+        this.firstProgressValue = progressValue;
+      }
+      this.visible = progressValue > this.firstProgressValue + 3;
       this.progress = `${100 - progressValue}%`;
     },
   },
