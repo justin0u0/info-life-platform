@@ -32,7 +32,7 @@
       </el-select>
     </el-form-item>
     <el-form-item label="內容：">
-      <CreateOrModifyPostEditor
+      <CreateOrModifyEditor
         ref="editor"
         class="editor-container"
         :class="{ 'editor-focus': editorFocus }"
@@ -50,12 +50,12 @@
 
 <script>
 import { getTags } from '@/api/tag';
-import CreateOrModifyPostEditor from '@/components/editor/CreateOrModifyPostEditor.vue';
+import CreateOrModifyEditor from '@/components/editor/CreateOrModifyEditor.vue';
 
 export default {
   name: 'PostCreateOrModifyPostForm',
   components: {
-    CreateOrModifyPostEditor,
+    CreateOrModifyEditor,
   },
   props: {
     formData: {

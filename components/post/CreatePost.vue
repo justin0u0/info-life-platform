@@ -24,7 +24,7 @@ export default {
         const isValid = await this.$refs.form.validateForm();
         if (isValid) {
           await addPost(data);
-          // TODO: Redirect to /user/draft
+          // TODO: Redirect to /user/post
           this.$message({ type: 'success', message: '新增文章草稿成功' });
           this.$router.push({ path: '/post' });
         }

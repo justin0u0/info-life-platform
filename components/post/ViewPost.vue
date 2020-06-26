@@ -16,7 +16,7 @@
 
 <script>
 import { getPost } from '@/api/post';
-import Editor from '@/components/editor/ViewPostEditor.vue';
+import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 
@@ -76,15 +76,6 @@ export default {
       }
       console.log('[PostViewPost:preGetPost]: ', this.contentObj);
     },
-    // calcProgress() {
-    //   const { contentEl } = this.$refs;
-    //   const fullHeight = contentEl.scrollHeight;
-    //   const viewHeight = contentEl.offsetHeight;
-    //   const scrollPosition = contentEl.scrollTop;
-    //   const progressValue = ((scrollPosition + viewHeight) / fullHeight) * 100;
-    //   const progressValuePercentage = `${100 - progressValue}%`;
-    //   this.progress = progressValuePercentage;
-    // },
   },
 };
 </script>

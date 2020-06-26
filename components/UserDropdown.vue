@@ -17,9 +17,9 @@
         <font-awesome-icon class="mr-3" :icon="['fas', 'question']" />
         我要提問
       </el-dropdown-item>
-      <el-dropdown-item class="dropdown-item" command="/user/draft">
+      <el-dropdown-item class="dropdown-item" command="/user/post">
         <font-awesome-icon class="mr-3" :icon="['fas', 'sticky-note']" />
-        我的草稿
+        我的文章
       </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
