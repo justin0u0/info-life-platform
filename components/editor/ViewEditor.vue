@@ -9,7 +9,7 @@ import { Editor, EditorContent } from 'tiptap';
 import extensions from '@/lib/extensions';
 
 export default {
-  name: 'EditorViewPostEditor',
+  name: 'EditorViewEditor',
   components: {
     EditorContent,
   },

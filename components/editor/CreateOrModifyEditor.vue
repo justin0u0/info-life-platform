@@ -13,7 +13,7 @@ import extensions from '@/lib/extensions';
 import EditorMenuBar from '@/components/editor/MenuBar.vue';
 
 export default {
-  name: 'EditorCreateOrModifyPostEditor',
+  name: 'EditorCreateOrModifyEditor',
   components: {
     EditorContent,
     EditorMenuBar,
