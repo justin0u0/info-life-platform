@@ -1,7 +1,7 @@
 <template>
   <div class="container create-post-container">
     <div class="title-container">
-      <h1>新增文章</h1>
+      <h1>新增文章草稿</h1>
     </div>
     <el-form ref="form" :rules="rules" :model="formData" label-width="100px">
       <el-form-item label="標題：" prop="title">
@@ -123,6 +123,7 @@ export default {
             console.log('[PostCreatePost]: ', params);
             this.$store.dispatch('setIsProcessing', false);
             await addPost(params);
+            // TODO: Redirect to /user/draft
             this.$router.push('/post');
           } else {
             this.$store.dispatch('setIsProcessing', false);
