@@ -1,22 +1,24 @@
 <template>
   <div class="container">
-    <el-card>
-      <Editor ref="editor" :content-data.sync="contentObj" />
-    </el-card>
-    <div class="mt-3 d-flex justify-content-end">
-      <el-button @click="handleModifyPost">儲存</el-button>
+    <div class="title-container">
+      <h1>修改文章</h1>
     </div>
+    <CreateOrModifyPostForm
+      ref="form"
+      :form-data="formData"
+      @submit="handleModifyPost"
+    />
   </div>
 </template>
 
 <script>
-import Editor from '@/components/editor/ModifyPostEditor.vue';
+import CreateOrModifyPostForm from '@/components/post/CreateOrModifyPostForm.vue';
 import { getPost, modifyPost } from '@/api/post';
 
 export default {
   name: 'PostModifyPost',
   components: {
-    Editor,
+    CreateOrModifyPostForm,
   },
   props: {
     postId: {
@@ -26,6 +28,11 @@ export default {
   },
   data() {
     return {
+      formData: {
+        title: '',
+        subtitle: '',
+        tag_id: '',
+      },
       post: {
         _id: '',
         user_id: null,
@@ -36,7 +43,6 @@ export default {
         is_published: null,
         created_at: null,
       },
-      contentObj: {},
     };
   },
   async mounted() {
@@ -50,20 +56,22 @@ export default {
     async preGetPost() {
       const res = await getPost(this.postId);
       this.post = res;
-      this.contentObj = JSON.parse(res.content);
-      console.log('[PostsModifyPost:preGetPost]: ', this.contentObj);
+      this.formData.title = res.title;
+      this.formData.subtitle = res.subtitle;
+      this.formData.tag_id = res.tag_id;
+      this.$refs.form.setContent(res.content);
     },
-    async handleModifyPost() {
-      this.$refs.editor.onUpdate();
-      const { type, content } = this.contentObj;
-      const contentStr = JSON.stringify({ type, content });
-      console.log('[handleModifyPost]: ', contentStr);
+    async handleModifyPost(data) {
+      console.log('[PostModifyPost:handleModifyPost]: ', data);
       try {
-        this.$store.dispatch('setIsProcessing', true);
-        await modifyPost({ _id: this.post._id, content: contentStr });
-        this.$message({ type: 'success', message: '儲存貼文成功', duration: 1000 });
-        this.$router.push(`/post/${this.post._id}`);
-        this.$store.dispatch('setIsProcessing', false);
+        const isValid = await this.$refs.form.validateForm();
+        if (isValid) {
+          this.$store.dispatch('setIsProcessing', true);
+          await modifyPost({ _id: this.post._id, ...data });
+          this.$message({ type: 'success', message: '儲存貼文成功', duration: 1000 });
+          this.$router.push(`/post/${this.post._id}`);
+          this.$store.dispatch('setIsProcessing', false);
+        }
       } catch (error) {
         this.$message({ type: 'error', message: '儲存貼文失敗', duration: 1000 });
         this.$store.dispatch('setIsProcessing', false);
@@ -74,4 +82,12 @@ export default {
 </script>
 
 <style scoped>
+.title-container {
+  padding-left: 100px;
+  margin-bottom: 30px;
+}
+.title-container h1 {
+  font-size: 24px;
+  color: #232323;
+}
 </style>
