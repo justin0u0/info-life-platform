@@ -6,6 +6,7 @@
       <div class="col-lg-8">
         <h1 class="post-title">{{ post.title }}</h1>
         <h2 class="post-subtitle">{{ post.subtitle }}</h2>
+        <UserInfo :user-data="user" />
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
       </div>
@@ -19,6 +20,7 @@ import { getPost } from '@/api/post';
 import Editor from '@/components/editor/ViewPostEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
+import UserInfo from '@/components/post/UserInfo.vue';
 
 export default {
   name: 'PostViewPost',
@@ -26,6 +28,7 @@ export default {
     Editor,
     BackToTop,
     ProgressBar,
+    UserInfo,
   },
   props: {
     postId: {
@@ -48,6 +51,12 @@ export default {
         share_count: 0,
         view_count: 0,
       },
+      user: {
+        _id: null,
+        username: '',
+        name: '',
+        avatar: null,
+      },
       contentObj: {},
       coverUrl: '/assets/previewCardDefaultImage.jpg',
       heartShow: false,
@@ -67,6 +76,7 @@ export default {
     async preGetPost() {
       const res = await getPost(this.postId);
       this.post = res;
+      this.user = res.user;
       this.contentObj = JSON.parse(res.content);
       try {
         await this.$axios.get(res.cover.file_url);
