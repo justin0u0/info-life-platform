@@ -2,8 +2,8 @@
   <div class="jumbotron qa-background">
     <div class="container d-flex align-items-center">
       <div class="qa-total">
-        <p>共<span class="qa-total-number"> {{ totalQuestions }} </span>則提問</p>
-        <p>共<span class="qa-total-number"> {{ totalAnswers }} </span>個回答</p>
+        <p>共<span class="qa-total-number">{{ totalQuestions }}</span>則提問</p>
+        <p>共<span class="qa-total-number">{{ totalAnswers }}</span>個回答</p>
       </div>
       <div class="card ml-auto qa-card">
         <div class="card-body">
