@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md pb-3 mb-3">
+  <nav id="navHeader" class="navbar navbar-expand-md pb-3 mb-3">
     <a class="navbar-brand font-weight-normal brand ml-3 pb-2 pt-0" href="/">
       <span class="info-deco">Info</span>
       <span class="life-deco">Life</span>

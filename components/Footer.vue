@@ -4,14 +4,14 @@
     <div class="container-fluid text-center text-md-left pt-4">
       <div class="row">
         <div class="col-md-6 mb-md-3">
-          <h3 class="mb-md-3 pl-md-5">InfoLife</h3>
+          <h4 class="mb-md-3 pl-md-5">InfoLife</h4>
           <div class="pl-md-5">
             <p class="h6">Share the knowledge.<br>Learn the knowledge.</p>
           </div>
         </div>
         <hr class="w-100 d-md-none pb-2">
         <div class="col-md-3 mb-md-0 mb-md-3">
-          <h4 class="font-weight-bold mb-md-3"><span class="underline pl-0 pr-2">關於</span></h4> <!-- mb-3 -->
+          <h5 class="font-weight-bold mb-3"><span class="underline pl-0 pr-2">關於</span></h5> <!-- mb-3 -->
           <ul class="list-unstyled">
             <li><a class="a-font" href="#!">關於我們</a></li>
             <li><a class="a-font" href="#!">聯繫我們</a></li>
@@ -20,7 +20,7 @@
         </div>
         <hr class="w-100 d-md-none pb-2">
         <div class="col-md-3 mb-md-0">
-          <h4 class="font-weight-bold mb-md-3"><span class="underline pl-0 pr-2">商務</span></h4> <!-- mb-3 -->
+          <h5 class="font-weight-bold mb-3"><span class="underline pl-0 pr-2">商務</span></h5> <!-- mb-3 -->
           <ul class="list-unstyled">
             <li><a class="a-font" href="#!">行銷業務合作</a></li>
             <li><a class="a-font" href="#!">合作媒體</a></li>
@@ -48,6 +48,6 @@ export default {
   font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
 }
 .a-font {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
 }
 </style>

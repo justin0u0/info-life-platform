@@ -20,7 +20,8 @@ export default {
     handleScroll(e) {
       const { scrollHeight, offsetHeight, scrollTop } = e.target.scrollingElement;
       const progressValue = ((scrollTop + offsetHeight) / scrollHeight) * 100;
-      this.visible = progressValue > 20;
+      const navHeaderHeight = document.getElementById('navHeader').getClientRects()[0].height;
+      this.visible = scrollTop > navHeaderHeight;
       this.progress = `${100 - progressValue}%`;
     },
   },
