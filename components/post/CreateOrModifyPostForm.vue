@@ -42,6 +42,7 @@
       />
     </el-form-item>
     <div class="button-container">
+      <el-button @click="$router.push('/post')">取消</el-button>
       <el-button type="primary" @click="handleSubmit">確認送出</el-button>
     </div>
   </el-form>
