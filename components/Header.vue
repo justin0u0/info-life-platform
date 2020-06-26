@@ -27,7 +27,9 @@
         </li>
         <li class="nav-item px-2 pl-sm-3">
           <a v-if="!isLoggedIn" class="header-tag nav-link" href="" @click.prevent="handleDialogOpen">登入/註冊</a>
-          <a v-else class="header-tag nav-link" href="" @click.prevent="() => null">Hello, {{ currentUser.username }}</a>
+          <a v-else class="header-tag nav-link" href="" @click.prevent="() => null">
+            <UserDropdown />
+          </a>
         </li>
       </ul>
     </div>
@@ -40,11 +42,13 @@
 <script>
 import { mapGetters } from 'vuex';
 import LoginRegisterDialog from '@/components/LoginRegisterDialog.vue';
+import UserDropdown from '@/components/UserDropdown.vue';
 
 export default {
   name: 'Header',
   components: {
     LoginRegisterDialog,
+    UserDropdown,
   },
   data() {
     return {
@@ -91,27 +95,24 @@ export default {
 <style scoped>
 .header-tag{
   font-family: "微軟正黑體", sans-serif;
-  font-size: 1.1rem;
-  color:rgb(0, 0, 0);
+  font-size: 18px;
+  color: #000000;
   letter-spacing: 0.05rem;
   border-bottom: 3px solid transparent;
-  /* font-weight: bold; */
 }
 .header-tag:hover {
-  border-bottom:3px solid rgb(64, 158, 255);
+  border-bottom: 3px solid #409eff;
 }
 .toggler {
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color:#0000001a;
 }
 .info-deco {
-  color: rgb(97, 97, 99);
+  color: #616163;
 }
 .life-deco {
-  color: rgb(64, 158, 255);
+  color: #409eff;
 }
 .active {
-  font-weight: bold;
-  /* color: rgb(0, 0, 0); */
-  /* border-bottom: 3px solid rgb(64, 158, 255); */
+  font-weight: bolder;
 }
 </style>

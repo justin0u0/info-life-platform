@@ -3,7 +3,7 @@
     <h5 class="col-12 pb-2">{{ questionData.title }}</h5>
     <div class="d-flex align-items-center col-12 pt-2 pb-2">
       <div class="qa-tag-list mr-3">
-        <button class="btn btn-sm" :style="{ 'background-color': transformColor() }"> {{ questionData.tag.name }} </button>
+        <button class="btn btn-sm" :style="{ 'background-color': transformColor() }">{{ questionData.tag.name }}</button>
       </div>
     </div>
     <div class="d-flex col-12">
