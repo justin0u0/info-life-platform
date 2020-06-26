@@ -13,7 +13,7 @@
         <div class="col-md-3 mb-md-0 mb-md-3">
           <h5 class="font-weight-bold mb-3"><span class="underline pl-0 pr-2">關於</span></h5>
           <ul class="list-unstyled">
-            <li><a href="#!">關於我們</a></li>
+            <li><a href="/aboutus">關於我們</a></li>
             <li><a href="#!">聯繫我們</a></li>
             <li><a href="#!">常見問題</a></li>
           </ul>
