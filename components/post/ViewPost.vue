@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <ProgressBar />
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
@@ -17,12 +18,14 @@
 import { getPost } from '@/api/post';
 import Editor from '@/components/editor/ViewPostEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
+import ProgressBar from '@/components/ProgressBar.vue';
 
 export default {
   name: 'PostViewPost',
   components: {
     Editor,
     BackToTop,
+    ProgressBar,
   },
   props: {
     postId: {
@@ -66,7 +69,7 @@ export default {
       this.post = res;
       this.contentObj = JSON.parse(res.content);
       try {
-        await this.$axios.get(res.cover.fileUrl);
+        await this.$axios.get(res.cover.file_url);
         this.coverUrl = res.cover.file_url;
       } catch (error) {
         this.coverUrl = '/assets/previewCardDefaultImage.jpg';
