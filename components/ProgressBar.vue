@@ -1,17 +1,9 @@
 <template>
-  <div v-show="visible" class="progressbar text-center" :style="{right: progress}">
-    <!-- {{ title }} -->
-  </div>
+  <div v-show="visible" class="progressbar text-center" :style="{ right: progress }" />
 </template>
 
 <script>
 export default {
-  // props: {
-  //   title: {
-  //     type: String,
-  //     required: true,
-  //   },
-  // },
   data() {
     return {
       progress: '100%',
@@ -26,15 +18,10 @@ export default {
   },
   methods: {
     handleScroll(e) {
-      const fullHeight = e.target.scrollingElement.scrollHeight;
-      const viewHeight = e.target.scrollingElement.offsetHeight;
-      const scrollPosition = e.target.scrollingElement.scrollTop;
-      const progressValue = ((scrollPosition + viewHeight) / fullHeight) * 100;
-      // const progressValuePercentage = `${100 - progressValue}%`;
-      this.visible = progressValue > 37.5;
+      const { scrollHeight, offsetHeight, scrollTop } = e.target.scrollingElement;
+      const progressValue = ((scrollTop + offsetHeight) / scrollHeight) * 100;
+      this.visible = progressValue > 20;
       this.progress = `${100 - progressValue}%`;
-      // console.log(this.visible);
-      // console.log(scrollPosition);
     },
   },
 };
@@ -46,8 +33,8 @@ export default {
   top: 0;
   left: 0;
   height: 5px;
-  background-color: rgb(64, 158, 255);
+  background-color: #409eff;
   transition: right 0.1s ease;
-  z-index: 2;
+  z-index: 10;
 }
 </style>

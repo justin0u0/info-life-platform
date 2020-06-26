@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <ProgressBar :title="post.title" />
+    <ProgressBar />
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
