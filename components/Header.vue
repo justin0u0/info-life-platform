@@ -1,8 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md pb-3 mb-3">
     <a class="navbar-brand font-weight-normal brand ml-3 pb-2 pt-0" href="/">
-      <span class="info-deco">Info</span>
-      <span class="life-deco">Life</span>
+      <span class="info-deco">Info</span><span class="life-deco">Life</span>
     </a>
     <button class="navbar-toggler toggler pb-0" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"><font-awesome-icon icon="bars" /></span>
