@@ -51,5 +51,5 @@ export default {
 };
 </script>
 
-<style scoped>
+<style src="@/assets/css/editor-content.css" scoped>
 </style>
