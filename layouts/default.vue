@@ -90,6 +90,7 @@ html, body {
 }
 
 .wrapper {
+  position: relative;
   min-height: 100%;
   /* Related to footer height */
   margin-bottom: -200px;
