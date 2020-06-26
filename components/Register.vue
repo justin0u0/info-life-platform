@@ -73,7 +73,7 @@ export default {
             // 2. Try register
             await addUser(this.form);
             // 3. Show success message
-            this.$message({ type: 'success', message: '註冊成功' });
+            this.$message({ type: 'success', message: '註冊成功', duration: 1000 });
             // 4. Redirect to login page
             this.$router.push('/');
             // 5. Clear full page loading
@@ -88,7 +88,7 @@ export default {
         });
       } catch (error) {
         this.$store.dispatch('setIsProcessing', false);
-        this.$message({ type: 'error', message: error.message });
+        this.$message({ type: 'error', message: error.message, duration: 1000 });
         this.$emit('on-fail');
       }
     },

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md pb-3 mb-3">
+  <nav id="navHeader" class="navbar navbar-expand-md pb-3 mb-3">
     <a class="navbar-brand font-weight-normal brand ml-3 pb-2 pt-0" href="/">
       <span class="info-deco">Info</span>
       <span class="life-deco">Life</span>
@@ -86,7 +86,7 @@ export default {
     handleLogout() {
       this.$store.dispatch('logout');
       this.$router.push('/');
-      this.$message({ type: 'success', message: '登出成功' });
+      this.$message({ type: 'success', message: '登出成功', duration: 1000 });
     },
   },
 };
@@ -94,7 +94,7 @@ export default {
 
 <style scoped>
 .header-tag{
-  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+  font-family: "微軟正黑體", sans-serif;
   font-size: 18px;
   color: #000000;
   letter-spacing: 0.05rem;
