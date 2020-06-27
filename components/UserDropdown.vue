@@ -45,6 +45,13 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (max-width: 767px){
+  .dropdown-item {
+    width: 100vw;
+    text-align: center;
+  }
+}
+
 .header-tag{
   font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
   font-size: 18px;
