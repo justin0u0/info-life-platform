@@ -6,7 +6,7 @@ const user = {
   state: {
     id: null,
     username: null,
-    data: null,
+    data: {},
     isLoggedIn: false,
   },
   mutations: {
@@ -19,7 +19,7 @@ const user = {
     SET_LOGOUT_STATE: (state) => {
       state.id = null;
       state.username = null;
-      state.data = null;
+      state.data = {};
       state.isLoggedIn = false;
     },
   },

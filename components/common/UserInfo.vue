@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'CommanUserInfo',
+  name: 'CommonUserInfo',
   props: {
     userData: {
       type: Object,
