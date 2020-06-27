@@ -67,6 +67,7 @@ export default {
   modules: [
     'nuxt-fontawesome',
     '@nuxtjs/axios',
+    'vue-social-sharing/nuxt',
   ],
   /*
   ** fontawesome
