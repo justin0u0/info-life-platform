@@ -3,12 +3,12 @@
     <ProgressBar />
     <div class="row">
       <div class="col-lg-2"></div>
-      <div class="col-lg-8">
-        <h1 class="post-title">{{ post.title }}</h1>
-        <h2 class="post-subtitle">{{ post.subtitle }}</h2>
-        <UserInfo :user-data="user" :date-data="post.created_at" />
-        <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
-        <Editor :content-data="contentObj" />
+      <div class="col-lg-8 d-flex justify-content-center">
+        <div class="question-container">
+          <h1 class="question-title">{{ question.title }}</h1>
+          <UserInfo :user-data="user" :date-data="question.created_at" />
+          <Editor :content-data="contentObj" />
+        </div>
       </div>
     </div>
     <BackToTop />
@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import { getPost } from '@/api/post';
+import { getQuestion } from '@/api/question';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import UserInfo from '@/components/common/UserInfo.vue';
 
 export default {
-  name: 'PostViewPost',
+  name: 'QuestionViewQuestion',
   components: {
     Editor,
     BackToTop,
@@ -31,7 +31,7 @@ export default {
     UserInfo,
   },
   props: {
-    postId: {
+    questionId: {
       type: String,
       required: true,
     },
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       // progress: '100%',
-      post: {
+      question: {
         _id: null,
         user_id: null,
         tag_id: null,
@@ -68,14 +68,14 @@ export default {
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
     await Promise.all([
-      this.preGetPost(),
+      this.preGetQuestion(),
     ]);
     this.$store.dispatch('setIsProcessing', false);
   },
   methods: {
-    async preGetPost() {
-      const res = await getPost(this.postId);
-      this.post = res;
+    async preGetQuestion() {
+      const res = await getQuestion(this.questionId);
+      this.question = res;
       this.user = res.user;
       this.contentObj = JSON.parse(res.content);
       try {
@@ -84,34 +84,19 @@ export default {
       } catch (error) {
         this.coverUrl = '/assets/previewCardDefaultImage.jpg';
       }
-      console.log('[PostViewPost:preGetPost]: ', this.contentObj);
+      console.log('[QuestionViewQuestion:preGetQuestion]: ', this.contentObj);
     },
   },
 };
 </script>
 
 <style scoped>
-.post-title {
+.question-title {
   font-size: 40px;
   line-height: 48px;
   font-weight: 400;
 }
-.post-cover {
-  position: relative;
-  display: flex;
-  height: 300px;
-  width: 100%;
-  margin-top: 56px;
-  overflow-y: hidden;
-  background-size: cover;
-  background-position: center;
-  border-radius: 0.1em;
-}
-.post-subtitle {
-  font-size: 24px;
-  line-height: 32px;
-  letter-spacing: 0;
-  font-weight: 300;
-  color: #777;
+.question-container {
+  max-width: 720px;
 }
 </style>
