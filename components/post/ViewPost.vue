@@ -48,7 +48,7 @@ export default {
         subtitle: '',
         content: '',
         cover: null,
-        created_at: null,
+        created_at: 0,
         published_at: null,
         share_count: 0,
         view_count: 0,
