@@ -11,16 +11,19 @@
         <Editor :content-data="contentObj" />
       </div>
     </div>
+    <SideBar :current-user-like="current_user_like" :post-id="postId" />
     <BackToTop />
   </div>
 </template>
 
 <script>
 import { getPost, increaseViewCount } from '@/api/post';
+import { countReactions } from '@/api/reaction';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import UserInfo from '@/components/common/UserInfo.vue';
+import SideBar from '@/components/post/Sidebar.vue';
 
 export default {
   name: 'PostViewPost',
@@ -29,6 +32,7 @@ export default {
     BackToTop,
     ProgressBar,
     UserInfo,
+    SideBar,
   },
   props: {
     postId: {
@@ -63,12 +67,14 @@ export default {
       bookmarkShow: false,
       likes: 0,
       collects: 0,
+      current_user_like: false,
     };
   },
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
     await Promise.all([
       this.preGetPost(),
+      this.preGetReaction(),
     ]);
     setTimeout(this.handleIncreaseViewCount, 30000);
     this.$store.dispatch('setIsProcessing', false);
@@ -90,6 +96,14 @@ export default {
     async handleIncreaseViewCount() {
       const { success } = await increaseViewCount(this.postId);
       if (success === true) this.view_count += 1;
+    },
+    async preGetReaction() {
+      const { reaction } = await countReactions({ source_type: 'post', source_id: this.postId });
+      if (reaction === 'like') {
+        this.current_user_like = true;
+      } else {
+        this.current_user_like = false;
+      }
     },
   },
 };
