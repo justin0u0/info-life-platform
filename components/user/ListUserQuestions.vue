@@ -1,8 +1,8 @@
 <template>
   <div class="container ml-3 mt-4">
     <div
-      v-for="post in posts"
-      :key="post._id"
+      v-for="question in questions"
+      :key="question._id"
       class="row"
     >
       <div class="d-flex flex-wrap">
@@ -19,16 +19,15 @@
           <p class="text-center">5,678</p>
         </div>
       </div>
-      <div class="post-container ml-3">
-        <h1>{{ post.title }}</h1>
-        <h2>{{ post.subtitle }}</h2>
+      <div class="question-container ml-3">
+        <h1>{{ question.title }}</h1>
         <hr class="featurette-divider">
       </div>
     </div>
     <div class="row justify-content-center">
       <el-pagination
         layout="prev, pager, next"
-        :total="totalPosts"
+        :total="totalQuestions"
         :page-size="limit"
         @current-change="handleCurrentChange"
       />
@@ -37,20 +36,20 @@
 </template>
 
 <script>
-import { getPostsByCurrentUser } from '@/api/post';
+import { getQuestionsByCurrentUser } from '@/api/question';
 
 export default {
-  name: 'UserListUserPosts',
+  name: 'UserListUserQuestions',
   props: {
-    isPublished: {
+    isSolved: {
       type: Boolean,
       required: true,
     },
   },
   data() {
     return {
-      posts: [],
-      totalPosts: 0,
+      questions: [],
+      totalQuestions: 0,
       limit: 6,
       loading: false,
     };
@@ -58,28 +57,28 @@ export default {
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
     await Promise.all([
-      this.preGetPosts(),
+      this.preGetQuestions(),
     ]);
     this.$store.dispatch('setIsProcessing', false);
   },
   methods: {
-    async preGetPosts() {
-      const { total, data } = await getPostsByCurrentUser({
-        filter: { is_published: this.isPublished },
+    async preGetQuestions() {
+      const { total, data } = await getQuestionsByCurrentUser({
+        filter: { is_solved: this.isSolved },
         limit: this.limit,
       });
-      this.totalPosts = total;
-      this.posts = data;
+      this.totalQuestions = total;
+      this.questions = data;
     },
     async handleCurrentChange(page) {
-      console.log('[UserListUserPosts:handleCurrentChange]: ', page);
+      console.log('[UserListUserQuestions:handleCurrentChange]: ', page);
       this.$store.dispatch('setIsProcessing', true);
-      const { data } = await getPostsByCurrentUser({
-        filter: { is_published: this.isPublished },
+      const { data } = await getQuestionsByCurrentUser({
+        filter: { is_solved: this.isSolved },
         limit: this.limit,
         skip: (page - 1) * this.limit,
       });
-      this.posts = data;
+      this.questions = data;
       this.$store.dispatch('setIsProcessing', false);
     },
   },
@@ -87,16 +86,16 @@ export default {
 </script>
 
 <style scoped>
-.post-container {
+.question-container {
   font-family: '微軟正黑體', sans-serif;
   margin-bottom: 30px;
   min-width: 150px;
 }
-.post-container h1 {
+.question-container h1 {
   font-size: 25.2px;
   color: #292929;
 }
-.post-container h2 {
+.question-container h2 {
   font-family: '微軟正黑體', sans-serif;
   font-size: 18px;
   color: #757575;
