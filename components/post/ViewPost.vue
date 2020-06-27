@@ -6,7 +6,7 @@
       <div class="col-lg-8">
         <h1 class="post-title">{{ post.title }}</h1>
         <h2 class="post-subtitle">{{ post.subtitle }}</h2>
-        <UserInfo :user-data="user" :info-data="post" :current-user-like="currentUserLike" />
+        <UserInfo :user-data="user" :info-data="post" :current-user-like="currentUserLike" :current-user-collect="currentUserCollect" />
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
       </div>
@@ -18,6 +18,7 @@
 <script>
 import { getPost, increaseViewCount } from '@/api/post';
 import { countReactions } from '@/api/reaction';
+import { countCollections } from '@/api/collection';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
@@ -65,6 +66,7 @@ export default {
       likes: 0,
       collects: 0,
       currentUserLike: false,
+      currentUserCollect: false,
     };
   },
   async mounted() {
@@ -72,6 +74,7 @@ export default {
     await Promise.all([
       this.preGetPost(),
       this.preGetReaction(),
+      this.preGetCollection(),
     ]);
     setTimeout(this.handleIncreaseViewCount, 30000);
     this.$store.dispatch('setIsProcessing', false);
@@ -97,6 +100,10 @@ export default {
     async preGetReaction() {
       const res = await countReactions({ source_type: 'post', source_id: this.postId });
       this.currentUserLike = (res.current_user_reaction === 'like');
+    },
+    async preGetCollection() {
+      const res = await countCollections(this.postId);
+      this.currentUserCollect = (res.current_user_is_collected === true);
     },
   },
 };
