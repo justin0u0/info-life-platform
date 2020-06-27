@@ -8,8 +8,8 @@
       <span class="date-info">{{ new Date(infoData.created_at).toLocaleString() }}</span>
     </div>
     <div class="ml-auto mt-auto icon-container">
-      <font-awesome-icon class="mx-2" :icon="['far', 'heart']" />
-      <font-awesome-icon class="mx-2" :icon="['fas', 'share']" />
+      <font-awesome-icon v-if="userLike === false" class="mx-2" :icon="['far', 'heart']" @click="handleReaction" />
+      <font-awesome-icon v-if="userLike === true" class="mx-2" :icon="['fas', 'heart']" @click="handleReaction" />
       <ShareNetwork
         network="facebook"
         :url="$route.path"
@@ -24,8 +24,10 @@
 </template>
 
 <script>
+import { addReaction, removeReaction } from '@/api/reaction';
+
 export default {
-  name: 'CommanUserInfo',
+  name: 'CommonUserInfo',
   props: {
     userData: {
       type: Object,
@@ -35,11 +37,24 @@ export default {
       type: Object,
       required: true,
     },
+    currentUserLike: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
       shareCount: 0,
+      userLike: false,
     };
+  },
+  watch: {
+    currentUserLike: {
+      immediate: true,
+      handler(currentUserLike) {
+        this.userLike = currentUserLike;
+      },
+    },
   },
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
@@ -56,9 +71,26 @@ export default {
           fields: 'og_object{engagement}',
         },
       });
-      console.log(res);
       const { count } = res.og_object.engagement;
       this.share_count = count;
+    },
+    async handleReaction() {
+      const type = (this.infoData.subtitle) ? 'post' : 'question';
+      if (this.userLike === true) {
+        try {
+          await removeReaction({ source_type: type, source_id: this.infoData._id });
+          this.userLike = false;
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        try {
+          await addReaction({ type: 'like', source_type: type, source_id: this.infoData._id });
+          this.userLike = true;
+        } catch (error) {
+          console.log(error);
+        }
+      }
     },
   },
   head() {
