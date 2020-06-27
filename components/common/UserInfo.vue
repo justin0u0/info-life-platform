@@ -71,7 +71,6 @@ export default {
           fields: 'og_object{engagement}',
         },
       });
-      console.log(res);
       const { count } = res.og_object.engagement;
       this.share_count = count;
     },
