@@ -28,6 +28,7 @@
     "tiptap": "^1.27.1",
     "tiptap-extensions": "^1.29.1",
     "vue-infinite-scroll": "^2.0.2",
+    "vue-social-sharing": "^3.0.0-beta.11",
     "vuex-persistedstate": "^3.0.1",
     "webpack": "^4.43.0"
   },
