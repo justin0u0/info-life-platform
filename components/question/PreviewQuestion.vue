@@ -1,6 +1,8 @@
 <template>
   <div class="row pt-3 px-3">
-    <h5 class="col-12 pb-2">{{ questionData.title }}</h5>
+    <a class="question-link" :href="`/question/${questionData._id}`">
+      <h5 class="col-12 pb-2">{{ questionData.title }}</h5>
+    </a>
     <div class="d-flex align-items-center col-12 pt-2 pb-2">
       <div class="qa-tag-list mr-3">
         <button class="btn btn-sm" :style="{ 'background-color': transformColor() }">{{ questionData.tag.name }}</button>
@@ -37,7 +39,7 @@ export default {
   methods: {
     transformDate(unixEpoch) {
       const d = new Date(unixEpoch);
-      return d.toLocaleDateString().concat(' ').concat(d.toLocaleTimeString('it-IT'));
+      return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
     },
     transformColor() {
       const hex = this.questionData.tag.color.toString(16);
@@ -49,8 +51,12 @@ export default {
 </script>
 
 <style scoped>
-h5 {
+.question-link {
+  text-decoration-color: black;
+}
+.question-link h5 {
   font-weight: bold;
+  color: #232323;
 }
 .question-date {
   color: #888;
