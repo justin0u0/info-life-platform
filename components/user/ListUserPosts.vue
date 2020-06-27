@@ -10,12 +10,14 @@
         <h2>{{ post.subtitle }}</h2>
       </div>
     </div>
-    <el-pagination
-      layout="prev, pager, next"
-      :total="totalPosts"
-      :page-size="limit"
-      @current-change="handleCurrentChange"
-    />
+    <div class="row justify-content-center">
+      <el-pagination
+        layout="prev, pager, next"
+        :total="totalPosts"
+        :page-size="limit"
+        @current-change="handleCurrentChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -70,8 +72,11 @@ export default {
 </script>
 
 <style scoped>
-.post-container h1 {
+.post-container {
   font-family: '微軟正黑體', sans-serif;
+  margin-bottom: 30px;
+}
+.post-container h1 {
   font-size: 25.2px;
   color: #292929;
 }
