@@ -6,6 +6,7 @@
     <div class="ml-2 d-flex flex-column justify-content-between">
       <a class="user-info" href="#">{{ userData.name }} &lt; {{ userData.username }} &gt;</a>
       <span class="date-info">{{ new Date(infoData.created_at).toLocaleString() }}</span>
+      <span> </span>
     </div>
     <div class="ml-auto mt-auto icon-container">
       <font-awesome-icon v-if="userLike === false" class="mx-2" :icon="['far', 'heart']" @click="handleReaction" />
@@ -18,13 +19,15 @@
       >
         <font-awesome-icon class="mx-2" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
-      <font-awesome-icon class="mx-2" :icon="['far', 'bookmark']" />
+      <font-awesome-icon v-if="userCollect === false" class="mx-2" :icon="['far', 'bookmark']" @click="handleCollection" />
+      <font-awesome-icon v-if="userCollect === true" class="mx-2" :icon="['fas', 'bookmark']" @click="handleCollection" />
     </div>
   </div>
 </template>
 
 <script>
 import { addReaction, removeReaction } from '@/api/reaction';
+import { addCollection, removeCollection } from '@/api/collection';
 
 export default {
   name: 'CommonUserInfo',
@@ -41,11 +44,16 @@ export default {
       type: Boolean,
       required: true,
     },
+    currentUserCollect: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
       shareCount: 0,
       userLike: false,
+      userCollect: false,
     };
   },
   watch: {
@@ -53,6 +61,12 @@ export default {
       immediate: true,
       handler(currentUserLike) {
         this.userLike = currentUserLike;
+      },
+    },
+    currentUserCollect: {
+      immediate: true,
+      handler(currentUserCollect) {
+        this.userCollect = currentUserCollect;
       },
     },
   },
@@ -87,6 +101,23 @@ export default {
         try {
           await addReaction({ type: 'like', source_type: type, source_id: this.infoData._id });
           this.userLike = true;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    },
+    async handleCollection() {
+      if (this.userCollect === true) {
+        try {
+          await removeCollection(this.infoData._id);
+          this.userCollect = false;
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        try {
+          await addCollection(this.infoData._id);
+          this.userCollect = true;
         } catch (error) {
           console.log(error);
         }
