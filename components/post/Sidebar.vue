@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="display: none">
     <div>
       <font-awesome-icon v-if="currentUserLike === false" :icon="['far', 'heart']" @click="handleReaction" />
       <font-awesome-icon v-if="currentUserLike === true" :icon="['fas', 'heart']" @click="handleReaction" />
@@ -24,14 +24,35 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      userLike: false,
+    };
+  },
+  watch: {
+    currentUserLike: {
+      immediate: true,
+      handler(currentUserLike) {
+        this.userLike = currentUserLike;
+      },
+    },
+  },
   methods: {
     async handleReaction() {
-      if (this.currentUserLike === true) {
-        await removeReaction({ source_type: 'post', source_id: this.postId });
-        this.currentUserLike = false;
+      if (this.userLike === true) {
+        try {
+          await removeReaction({ source_type: 'post', source_id: this.postId });
+          this.userLike = false;
+        } catch (error) {
+          console.log(error);
+        }
       } else {
-        await addReaction({ type: 'like', source_type: 'post', source_id: this.postId });
-        this.currentUserLike = true;
+        try {
+          await addReaction({ type: 'like', source_type: 'post', source_id: this.postId });
+          this.userLike = true;
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
   },
@@ -39,5 +60,5 @@ export default {
 </script>
 
 <style scoped>
-
+/* TODO: CSS sidebar */
 </style>
