@@ -22,7 +22,7 @@
         <div class="ml-auto mt-2">
           <p>
             <font-awesome-icon :icon="['far', 'heart']" />
-            <span>{{ 0 }}</span>
+            <span>{{ likes }}</span>
             <font-awesome-icon :icon="['far', 'eye']" />
             <span>{{ postData.view_count }}</span>
           </p>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { countReactions } from '@/api/reaction';
+
 export default {
   name: 'PostPreviewCard',
   props: {
@@ -44,6 +46,7 @@ export default {
   data() {
     return {
       coverUrl: '/assets/previewCardDefaultImage.jpg',
+      likes: 0,
     };
   },
   watch: {
@@ -60,7 +63,19 @@ export default {
       },
     },
   },
+  async mounted() {
+    this.$store.dispatch('setIsProcessing', true);
+    await Promise.all([
+      this.preGetReactions(),
+    ]);
+    this.$store.dispatch('setIsProcessing', false);
+  },
   methods: {
+    async preGetReactions() {
+      const res = await countReactions({ source_type: 'post', source_id: this.postData._id });
+      console.log(res);
+      this.likes = res.like;
+    },
     transformDate(unixEpoch) {
       const d = new Date(unixEpoch);
       return d.toLocaleDateString();
