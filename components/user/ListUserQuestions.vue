@@ -1,30 +1,30 @@
 <template>
-  <div class="container ml-3 mt-4">
+  <div class="container list-questions-container mt-4">
     <div
       v-for="question in questions"
       :key="question._id"
       class="row"
     >
-      <div class="d-flex flex-wrap">
-        <div>
-          <font-awesome-icon class="text-center mt-2 mx-4" style="font-size:20px" :icon="['far', 'eye']" />
-          <p class="text-center">1,211,720</p>
-        </div>
-        <div>
-          <font-awesome-icon class="text-center mt-2 mx-4" style="font-size:20px" :icon="['far', 'heart']" />
-          <p class="text-center">1,234</p>
-        </div>
-        <div>
-          <font-awesome-icon class="text-center mt-2 mx-4" style="font-size:20px" :icon="['far', 'bookmark']" />
-          <p class="text-center">5,678</p>
-        </div>
-      </div>
-      <div class="question-container ml-3">
+      <div v-if="question !== questions[0]" class="divider" />
+      <div class="question-container">
         <h1>{{ question.title }}</h1>
-        <hr class="featurette-divider">
+        <div class="d-flex">
+          <div class="info-container">
+            <font-awesome-icon :icon="['far', 'eye']" />
+            <span>1234</span>
+          </div>
+          <div class="info-container">
+            <font-awesome-icon :icon="['far', 'heart']" />
+            <span>1234</span>
+          </div>
+          <div class="info-container">
+            <font-awesome-icon :icon="['far', 'bookmark']" />
+            <span>1234</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
       <el-pagination
         layout="prev, pager, next"
         :total="totalQuestions"
@@ -86,22 +86,31 @@ export default {
 </script>
 
 <style scoped>
+.list-questions-container {
+  max-width: 960px;
+}
 .question-container {
-  font-family: '微軟正黑體', sans-serif;
-  margin-bottom: 30px;
+  font-family: 'Lucida Grande', '微軟正黑體', sans-serif;
+  min-width: 150px;
   min-width: 150px;
 }
 .question-container h1 {
-  font-size: 25.2px;
+  font-size: 21.2px;
+  font-weight: 600;
   color: #292929;
 }
-.question-container h2 {
-  font-family: '微軟正黑體', sans-serif;
-  font-size: 18px;
-  color: #757575;
+.divider {
+  height: 2px;
+  width: 100%;
+  background-color: #d3d3d3;
+  margin-top: 1.3rem;
+  margin-bottom: 1.3rem;
 }
-.featurette-divider {
-  margin-top: 2rem;
-  margin-bottom: 5px;
+.info-container {
+  text-align: center;
+  font-size: 14px;
+  color: #696969;
+  margin-right: 1rem;
+  margin-top: 10px;
 }
 </style>
