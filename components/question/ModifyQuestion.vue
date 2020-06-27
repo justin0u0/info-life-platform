@@ -38,7 +38,6 @@ export default {
         tag_id: null,
         title: '',
         content: '',
-        is_published: null,
         created_at: null,
       },
     };
@@ -55,7 +54,6 @@ export default {
       const res = await getQuestion(this.questionId);
       this.question = res;
       this.formData.title = res.title;
-      this.formData.subtitle = res.subtitle;
       this.formData.tag_id = res.tag_id;
       this.$refs.form.setContent(res.content);
     },
@@ -66,12 +64,12 @@ export default {
         if (isValid) {
           this.$store.dispatch('setIsProcessing', true);
           await modifyQuestion({ _id: this.question._id, ...data });
-          this.$message({ type: 'success', message: '儲存貼文成功', duration: 1000 });
+          this.$message({ type: 'success', message: '儲存修改成功', duration: 1000 });
           this.$router.push(`/question/${this.question._id}`);
           this.$store.dispatch('setIsProcessing', false);
         }
       } catch (error) {
-        this.$message({ type: 'error', message: '儲存貼文失敗', duration: 1000 });
+        this.$message({ type: 'error', message: '儲存修改失敗', duration: 1000 });
         this.$store.dispatch('setIsProcessing', false);
       }
     },

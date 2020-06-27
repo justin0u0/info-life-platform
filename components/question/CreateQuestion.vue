@@ -1,7 +1,7 @@
 <template>
   <div class="container create-question-container">
     <div class="title-container">
-      <h1>新增文章草稿</h1>
+      <h1>新增提問</h1>
     </div>
     <CreateOrModifyQuestionForm ref="form" @submit="handleCreateQuestion" />
   </div>
@@ -25,7 +25,7 @@ export default {
         if (isValid) {
           await addQuestion(data);
           // TODO: Redirect to /user/question
-          this.$message({ type: 'success', message: '新增文章草稿成功' });
+          this.$message({ type: 'success', message: '新增提問成功' });
           this.$router.push({ path: '/question' });
         }
         this.$store.dispatch('setIsProcessing', false);
