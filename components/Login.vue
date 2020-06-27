@@ -45,7 +45,7 @@ export default {
         // 2. Try login
         await this.$store.dispatch('login', { username, password });
         // 3. Show success message
-        this.$message({ type: 'success', message: '登入成功' });
+        this.$message({ type: 'success', message: '登入成功', duration: 1000 });
         // 4. Redirect
         // this.$router.push('/');
         // 5. Emit success message
@@ -62,7 +62,7 @@ export default {
             break;
           default:
             // Unknown error
-            this.$message({ type: 'error', message: error.message || error.error });
+            this.$message({ type: 'error', message: error.message || error.error, duration: 1000 });
         }
         // Emit failed message
         this.$emit('on-fail');

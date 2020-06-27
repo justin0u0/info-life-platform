@@ -3,25 +3,25 @@
     <div class="title-container">
       <h1>修改文章</h1>
     </div>
-    <CreateOrModifyPostForm
+    <CreateOrModifyQuestionForm
       ref="form"
       :form-data="formData"
-      @submit="handleModifyPost"
+      @submit="handleModifyQuestion"
     />
   </div>
 </template>
 
 <script>
-import CreateOrModifyPostForm from '@/components/post/CreateOrModifyPostForm.vue';
-import { getPost, modifyPost } from '@/api/post';
+import CreateOrModifyQuestionForm from '@/components/question/CreateOrModifyQuestionForm.vue';
+import { getQuestion, modifyQuestion } from '@/api/question';
 
 export default {
-  name: 'PostModifyPost',
+  name: 'QuestionModifyquestion',
   components: {
-    CreateOrModifyPostForm,
+    CreateOrModifyQuestionForm,
   },
   props: {
-    postId: {
+    questionId: {
       type: String,
       required: true,
     },
@@ -30,17 +30,14 @@ export default {
     return {
       formData: {
         title: '',
-        subtitle: '',
         tag_id: '',
       },
-      post: {
+      question: {
         _id: '',
         user_id: null,
         tag_id: null,
         title: '',
-        subtitle: '',
         content: '',
-        is_published: null,
         created_at: null,
       },
     };
@@ -48,32 +45,31 @@ export default {
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
     await Promise.all([
-      this.preGetPost(),
+      this.preGetQuestion(),
     ]);
     this.$store.dispatch('setIsProcessing', false);
   },
   methods: {
-    async preGetPost() {
-      const res = await getPost(this.postId);
-      this.post = res;
+    async preGetQuestion() {
+      const res = await getQuestion(this.questionId);
+      this.question = res;
       this.formData.title = res.title;
-      this.formData.subtitle = res.subtitle;
       this.formData.tag_id = res.tag_id;
       this.$refs.form.setContent(res.content);
     },
-    async handleModifyPost(data) {
-      console.log('[PostModifyPost:handleModifyPost]: ', data);
+    async handleModifyQuestion(data) {
+      console.log('[QuestionModifyQuestion:handleModifyQuestion]: ', data);
       try {
         const isValid = await this.$refs.form.validateForm();
         if (isValid) {
           this.$store.dispatch('setIsProcessing', true);
-          await modifyPost({ _id: this.post._id, ...data });
-          this.$message({ type: 'success', message: '儲存貼文成功', duration: 1000 });
-          this.$router.push(`/post/${this.post._id}`);
+          await modifyQuestion({ _id: this.question._id, ...data });
+          this.$message({ type: 'success', message: '儲存修改成功', duration: 1000 });
+          this.$router.push(`/question/${this.question._id}`);
           this.$store.dispatch('setIsProcessing', false);
         }
       } catch (error) {
-        this.$message({ type: 'error', message: '儲存貼文失敗', duration: 1000 });
+        this.$message({ type: 'error', message: '儲存修改失敗', duration: 1000 });
         this.$store.dispatch('setIsProcessing', false);
       }
     },

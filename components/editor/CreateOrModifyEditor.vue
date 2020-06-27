@@ -13,7 +13,7 @@ import extensions from '@/lib/extensions';
 import EditorMenuBar from '@/components/editor/MenuBar.vue';
 
 export default {
-  name: 'EditorCreatePostEditor',
+  name: 'EditorCreateOrModifyEditor',
   components: {
     EditorContent,
     EditorMenuBar,
@@ -34,6 +34,10 @@ export default {
     });
   },
   methods: {
+    setContent(content) {
+      const contentObj = JSON.parse(content);
+      this.editor.setContent(contentObj);
+    },
     handleEditorClick() {
       this.editor.focus();
     },

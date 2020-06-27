@@ -1,32 +1,32 @@
 <template>
-  <div class="container create-post-container">
+  <div class="container create-question-container">
     <div class="title-container">
-      <h1>新增文章草稿</h1>
+      <h1>新增提問</h1>
     </div>
-    <CreateOrModifyPostForm ref="form" @submit="handleCreatePost" />
+    <CreateOrModifyQuestionForm ref="form" @submit="handleCreateQuestion" />
   </div>
 </template>
 
 <script>
-import { addPost } from '@/api/post';
-import CreateOrModifyPostForm from '@/components/post/CreateOrModifyPostForm.vue';
+import { addQuestion } from '@/api/question';
+import CreateOrModifyQuestionForm from '@/components/question/CreateOrModifyQuestionForm.vue';
 
 export default {
-  name: 'PostCreatePost',
+  name: 'QuestionCreateQuestion',
   components: {
-    CreateOrModifyPostForm,
+    CreateOrModifyQuestionForm,
   },
   methods: {
-    async handleCreatePost(data) {
-      console.log('[CreatePost:handleCreatePost]: ', data);
+    async handleCreateQuestion(data) {
+      console.log('[CreateQuestion:handleCreateQuestion]: ', data);
       this.$store.dispatch('setIsProcessing', true);
       try {
         const isValid = await this.$refs.form.validateForm();
         if (isValid) {
-          await addPost(data);
-          // TODO: Redirect to /user/post
-          this.$message({ type: 'success', message: '新增文章草稿成功' });
-          this.$router.push({ path: '/post' });
+          await addQuestion(data);
+          // TODO: Redirect to /user/question
+          this.$message({ type: 'success', message: '新增提問成功' });
+          this.$router.push({ path: '/question' });
         }
         this.$store.dispatch('setIsProcessing', false);
       } catch (error) {
@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 @media (max-width: 768px) {
-  .create-post-container {
+  .create-question-container {
     min-width: 100%;
   }
 }
