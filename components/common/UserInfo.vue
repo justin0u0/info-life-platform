@@ -27,7 +27,7 @@
 import { addReaction, removeReaction } from '@/api/reaction';
 
 export default {
-  name: 'CommanUserInfo',
+  name: 'CommonUserInfo',
   props: {
     userData: {
       type: Object,
