@@ -35,16 +35,8 @@ export default {
   font-weight: 600;
   color: #3f3f3f;
 }
-.date-info {
-  font-size: 15px;
-  font-weight: 500;
-  color: #4f4f4f;
-}
 .user-image {
   height: 50px;
   width: 50px;
-}
-.icon-container {
-  font-size: 20px;
 }
 </style>

@@ -96,11 +96,7 @@ export default {
     },
     async preGetReaction() {
       const res = await countReactions({ source_type: 'post', source_id: this.postId });
-      if (res.current_user_reaction === 'like') {
-        this.currentUserLike = true;
-      } else {
-        this.currentUserLike = false;
-      }
+      this.currentUserLike = (res.current_user_reaction === 'like');
     },
   },
 };
