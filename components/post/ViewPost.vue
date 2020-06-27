@@ -6,12 +6,12 @@
       <div class="col-lg-8">
         <h1 class="post-title">{{ post.title }}</h1>
         <h2 class="post-subtitle">{{ post.subtitle }}</h2>
-        <UserInfo :user-data="user" :info-data="post" />
+        <UserInfo :user-data="user" :info-data="post" :current-user-like="currentUserLike" />
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
       </div>
     </div>
-    <SideBar :current-user-like="current_user_like" :post-id="postId" />
+    <SideBar :current-user-like="currentUserLike" :post-id="postId" />
     <BackToTop />
   </div>
 </template>
@@ -67,7 +67,7 @@ export default {
       bookmarkShow: false,
       likes: 0,
       collects: 0,
-      current_user_like: false,
+      currentUserLike: false,
     };
   },
   async mounted() {
@@ -98,11 +98,11 @@ export default {
       if (success === true) this.view_count += 1;
     },
     async preGetReaction() {
-      const { reaction } = await countReactions({ source_type: 'post', source_id: this.postId });
-      if (reaction === 'like') {
-        this.current_user_like = true;
+      const res = await countReactions({ source_type: 'post', source_id: this.postId });
+      if (res.current_user_reaction === 'like') {
+        this.currentUserLike = true;
       } else {
-        this.current_user_like = false;
+        this.currentUserLike = false;
       }
     },
   },
