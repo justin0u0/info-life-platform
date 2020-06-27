@@ -36,9 +36,8 @@ export default {
         const isValid = await this.$refs.form.validateForm();
         if (isValid) {
           await addAnswer({ question_id: this.questionId, ...data });
-          // TODO: Redirect to /user/post
           this.$message({ type: 'success', message: '新增回答成功' });
-          // this.$router.push('/');
+          // TODO: fix me
           window.location.reload();
         }
         this.$store.dispatch('setIsProcessing', false);
@@ -59,6 +58,5 @@ export default {
 }
 .create-answer-container {
   border: 1px solid #DCDFE6;
-
 }
 </style>

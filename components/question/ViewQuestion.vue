@@ -41,13 +41,11 @@ export default {
   },
   data() {
     return {
-      // progress: '100%',
       question: {
         _id: null,
         user_id: null,
         tag_id: null,
         title: '',
-        // subtitle: '',
         content: '',
         cover: null,
         published_at: null,
