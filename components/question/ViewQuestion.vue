@@ -6,7 +6,7 @@
       <div class="col-lg-8 d-flex justify-content-center">
         <div class="question-container">
           <h1 class="question-title">{{ question.title }}</h1>
-          <UserInfo :user-data="user" :date-data="question.created_at" />
+          <UserInfo :user-data="user" :info-data="question" />
           <Editor :content-data="contentObj" />
           <CreateAnswer :question-id="questionId" />
         </div>
