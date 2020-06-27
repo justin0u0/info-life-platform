@@ -7,7 +7,7 @@
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item class="dropdown-item" command="/user">
         <font-awesome-icon class="mr-3" :icon="['fas', 'user']" />
-        <p class="aa">個人資料</p>
+        個人資料
       </el-dropdown-item>
       <el-dropdown-item class="dropdown-item" command="/post/create">
         <font-awesome-icon class="mr-3" :icon="['fas', 'plus']" />
