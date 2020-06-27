@@ -8,6 +8,7 @@
           <h1 class="question-title">{{ question.title }}</h1>
           <UserInfo :user-data="user" :date-data="question.created_at" />
           <Editor :content-data="contentObj" />
+          <CreateAnswer :question-id="questionId" />
         </div>
       </div>
     </div>
@@ -21,6 +22,7 @@ import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import UserInfo from '@/components/common/UserInfo.vue';
+import CreateAnswer from '@/components/question/CreateAnswer.vue';
 
 export default {
   name: 'QuestionViewQuestion',
@@ -29,6 +31,7 @@ export default {
     BackToTop,
     ProgressBar,
     UserInfo,
+    CreateAnswer,
   },
   props: {
     questionId: {
@@ -44,12 +47,13 @@ export default {
         user_id: null,
         tag_id: null,
         title: '',
-        subtitle: '',
+        // subtitle: '',
         content: '',
         cover: null,
         published_at: null,
         share_count: 0,
         view_count: 0,
+        created_at: 0,
       },
       user: {
         _id: null,
