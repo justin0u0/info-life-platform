@@ -1,6 +1,10 @@
 
 import api from '@/utils/request';
 
+export function addQuestion(params) {
+  return api('/question/addQuestion', params);
+}
+
 export function getQuestions(params) {
   return api('/question/getQuestions', params);
 }
