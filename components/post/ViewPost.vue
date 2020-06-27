@@ -6,7 +6,7 @@
       <div class="col-lg-8">
         <h1 class="post-title">{{ post.title }}</h1>
         <h2 class="post-subtitle">{{ post.subtitle }}</h2>
-        <UserInfo :user-data="user" :date-data="post.created_at" />
+        <UserInfo :user-data="user" :info-data="post" />
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
       </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { getPost } from '@/api/post';
+import { getPost, increaseViewCount } from '@/api/post';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
@@ -38,7 +38,6 @@ export default {
   },
   data() {
     return {
-      // progress: '100%',
       post: {
         _id: null,
         user_id: null,
@@ -47,6 +46,7 @@ export default {
         subtitle: '',
         content: '',
         cover: null,
+        created_at: null,
         published_at: null,
         share_count: 0,
         view_count: 0,
@@ -70,6 +70,7 @@ export default {
     await Promise.all([
       this.preGetPost(),
     ]);
+    setTimeout(this.handleIncreaseViewCount, 30000);
     this.$store.dispatch('setIsProcessing', false);
   },
   methods: {
@@ -85,6 +86,10 @@ export default {
         this.coverUrl = '/assets/previewCardDefaultImage.jpg';
       }
       console.log('[PostViewPost:preGetPost]: ', this.contentObj);
+    },
+    async handleIncreaseViewCount() {
+      const { success } = await increaseViewCount(this.postId);
+      if (success === true) this.view_count += 1;
     },
   },
 };
