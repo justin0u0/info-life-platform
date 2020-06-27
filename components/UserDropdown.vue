@@ -7,7 +7,7 @@
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item class="dropdown-item" command="/user">
         <font-awesome-icon class="mr-3" :icon="['fas', 'user']" />
-        個人資料
+        <p class="aa">個人資料</p>
       </el-dropdown-item>
       <el-dropdown-item class="dropdown-item" command="/post/create">
         <font-awesome-icon class="mr-3" :icon="['fas', 'plus']" />
@@ -45,6 +45,13 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (max-width: 767px){
+  .dropdown-item {
+    width: 100vw;
+    text-align: center;
+  }
+}
+
 .header-tag{
   font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
   font-size: 18px;

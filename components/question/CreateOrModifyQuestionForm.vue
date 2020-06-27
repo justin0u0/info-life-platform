@@ -5,7 +5,7 @@
         v-model="formData.title"
         type="textarea"
         placeholder="請輸入標題"
-        maxlength="100"
+        maxlength="150"
         show-word-limit
         resize="none"
         rows="2"
