@@ -6,7 +6,7 @@
       <div class="col-lg-8">
         <h1 class="post-title">{{ post.title }}</h1>
         <h2 class="post-subtitle">{{ post.subtitle }}</h2>
-        <UserInfo :user-data="user" />
+        <UserInfo :user-data="user" :date-data="post.created_at" />
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
       </div>
@@ -20,7 +20,7 @@ import { getPost } from '@/api/post';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
-import UserInfo from '@/components/post/UserInfo.vue';
+import UserInfo from '@/components/common/UserInfo.vue';
 
 export default {
   name: 'PostViewPost',

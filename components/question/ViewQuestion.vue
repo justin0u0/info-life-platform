@@ -3,11 +3,12 @@
     <ProgressBar />
     <div class="row">
       <div class="col-lg-2"></div>
-      <div class="col-lg-8">
-        <h1 class="question-title">{{ question.title }}</h1>
-        <UserInfo :user-data="user" />
-        <div class="question-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
-        <Editor :content-data="contentObj" />
+      <div class="col-lg-8 d-flex justify-content-center">
+        <div class="question-container">
+          <h1 class="question-title">{{ question.title }}</h1>
+          <UserInfo :user-data="user" :date-data="question.created_at" />
+          <Editor :content-data="contentObj" />
+        </div>
       </div>
     </div>
     <BackToTop />
@@ -19,7 +20,7 @@ import { getQuestion } from '@/api/question';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
-import UserInfo from '@/components/question/UserInfo.vue';
+import UserInfo from '@/components/common/UserInfo.vue';
 
 export default {
   name: 'QuestionViewQuestion',
@@ -95,15 +96,7 @@ export default {
   line-height: 48px;
   font-weight: 400;
 }
-.question-cover {
-  position: relative;
-  display: flex;
-  height: 300px;
-  width: 100%;
-  margin-top: 56px;
-  overflow-y: hidden;
-  background-size: cover;
-  background-position: center;
-  border-radius: 0.1em;
+.question-container {
+  max-width: 720px;
 }
 </style>
