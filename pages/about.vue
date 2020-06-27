@@ -1,15 +1,15 @@
 <template>
   <el-container class="justify-content-center">
-    <Aboutus />
+    <AboutUs />
   </el-container>
 </template>
 
 <script>
-import Aboutus from '@/components/Aboutus';
+import AboutUs from '@/components/about/Index.vue';
 
 export default {
   components: {
-    Aboutus,
+    AboutUs,
   },
 };
 </script>
