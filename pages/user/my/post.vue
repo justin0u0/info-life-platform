@@ -2,14 +2,16 @@
   <el-container>
     <AsideNav />
     <el-main>
-      <el-tabs type="card">
-        <el-tab-pane label="已發佈">
-          <ListUserPosts :is-published="true" />
-        </el-tab-pane>
-        <el-tab-pane label="草稿">
-          <ListUserPosts :is-published="false" />
-        </el-tab-pane>
-      </el-tabs>
+      <div class="container post-container">
+        <el-tabs type="card">
+          <el-tab-pane label="已發佈">
+            <ListUserPosts :is-published="true" />
+          </el-tab-pane>
+          <el-tab-pane label="草稿">
+            <ListUserPosts :is-published="false" />
+          </el-tab-pane>
+        </el-tabs>
+      </div>
     </el-main>
   </el-container>
 </template>
@@ -26,6 +28,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+.post-container {
+  max-width: 960px;
+}
 </style>
