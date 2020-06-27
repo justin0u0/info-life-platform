@@ -1,5 +1,5 @@
 <template>
-  <div class="container ml-3 mt-4">
+  <div class="container ml-3 mt-4 mr-0">
     <div
       v-for="post in posts"
       :key="post._id"
@@ -91,6 +91,7 @@ export default {
   font-family: '微軟正黑體', sans-serif;
   margin-bottom: 30px;
   min-width: 150px;
+  max-width: 800px;
 }
 .post-container h1 {
   font-size: 25.2px;
