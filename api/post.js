@@ -16,3 +16,7 @@ export function getPost(_id) {
 export function modifyPost(params) {
   return api('/post/modifyPost', params);
 }
+
+export function increaseViewCount(_id) {
+  return api('/post/increaseViewCount', { _id });
+}

@@ -5,12 +5,19 @@
     </div>
     <div class="ml-2 d-flex flex-column justify-content-between">
       <a class="user-info" href="#">{{ userData.name }} &lt; {{ userData.username }} &gt;</a>
-      <span class="date-info">{{ new Date(dateData).toLocaleString() }}</span>
+      <span class="date-info">{{ new Date(infoData.created_at).toLocaleString() }}</span>
     </div>
     <div class="ml-auto mt-auto icon-container">
       <font-awesome-icon class="mx-2" :icon="['far', 'heart']" />
       <font-awesome-icon class="mx-2" :icon="['fas', 'share']" />
-      <font-awesome-icon class="mx-2" :icon="['fab', 'facebook-square']" />
+      <ShareNetwork
+        network="facebook"
+        :url="$route.path"
+        :title="infoData.title"
+        :quote="infoData.title"
+      >
+        <font-awesome-icon class="mx-2" :icon="['fab', 'facebook-square']" />
+      </ShareNetwork>
       <font-awesome-icon class="mx-2" :icon="['far', 'bookmark']" />
     </div>
   </div>
@@ -24,10 +31,42 @@ export default {
       type: Object,
       required: true,
     },
-    dateData: {
-      type: Number,
+    infoData: {
+      type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      shareCount: 0,
+    };
+  },
+  async mounted() {
+    this.$store.dispatch('setIsProcessing', true);
+    await Promise.all([
+      // this.preGetShareCount(),
+    ]);
+    this.$store.dispatch('setIsProcessing', false);
+  },
+  methods: {
+    async preGetShareCount() {
+      const res = await this.$axios.get('https://graph.facebook.com/', {
+        params: {
+          id: this.$route.path,
+          fields: 'og_object{engagement}',
+        },
+      });
+      console.log(res);
+      const { count } = res.og_object.engagement;
+      this.share_count = count;
+    },
+  },
+  head() {
+    return {
+      meta: [
+        { hid: 'og:image', property: 'og:image', content: 'https://rudrastyh.com/wp-content/uploads/2016/08/facebook-apps-list-add-new-app.jpg' },
+      ],
+    };
   },
 };
 </script>
