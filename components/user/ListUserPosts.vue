@@ -24,27 +24,6 @@
           </div>
         </div>
       </div>
-
-      <!--
-      <div class="post-container">
-        <h1>{{ post.title }}</h1>
-        <h2>{{ post.subtitle }}</h2>
-      </div>
-      <div class="d-flex ml-auto mr-3">
-        <div class="info-container">
-          <font-awesome-icon class="mt-2 mx-4" :icon="['far', 'eye']" />
-          <p>1234</p>
-        </div>
-        <div class="info-container">
-          <font-awesome-icon class="mt-2 mx-4" :icon="['far', 'heart']" />
-          <p>1234</p>
-        </div>
-        <div class="info-container">
-          <font-awesome-icon class="mt-2 mx-4" :icon="['far', 'bookmark']" />
-          <p>5678</p>
-        </div>
-      </div>
-      -->
     </div>
     <div class="row justify-content-center mt-5">
       <el-pagination
