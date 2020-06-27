@@ -11,7 +11,6 @@
         <Editor :content-data="contentObj" />
       </div>
     </div>
-    <SideBar :current-user-like="currentUserLike" :post-id="postId" />
     <BackToTop />
   </div>
 </template>
@@ -23,7 +22,6 @@ import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import UserInfo from '@/components/common/UserInfo.vue';
-import SideBar from '@/components/post/Sidebar.vue';
 
 export default {
   name: 'PostViewPost',
@@ -32,7 +30,6 @@ export default {
     BackToTop,
     ProgressBar,
     UserInfo,
-    SideBar,
   },
   props: {
     postId: {
