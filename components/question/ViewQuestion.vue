@@ -44,12 +44,12 @@ export default {
         user_id: null,
         tag_id: null,
         title: '',
-        subtitle: '',
         content: '',
         cover: null,
         published_at: null,
         share_count: 0,
         view_count: 0,
+        created_at: 0,
       },
       user: {
         _id: null,
