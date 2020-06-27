@@ -9,6 +9,10 @@ export function getQuestions(params) {
   return api('/question/getQuestions', params);
 }
 
+export function getQuestionsByCurrentUser(params) {
+  return api('/question/getQuestionsByCurrentUser', params);
+}
+
 export function getQuestion(_id) {
   return api('/question/getQuestion', { _id });
 }
