@@ -5,7 +5,7 @@
     </div>
     <div class="ml-2 d-flex flex-column justify-content-between">
       <a class="user-info" href="#">{{ userData.name }} &lt; {{ userData.username }} &gt;</a>
-      <span class="date-info">{{ new Date(infoData.created_at).toLocaleString() }}</span>
+      <span class="date-info">{{ new Date(postData.created_at).toLocaleString() }}</span>
       <span> </span>
     </div>
     <div class="ml-auto mt-auto icon-container">
@@ -14,8 +14,8 @@
       <ShareNetwork
         network="facebook"
         :url="$route.path"
-        :title="infoData.title"
-        :quote="infoData.title"
+        :title="postData.title"
+        :quote="postData.title"
       >
         <font-awesome-icon class="mx-2" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
@@ -36,7 +36,7 @@ export default {
       type: Object,
       required: true,
     },
-    infoData: {
+    postData: {
       type: Object,
       required: true,
     },
@@ -89,17 +89,16 @@ export default {
       this.share_count = count;
     },
     async handleReaction() {
-      const type = (this.infoData.subtitle) ? 'post' : 'question';
       if (this.userLike === true) {
         try {
-          await removeReaction({ source_type: type, source_id: this.infoData._id });
+          await removeReaction({ source_type: 'post', source_id: this.postData._id });
           this.userLike = false;
         } catch (error) {
           console.log(error);
         }
       } else {
         try {
-          await addReaction({ type: 'like', source_type: type, source_id: this.infoData._id });
+          await addReaction({ type: 'like', source_type: 'post', source_id: this.postData._id });
           this.userLike = true;
         } catch (error) {
           console.log(error);
@@ -109,14 +108,14 @@ export default {
     async handleCollection() {
       if (this.userCollect === true) {
         try {
-          await removeCollection(this.infoData._id);
+          await removeCollection(this.postData._id);
           this.userCollect = false;
         } catch (error) {
           console.log(error);
         }
       } else {
         try {
-          await addCollection(this.infoData._id);
+          await addCollection(this.postData._id);
           this.userCollect = true;
         } catch (error) {
           console.log(error);

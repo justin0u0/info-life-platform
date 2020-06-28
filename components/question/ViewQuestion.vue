@@ -8,9 +8,8 @@
           <h1 class="question-title">{{ question.title }}</h1>
           <UserInfo
             :user-data="user"
-            :info-data="question"
+            :question-data="question"
             :current-user-reaction="currentUserReaction"
-            :type="type"
           />
           <Editor :content-data="contentObj" />
           <CreateAnswer :question-id="questionId" />
@@ -67,7 +66,6 @@ export default {
       },
       contentObj: {},
       currentUserReaction: '',
-      type: 'question',
     };
   },
   async mounted() {

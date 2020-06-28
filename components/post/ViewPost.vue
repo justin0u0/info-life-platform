@@ -8,10 +8,10 @@
         <h2 class="post-subtitle">{{ post.subtitle }}</h2>
         <UserInfo
           :user-data="user"
-          :info-data="post"
+          :post-data="post"
           :current-user-like="currentUserLike"
           :current-user-collect="currentUserCollect"
-          :type="type"
+          source-type="post"
         />
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
@@ -73,7 +73,6 @@ export default {
       collects: 0,
       currentUserLike: false,
       currentUserCollect: false,
-      type: 'post',
     };
   },
   async mounted() {
