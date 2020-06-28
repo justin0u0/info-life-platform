@@ -20,7 +20,8 @@
       </p> -->
       <div class="ml-auto pt-1">
         <span class="answerer">
-          <a href="#">{{ answerData.user.name }}</a> asked at
+          <!-- <a href="#">{{ answerData.user.name }}</a> asked at -->
+          <AnswerUserInfo :answer-data="answerData" />
           <Editor :content-data="contentObj" />
         </span>
         <!-- <span class="ml-2 answer-date">{{ transformDate(answerData.created_at) }}</span> -->
@@ -31,11 +32,13 @@
 
 <script>
 import Editor from '@/components/editor/ViewEditor.vue';
+import AnswerUserInfo from '@components/question/AnswerUserInfo.vue';
 
 export default {
   name: 'QuestionAnswer',
   components: {
     Editor,
+    AnswerUserInfo,
   },
   props: {
     answerData: {
