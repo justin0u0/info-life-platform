@@ -125,6 +125,11 @@ export default {
 .table-of-content.fully-disappear /deep/ .el-card__body {
   display: none;
 }
+@media (max-width: 992px) {
+  .table-of-content {
+    display: none;
+  }
+}
 
 .heading {
   width: 100%;

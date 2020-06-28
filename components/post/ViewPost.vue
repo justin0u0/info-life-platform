@@ -16,7 +16,7 @@
         <Editor :content-data="contentObj" />
         <ListComments :post-id="postId" />
       </div>
-      <div class="col-lg-2 d-none d-md-block">
+      <div class="col-lg-2">
         <TableOfContent :content-data="contentObj" />
       </div>
     </div>
