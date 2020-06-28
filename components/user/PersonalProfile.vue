@@ -138,7 +138,7 @@ export default {
         this.$store.dispatch('setIsProcessing', true);
         await modifyUser(params);
         this.$message({ type: 'success', message: '修改成功', duration: 1000 });
-        this.$router.push('/user/modifyProfile');
+        this.$router.push('/user/personalProfile');
         this.$store.dispatch('setIsProcessing', false);
       } catch (error) {
         this.$message({ type: 'error', message: '修改失敗', duration: 1000 });
