@@ -39,18 +39,11 @@ export default {
       immediate: true,
       handler(contentData) {
         if (Object.prototype.hasOwnProperty.call(contentData, 'type')
-<<<<<<< HEAD
-          && Object.prototype.hasOwnProperty.call(contentData, 'content')
-          && this.editor !== null) {
-          this.editor.setContent(contentData);
-          console.log(this.editor);
-=======
           && Object.prototype.hasOwnProperty.call(contentData, 'content')) {
           this.contentObj = contentData;
           if (this.editor !== null) {
             this.editor.setContent(contentData);
           }
->>>>>>> dev
         }
       },
     },
