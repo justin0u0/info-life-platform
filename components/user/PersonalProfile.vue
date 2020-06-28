@@ -21,7 +21,13 @@
           <p style="font-size: 25px">{{ user.email }}</p>
         </el-form-item>
       </div>
+      <div class="divider"></div>
     </el-form>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>Card name</span>
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -59,7 +65,7 @@ export default {
   },
   methods: {
     async preGetUser() {
-      const res = await getUser('currentUserId');
+      const res = await getUser();
       this.user = res;
     },
   },
@@ -77,5 +83,12 @@ export default {
 .content {
   border: 1px solid #e2e2e2;
   padding: 10px;
+}
+.divider {
+  height: 2px;
+  width: 100%;
+  background-color: #d3d3d3;
+  margin-top: 1.3rem;
+  margin-bottom: 1.3rem;
 }
 </style>
