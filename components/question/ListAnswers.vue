@@ -32,7 +32,6 @@ export default {
       answers: [],
       totalAnswers: 0,
       countAnswers: 0,
-      currentTag: { name: '最新', filter: {}, sort: { created_at: -1 } },
       limit: 10,
     };
   },
@@ -49,20 +48,21 @@ export default {
       await this.getAnswersProcess();
     },
     async getAnswersProcess() {
-      if (this.loading === true) return;
-      this.loading = true;
       const { total, data } = await getAnswers({ filter: { question_id: this.questionId }, limit: this.limit, skip: this.countAnswers });
       this.totalAnswers = total;
       this.countAnswers += data.length;
       this.answers.push(...data);
-      console.log(this.questionId);
-      this.loading = false;
     },
   },
 };
 </script>
 
 <style scoped>
+.loading-block {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+}
 .answer-page {
   font-family: '微軟正黑體', sans-serif;
 }
