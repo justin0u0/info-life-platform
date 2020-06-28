@@ -73,7 +73,6 @@ export default {
   methods: {
     async preGetReactions() {
       const res = await countReactions({ source_type: 'post', source_id: this.postData._id });
-      console.log(res);
       this.likes = res.like;
     },
     transformDate(unixEpoch) {
