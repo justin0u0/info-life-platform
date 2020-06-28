@@ -1,60 +1,67 @@
 <template>
-  <div class="container mt-4">
-    <el-form ref="form" v-model="user" class="form justify-content-start" label-width="200px">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span style="font-size: 25px">Basic Information</span>
+  <div class="container user-profile-container mt-4">
+    <el-form ref="form" v-model="user" class="form" label-width="100px">
+      <el-card>
+        <div slot="header">
+          <font-awesome-icon class="mr-1" :icon="['fas', 'user']" />
+          <span>基本資料</span>
         </div>
-        <el-form-item label="UserName : ">
+        <el-form-item label="帳號：">
           <el-input v-model="user.username" disabled></el-input>
         </el-form-item>
-        <el-form-item label="Name : ">
+        <el-form-item label="姓名：">
           <el-input v-model="user.name"></el-input>
         </el-form-item>
-        <el-form-item label="Email : ">
+        <el-form-item label="信箱：">
           <el-input v-model="user.email"></el-input>
-        </el-form-item>
-        <el-form-item label="Role : ">
-          <el-input v-model="user.role" disabled></el-input>
         </el-form-item>
       </el-card>
       <div class="divider"></div>
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span style="font-size: 25px">Profiles</span>
+      <el-card>
+        <div slot="header">
+          <font-awesome-icon class="mr-1" :icon="['fas', 'info']" />
+          <span>資訊卡</span>
         </div>
         <el-form-item label="Facebook : ">
           <div class="d-flex">
-            <el-input v-model="facebook.url" placeholder="Uncompleted" class="col-10"><template slot="prepend">facebook.com/</template></el-input>
-            <el-switch v-model="facebook.show" class="justify-content-center col-2 my-auto">
+            <el-input v-model="facebook.url" placeholder="Uncompleted" class="col-8 col-md-10">
+              <template slot="prepend">facebook.com/</template>
+            </el-input>
+            <el-switch v-model="facebook.show" class="justify-content-center col-4 col-md-2">
             </el-switch>
           </div>
         </el-form-item>
         <el-form-item label="Gitlab : ">
           <div class="d-flex">
-            <el-input v-model="gitlab.url" placeholder="Uncompleted" class="col-10"><template slot="prepend">gitlab.com/</template></el-input>
-            <el-switch v-model="gitlab.show" class="justify-content-center col-2 my-auto">
+            <el-input v-model="gitlab.url" placeholder="Uncompleted" class="col-8 col-md-10">
+              <template slot="prepend">gitlab.com/</template>
+            </el-input>
+            <el-switch v-model="gitlab.show" class="justify-content-center col-4 col-md-2">
             </el-switch>
           </div>
         </el-form-item>
         <el-form-item label="Github : ">
           <div class="d-flex">
-            <el-input v-model="github.url" placeholder="Uncompleted" class="col-10"><template slot="prepend">github.com/</template></el-input>
-            <el-switch v-model="github.show" class="justify-content-center col-2 my-auto">
+            <el-input v-model="github.url" placeholder="Uncompleted" class="col-8 col-md-10">
+              <template slot="prepend">github.com/</template>
+            </el-input>
+            <el-switch v-model="github.show" class="justify-content-center col-4 col-md-2">
             </el-switch>
           </div>
         </el-form-item>
         <el-form-item label="Bitbucket : ">
           <div class="d-flex">
-            <el-input v-model="bitbucket.url" placeholder="Uncompleted" class="col-10"><template slot="prepend">bitbucket.com/</template></el-input>
-            <el-switch v-model="bitbucket.show" class="justify-content-center col-2 my-auto">
+            <el-input v-model="bitbucket.url" placeholder="Uncompleted" class="col-8 col-md-10">
+              <template slot="prepend">bitbucket.com/</template>
+            </el-input>
+            <el-switch v-model="bitbucket.show" class="justify-content-center col-4 col-md-2">
             </el-switch>
           </div>
         </el-form-item>
       </el-card>
       <div class="mt-3"></div>
       <el-form-item class="d-flex justify-content-end">
-        <el-button type="primary" @click="handleModifyUser()">
+        <el-button type="primary" @click="handleModifyUser">
           確認修改
         </el-button>
       </el-form-item>
@@ -160,14 +167,12 @@ export default {
   max-width: 960px;
 }
 .form /deep/ .el-form-item__label {
-  font-size: 25px;
   text-align: right;
 }
 .form /deep/ .el-input {
   padding-right: 0px;
 }
 .form /deep/ .el-input__inner {
-  font-size: 25px;
   font-weight: bold;
   padding-right: 0px;
 }
@@ -176,7 +181,7 @@ export default {
   margin-left: 0px;
 }
 .form /deep/ .el-input-group__prepend {
-  font-size: 20px;
+  width: 133px;
 }
 .divider {
   height: 2px;
@@ -184,5 +189,10 @@ export default {
   background-color: #d3d3d3;
   margin-top: 1.3rem;
   margin-bottom: 1.3rem;
+}
+@media only screen and (max-width: 800px) {
+  .form /deep/ .el-input-group__prepend {
+    display: none;
+  }
 }
 </style>
