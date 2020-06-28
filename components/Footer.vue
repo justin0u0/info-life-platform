@@ -14,7 +14,7 @@
           <h5 class="font-weight-bold mb-3"><span class="underline pl-0 pr-2">關於</span></h5> <!-- mb-3 -->
           <ul class="list-unstyled">
             <li><a href="/about">關於我們</a></li>
-            <li><a href="#">聯繫我們</a></li>
+            <li><a href="/about#contact">聯繫我們</a></li>
             <li><a href="#">常見問題</a></li>
           </ul>
         </div>
