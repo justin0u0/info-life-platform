@@ -66,7 +66,6 @@ export default {
 .tag-lists div {
   color: #999;
   font-size: 20px;
-  font-family: '微軟正黑體', sans-serif;
   font-weight: bold;
   letter-spacing: 0.1rem;
 }
@@ -81,7 +80,6 @@ export default {
   color: #000;
   font-weight: bolder;
 }
-
 @media (max-width: 768px) {
   .tag-lists div {
     width: 33.33%;

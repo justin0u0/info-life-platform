@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container post-view">
     <ListTags tag-type="post" :current-tag="currentTag" @tag-click="handleTagClick" />
     <transition-group
       v-infinite-scroll="loadPosts"
@@ -93,5 +93,18 @@ export default {
 }
 .post-enter, .post-leave-to {
   opacity: 0;
+}
+.post-view {
+  font-family: custom-sans-serif, sans-serif;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local("微軟正黑體"), local("Microsoft JhengHei");
+  unicode-range: U+4E00-9FFF;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local('Lucida Grande'), local(Segoe UI);
+  unicode-range: U+00-024F;
 }
 </style>
