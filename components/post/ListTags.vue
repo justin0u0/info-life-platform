@@ -66,7 +66,6 @@ export default {
 .tag-lists div {
   color: #999;
   font-size: 20px;
-  /* font-family: custom-sans-serif, sans-serif; */
   font-weight: bold;
   letter-spacing: 0.1rem;
 }

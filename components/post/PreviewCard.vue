@@ -88,7 +88,6 @@ export default {
 
 <style scoped>
 .preview-card {
-  /* font-family: custom-sans-serif, sans-serif; */
   border: none;
   margin-bottom: 20px;
 }

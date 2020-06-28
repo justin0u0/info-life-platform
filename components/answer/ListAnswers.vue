@@ -1,11 +1,11 @@
 <template>
-  <div class="answer-page pt-4">
+  <div class="pt-4">
     <hr>
     <h5 class="font-weight-bold pt-1">{{ totalAnswers }} 個回答</h5>
     <div
       v-for="answer in answers"
       :key="answer._id"
-      class="answer-card mt-4"
+      class="mt-4"
     >
       <ViewAnswer :answer-data="answer" />
     </div>
@@ -48,7 +48,11 @@ export default {
       await this.getAnswersProcess();
     },
     async getAnswersProcess() {
-      const { total, data } = await getAnswers({ filter: { question_id: this.questionId }, limit: this.limit, skip: this.countAnswers });
+      const { total, data } = await getAnswers({
+        filter: { question_id: this.questionId },
+        limit: this.limit,
+        skip: this.countAnswers,
+      });
       this.totalAnswers = total;
       this.countAnswers += data.length;
       this.answers.push(...data);
@@ -58,12 +62,4 @@ export default {
 </script>
 
 <style scoped>
-.loading-block {
-  margin-top: 10px;
-  width: 100%;
-  height: 30px;
-}
-.container {
-  max-width: 700px;
-}
 </style>

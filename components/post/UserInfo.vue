@@ -123,7 +123,6 @@ export default {
   margin-bottom: 45px;
 }
 .user-info {
-  /* font-family: "宋體", sans-serif; */
   font-size: 16px;
   font-weight: 600;
   color: #3f3f3f;
