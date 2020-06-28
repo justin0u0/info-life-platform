@@ -9,18 +9,38 @@
       <span> </span>
     </div>
     <div class="ml-auto mt-auto icon-container">
-      <font-awesome-icon v-if="userLike === false" class="mx-2 pointer" :icon="['far', 'heart']" @click="handleReaction" />
-      <font-awesome-icon v-if="userLike === true" class="mx-2 pointer" :icon="['fas', 'heart']" @click="handleReaction" />
+      <font-awesome-icon
+        v-if="userLike === true"
+        class="mx-2 icon-decoration"
+        :icon="['fas', 'heart']"
+        @click="handleReaction"
+      />
+      <font-awesome-icon
+        v-else
+        class="mx-2 icon-decoration"
+        :icon="['far', 'heart']"
+        @click="handleReaction"
+      />
       <ShareNetwork
         network="facebook"
         :url="$route.path"
         :title="postData.title"
         :quote="postData.title"
       >
-        <font-awesome-icon class="mx-2 pointer" :icon="['fab', 'facebook-square']" />
+        <font-awesome-icon class="mx-2 icon-decoration" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
-      <font-awesome-icon v-if="userCollect === true" class="mx-2 pointer" :icon="['fas', 'bookmark']" @click="handleCollection" />
-      <font-awesome-icon v-else class="mx-2 pointer" :icon="['far', 'bookmark']" @click="handleCollection" />
+      <font-awesome-icon
+        v-if="userCollect === true"
+        class="mx-2 icon-decoration"
+        :icon="['fas', 'bookmark']"
+        @click="handleCollection"
+      />
+      <font-awesome-icon
+        v-else
+        class="mx-2 icon-decoration"
+        :icon="['far', 'bookmark']"
+        @click="handleCollection"
+      />
     </div>
   </div>
 </template>
@@ -133,7 +153,8 @@ export default {
 .icon-container {
   font-size: 20px;
 }
-.pointer {
+.icon-decoration:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 </style>
