@@ -82,6 +82,7 @@ export default {
       this.post = res;
       this.user = res.user;
       this.contentObj = JSON.parse(res.content);
+      console.log(this.contentObj);
       try {
         await this.$axios.get(res.cover.file_url);
         this.coverUrl = res.cover.file_url;
