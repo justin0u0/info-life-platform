@@ -1,22 +1,34 @@
 <template>
   <el-card class="comments-container">
-    <div slot="header">
-      <span>顯示留言({{ totalComments }})</span>
+    <div slot="header" class="header">
+      <el-button
+        ref="controlVisibleButton"
+        type="info"
+        plain
+        class="w-100"
+        @click="handleControlVisible"
+      >
+        <span>{{ commentsVisible ? '隱藏留言' : '顯示留言' }}({{ totalComments }})</span>
+      </el-button>
     </div>
-    <div
-      v-for="comment in comments"
-      :key="comment._id"
-    >
-      <div class="user-container">
-        <el-avatar size="medium" src="/assets/img_avatar.png" />
-        <div class="d-flex flex-column ml-3">
-          <span>{{ comment.user.name }}</span>
-          <span class="date-container">{{ new Date(comment.created_at).toLocaleString() }}</span>
+    <transition name="comment" mode="out-in">
+      <div v-show="commentsVisible">
+        <div
+          v-for="comment in comments"
+          :key="comment._id"
+        >
+          <div class="user-container">
+            <el-avatar size="medium" src="/assets/img_avatar.png" />
+            <div class="d-flex flex-column ml-3">
+              <span>{{ comment.user.name }}</span>
+              <span class="date-container">{{ new Date(comment.created_at).toLocaleString() }}</span>
+            </div>
+          </div>
+          <ViewEditor font-size="16px" :content-data="JSON.parse(comment.content)" />
+          <el-divider />
         </div>
       </div>
-      <ViewEditor font-size="16px" :content-data="JSON.parse(comment.content)" />
-      <el-divider />
-    </div>
+    </transition>
   </el-card>
 </template>
 
@@ -40,6 +52,7 @@ export default {
       comments: [],
       totalComments: 0,
       countComments: 0,
+      commentsVisible: false,
     };
   },
   async mounted() {
@@ -61,11 +74,19 @@ export default {
       this.comments = data;
       this.countComments = data.length;
     },
+    handleControlVisible() {
+      this.commentsVisible = !this.commentsVisible;
+      this.$refs.controlVisibleButton.$el.blur();
+    },
   },
 };
 </script>
 
 <style scoped>
+.header {
+  text-align: center;
+  color: #505050;
+}
 .user-container {
   display: flex;
   align-items: center;
@@ -73,5 +94,22 @@ export default {
 .date-container {
   font-size: 0.85em;
   color: #6f6f6f;
+}
+.header /deep/ .el-button--info.is-plain:focus,
+.header /deep/ .el-button--info.is-plain:hover {
+  background: #bbbbbb;
+  border-color: #bbbbbb;
+}
+
+.comment-enter-active,
+.comment-leave-active {
+  transition: max-height 0.3s ease-in;
+  max-height: 500px;
+}
+.comment-enter,
+.comment-leave-to {
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
+  overflow: hidden;
 }
 </style>
