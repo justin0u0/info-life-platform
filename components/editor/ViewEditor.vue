@@ -22,16 +22,20 @@ export default {
   data() {
     return {
       editor: null,
+      contentObj: '',
     };
   },
   watch: {
     contentData: {
       immediate: true,
       handler(contentData) {
+        console.log('[EditorViewEditor]: ', this.editor);
         if (Object.prototype.hasOwnProperty.call(contentData, 'type')
-          && Object.prototype.hasOwnProperty.call(contentData, 'content')
-          && this.editor !== null) {
-          this.editor.setContent(contentData);
+          && Object.prototype.hasOwnProperty.call(contentData, 'content')) {
+          this.contentObj = contentData;
+          if (this.editor !== null) {
+            this.editor.setContent(contentData);
+          }
         }
       },
     },
@@ -39,7 +43,7 @@ export default {
   mounted() {
     this.editor = new Editor({
       extensions,
-      content: '',
+      content: this.contentObj,
       editable: false,
     });
   },
