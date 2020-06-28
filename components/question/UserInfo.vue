@@ -94,7 +94,6 @@ export default {
         });
         this.userReaction = reaction;
       }
-      console.log(this.userReaction);
     },
   },
 };
