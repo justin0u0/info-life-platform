@@ -122,6 +122,7 @@ export default {
 }
 .post-container {
   min-width: 150px;
+  max-width: 800px;
 }
 .divider {
   height: 2px;
