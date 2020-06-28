@@ -15,6 +15,12 @@
         <font-awesome-icon :icon="['far', 'bookmark']" />
         <span>{{ collections }}</span>
       </div>
+      <div class="ml-auto pt-1">
+        <span class="poster" style="color: #696969">
+          <a href="#" style="color: #696969">{{ postData.user.name }}</a> asked at
+        </span>
+        <span class="ml-2 post-date" style="color: #696969">{{ transformDate(postData.created_at) }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +66,10 @@ export default {
     async preGetCollections(postId) {
       const res = await countCollections(postId);
       this.collections = res.total;
+    },
+    transformDate(unixEpoch) {
+      const d = new Date(unixEpoch);
+      return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
     },
   },
 };
