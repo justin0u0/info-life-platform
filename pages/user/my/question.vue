@@ -2,15 +2,8 @@
   <el-container>
     <AsideNav />
     <el-main>
-      <div class="container question-container">
-        <el-tabs type="card">
-          <el-tab-pane label="已解決">
-            <ListUserQuestions :is-solved="true" />
-          </el-tab-pane>
-          <el-tab-pane label="未解決">
-            <ListUserQuestions :is-solved="false" />
-          </el-tab-pane>
-        </el-tabs>
+      <div class="container post-container">
+        <QuestionTab />
       </div>
     </el-main>
   </el-container>
@@ -18,12 +11,12 @@
 
 <script>
 import AsideNav from '@/components/user/AsideNav.vue';
-import ListUserQuestions from '@/components/user/ListUserQuestions.vue';
+import QuestionTab from '@/components/user/QuestionTab.vue';
 
 export default {
   components: {
     AsideNav,
-    ListUserQuestions,
+    QuestionTab,
   },
 };
 </script>
