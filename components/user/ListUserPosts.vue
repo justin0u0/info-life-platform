@@ -13,7 +13,7 @@
         <PostButton
           :post-data="post"
           :is-published="isPublished"
-          @handleTogglePostIsPublished="handleTogglePostIsPublished(post._id, post.title, index, $event)"
+          @toggle-is-published="handleTogglePostIsPublished(post._id, post.title, index)"
         />
       </div>
     </div>
