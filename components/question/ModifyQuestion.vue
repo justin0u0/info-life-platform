@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="title-container">
-      <h1>修改文章</h1>
+      <h1>修改問題</h1>
     </div>
     <CreateOrModifyQuestionForm
       ref="form"
