@@ -1,6 +1,11 @@
 <template>
   <client-only>
-    <editor-content ref="editor" class="editor__content" :editor="editor" />
+    <editor-content
+      ref="editor"
+      class="editor__content"
+      :editor="editor"
+      :style="{ fontSize }"
+    />
   </client-only>
 </template>
 
@@ -18,10 +23,15 @@ export default {
       type: Object,
       required: true,
     },
+    fontSize: {
+      type: String,
+      default: '21px',
+    },
   },
   data() {
     return {
       editor: null,
+      contentObj: '',
     };
   },
   watch: {
@@ -29,9 +39,11 @@ export default {
       immediate: true,
       handler(contentData) {
         if (Object.prototype.hasOwnProperty.call(contentData, 'type')
-          && Object.prototype.hasOwnProperty.call(contentData, 'content')
-          && this.editor !== null) {
-          this.editor.setContent(contentData);
+          && Object.prototype.hasOwnProperty.call(contentData, 'content')) {
+          this.contentObj = contentData;
+          if (this.editor !== null) {
+            this.editor.setContent(contentData);
+          }
         }
       },
     },
@@ -39,7 +51,7 @@ export default {
   mounted() {
     this.editor = new Editor({
       extensions,
-      content: '',
+      content: this.contentObj,
       editable: false,
     });
   },
