@@ -88,7 +88,7 @@ export default {
 
 <style scoped>
 .preview-card {
-  font-family: 'Lucida Grande', Arial;
+  /* font-family: custom-sans-serif, sans-serif; */
   border: none;
   margin-bottom: 20px;
 }

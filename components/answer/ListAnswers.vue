@@ -14,10 +14,10 @@
 
 <script>
 import { getAnswers } from '@/api/answer';
-import Answer from '@/components/question/Answer.vue';
+import Answer from '@/components/answer/Answer.vue';
 
 export default {
-  name: 'QuestionListAnswer',
+  name: 'ListAnswer',
   components: {
     Answer,
   },
@@ -62,9 +62,6 @@ export default {
   margin-top: 10px;
   width: 100%;
   height: 30px;
-}
-.answer-page {
-  font-family: '微軟正黑體', sans-serif;
 }
 .container {
   max-width: 700px;

@@ -70,24 +70,7 @@ export default {
       },
     },
   },
-  async mounted() {
-    this.$store.dispatch('setIsProcessing', true);
-    await Promise.all([
-      // this.preGetShareCount(),
-    ]);
-    this.$store.dispatch('setIsProcessing', false);
-  },
   methods: {
-    async preGetShareCount() {
-      const res = await this.$axios.get('https://graph.facebook.com/', {
-        params: {
-          id: this.$route.path,
-          fields: 'og_object{engagement}',
-        },
-      });
-      const { count } = res.og_object.engagement;
-      this.share_count = count;
-    },
     async handleReaction() {
       if (this.userLike === true) {
         try {
@@ -140,7 +123,7 @@ export default {
   margin-bottom: 45px;
 }
 .user-info {
-  font-family: "宋體", sans-serif;
+  /* font-family: "宋體", sans-serif; */
   font-size: 16px;
   font-weight: 600;
   color: #3f3f3f;
