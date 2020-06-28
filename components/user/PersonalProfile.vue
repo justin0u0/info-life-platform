@@ -174,9 +174,6 @@ export default {
 .form /deep/ .el-input-group__prepend {
   font-size: 20px;
 }
-.template {
-
-}
 .divider {
   height: 2px;
   width: 100%;
