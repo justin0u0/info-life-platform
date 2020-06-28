@@ -30,7 +30,7 @@ import { addReaction, removeReaction } from '@/api/reaction';
 import { addCollection, removeCollection } from '@/api/collection';
 
 export default {
-  name: 'CommonUserInfo',
+  name: 'PosrUserInfo',
   props: {
     userData: {
       type: Object,

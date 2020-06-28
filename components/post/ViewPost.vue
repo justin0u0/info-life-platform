@@ -6,7 +6,13 @@
       <div class="col-lg-8">
         <h1 class="post-title">{{ post.title }}</h1>
         <h2 class="post-subtitle">{{ post.subtitle }}</h2>
-        <UserInfo :user-data="user" :info-data="post" :current-user-like="currentUserLike" :current-user-collect="currentUserCollect" />
+        <UserInfo
+          :user-data="user"
+          :info-data="post"
+          :current-user-like="currentUserLike"
+          :current-user-collect="currentUserCollect"
+          :type="type"
+        />
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
       </div>
@@ -22,7 +28,7 @@ import { countCollections } from '@/api/collection';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
-import UserInfo from '@/components/common/UserInfo.vue';
+import UserInfo from '@/components/post/UserInfo.vue';
 
 export default {
   name: 'PostViewPost',
@@ -67,6 +73,7 @@ export default {
       collects: 0,
       currentUserLike: false,
       currentUserCollect: false,
+      type: 'post',
     };
   },
   async mounted() {
