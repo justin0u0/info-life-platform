@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5">
+  <div v-show="isLoggedIn" class="mt-5">
     <hr>
     <div>
       <h4 class="pb-2 answer-font">我要回答</h4>
@@ -15,6 +15,7 @@
 import { addAnswer } from '@/api/answer';
 import CreateOrModifyAnswerForm from '@/components/answer/CreateOrModifyAnswerForm.vue';
 import CurrentUserInfo from '@/components/CurrentUserInfo.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'AnswerCreateAnswer',
@@ -27,6 +28,12 @@ export default {
       type: String,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters([
+      'currentUser',
+      'isLoggedIn',
+    ]),
   },
   methods: {
     async handleCreateAnswer(data) {

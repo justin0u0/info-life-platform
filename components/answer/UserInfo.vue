@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex user-container">
+  <div class="user-container">
     <div class="mr-2">
       <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png">
     </div>
@@ -7,6 +7,10 @@
       <a class="user-info" href="#">{{ answerData.user.name }} &lt; {{ answerData.user.username }} &gt;</a>
       <span class="date-info">{{ new Date(answerData.created_at).toLocaleString() }}</span>
       <span> </span>
+    </div>
+    <div class="ml-auto mt-auto icon-container">
+      <font-awesome-icon class="mr-3" :icon="['fas', 'edit']" />
+      <el-checkbox v-model="checked" border="true" size="medium">Best</el-checkbox>
     </div>
   </div>
 </template>
@@ -20,6 +24,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      checked: false,
+    };
   },
 };
 </script>
@@ -43,5 +52,8 @@ export default {
 .user-image {
   height: 50px;
   width: 50px;
+}
+.icon-container {
+  font-size: 20px;
 }
 </style>

@@ -10,6 +10,7 @@
 <script>
 import Editor from '@/components/editor/ViewEditor.vue';
 import AnswerUserInfo from '@/components/answer/UserInfo.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'AnswerViewAnswer',
@@ -27,6 +28,11 @@ export default {
     return {
       contentObj: {},
     };
+  },
+  computed: {
+    ...mapGetters([
+      'isLoggedIn',
+    ]),
   },
   mounted() {
     this.contentObj = JSON.parse(this.answerData.content);
