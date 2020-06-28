@@ -28,12 +28,8 @@ import { countCollections } from '@/api/collection';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
-<<<<<<< Updated upstream
 import UserInfo from '@/components/post/UserInfo.vue';
-=======
-import UserInfo from '@/components/common/UserInfo.vue';
 import ListComments from '@/components/comment/ListComments.vue';
->>>>>>> Stashed changes
 
 export default {
   name: 'PostViewPost',
