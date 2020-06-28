@@ -19,8 +19,8 @@
       >
         <font-awesome-icon class="mx-2" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
-      <font-awesome-icon v-if="userCollect === false" class="mx-2" :icon="['far', 'bookmark']" @click="handleCollection" />
       <font-awesome-icon v-if="userCollect === true" class="mx-2" :icon="['fas', 'bookmark']" @click="handleCollection" />
+      <font-awesome-icon v-else class="mx-2" :icon="['far', 'bookmark']" @click="handleCollection" />
     </div>
   </div>
 </template>

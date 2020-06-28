@@ -11,7 +11,6 @@
           :post-data="post"
           :current-user-like="currentUserLike"
           :current-user-collect="currentUserCollect"
-          source-type="post"
         />
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
