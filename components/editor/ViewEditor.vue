@@ -32,6 +32,7 @@ export default {
           && Object.prototype.hasOwnProperty.call(contentData, 'content')
           && this.editor !== null) {
           this.editor.setContent(contentData);
+          console.log(this.editor);
         }
       },
     },
