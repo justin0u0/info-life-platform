@@ -6,7 +6,11 @@
       <div class="col-lg-8 d-flex justify-content-center">
         <div class="question-container">
           <h1 class="question-title">{{ question.title }}</h1>
-          <UserInfo :user-data="user" :info-data="question" />
+          <UserInfo
+            :user-data="user"
+            :question-data="question"
+            :current-user-reaction="currentUserReaction"
+          />
           <Editor :content-data="contentObj" />
           <ListAnswers :question-id="questionId" />
           <CreateAnswer :question-id="questionId" />
@@ -19,10 +23,11 @@
 
 <script>
 import { getQuestion } from '@/api/question';
+import { countReactions } from '@/api/reaction';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
-import UserInfo from '@/components/common/UserInfo.vue';
+import UserInfo from '@/components/question/UserInfo.vue';
 import CreateAnswer from '@/components/question/CreateAnswer.vue';
 import ListAnswers from '@/components/question/ListAnswers.vue';
 
@@ -63,17 +68,14 @@ export default {
         avatar: null,
       },
       contentObj: {},
-      coverUrl: '/assets/previewCardDefaultImage.jpg',
-      heartShow: false,
-      bookmarkShow: false,
-      likes: 0,
-      collects: 0,
+      currentUserReaction: '',
     };
   },
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
     await Promise.all([
       this.preGetQuestion(),
+      this.preGetReaction(),
     ]);
     this.$store.dispatch('setIsProcessing', false);
   },
@@ -90,6 +92,11 @@ export default {
         this.coverUrl = '/assets/previewCardDefaultImage.jpg';
       }
       console.log('[QuestionViewQuestion:preGetQuestion]: ', this.contentObj);
+    },
+    async preGetReaction() {
+      const res = await countReactions({ source_type: 'question', source_id: this.questionId });
+      console.log(res);
+      this.currentUserReaction = (res.current_user_reaction) ? res.current_user_reaction : '';
     },
   },
 };
