@@ -1,7 +1,7 @@
 <template>
   <div class="mt-5">
     <hr>
-    <div class="container">
+    <div>
       <h4 class="pb-2">我要回答</h4>
       <div class="create-answer-container pb-3 px-4">
         <CurrentUserInfo />
