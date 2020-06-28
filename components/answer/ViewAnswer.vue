@@ -9,10 +9,10 @@
 
 <script>
 import Editor from '@/components/editor/ViewEditor.vue';
-import AnswerUserInfo from '@/components/answer/AnswerUserInfo.vue';
+import AnswerUserInfo from '@/components/answer/UserInfo.vue';
 
 export default {
-  name: 'QuestionAnswer',
+  name: 'AnswerViewAnswer',
   components: {
     Editor,
     AnswerUserInfo,

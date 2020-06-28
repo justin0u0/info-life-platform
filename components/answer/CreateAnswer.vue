@@ -17,7 +17,7 @@ import CreateOrModifyAnswerForm from '@/components/answer/CreateOrModifyAnswerFo
 import CurrentUserInfo from '@/components/CurrentUserInfo.vue';
 
 export default {
-  name: 'CreateAnswer',
+  name: 'AnswerCreateAnswer',
   components: {
     CreateOrModifyAnswerForm,
     CurrentUserInfo,
