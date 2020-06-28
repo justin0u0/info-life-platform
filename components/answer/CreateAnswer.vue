@@ -1,8 +1,8 @@
 <template>
   <div class="mt-5">
     <hr>
-    <div class="container">
-      <h4 class="pb-2">我要回答</h4>
+    <div>
+      <h4 class="pb-2 answer-font">我要回答</h4>
       <div class="create-answer-container pb-3 px-4">
         <CurrentUserInfo />
         <CreateOrModifyAnswerForm ref="form" @submit="handleCreateAnswer" />
@@ -13,11 +13,11 @@
 
 <script>
 import { addAnswer } from '@/api/answer';
-import CreateOrModifyAnswerForm from '@/components/question/CreateOrModifyAnswerForm.vue';
+import CreateOrModifyAnswerForm from '@/components/answer/CreateOrModifyAnswerForm.vue';
 import CurrentUserInfo from '@/components/CurrentUserInfo.vue';
 
 export default {
-  name: 'QuestionCreateAnswer',
+  name: 'AnswerCreateAnswer',
   components: {
     CreateOrModifyAnswerForm,
     CurrentUserInfo,
