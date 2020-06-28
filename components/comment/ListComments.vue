@@ -1,5 +1,5 @@
 <template>
-  <el-card>
+  <el-card class="comments-container">
     <div slot="header">
       <span>顯示留言({{ totalComments }})</span>
     </div>
@@ -7,7 +7,15 @@
       v-for="comment in comments"
       :key="comment._id"
     >
+      <div class="user-container">
+        <el-avatar size="medium" src="/assets/img_avatar.png" />
+        <div class="d-flex flex-column ml-3">
+          <span>{{ comment.user.name }}</span>
+          <span class="date-container">{{ new Date(comment.created_at).toLocaleString() }}</span>
+        </div>
+      </div>
       <ViewEditor font-size="16px" :content-data="JSON.parse(comment.content)" />
+      <el-divider />
     </div>
   </el-card>
 </template>
@@ -58,5 +66,12 @@ export default {
 </script>
 
 <style scoped>
-
+.user-container {
+  display: flex;
+  align-items: center;
+}
+.date-container {
+  font-size: 0.85em;
+  color: #6f6f6f;
+}
 </style>
