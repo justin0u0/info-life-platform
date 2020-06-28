@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div style="margin: 20px;" class="d-flex"></div>
-    <el-form class="form" :label-position="top" label-width="400px" :model="formLabelAlign">
-      <div class="row">
-        <el-form-item label="UserName : ">
-          <p style="font-size: 25px">{{ user.username }}</p>
-        </el-form-item>
-      </div>
+  <div class="container user-profile-container mt-4">
+    <el-form class="form" :label-position="top" label-width="200px" :model="formLabelAlign">
+      <el-form-item label="UserName : ">
+        <div class="content ml-2">
+          <p style="font-size: 30px">{{ user.username }}</p>
+        </div>
+      </el-form-item>
       <div class="row">
         <el-form-item label="Role : ">
           <p style="font-size: 25px">{{ user.role }}</p>
@@ -27,17 +26,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { getUser } from '@/api/user';
 
 export default {
-  components: {
-  },
-  props: {
-    userId: {
-      type: String,
-      required: true,
-    },
-  },
+  name: 'CurrentUserInfo',
   data() {
     return {
       user: {
@@ -52,6 +45,11 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters([
+      'currentUserId',
+    ]),
+  },
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
     await Promise.all([
@@ -61,23 +59,23 @@ export default {
   },
   methods: {
     async preGetUser() {
-      const res = await getUser(this.userId);
+      const res = await getUser('currentUserId');
       this.user = res;
-      try {
-        await this.$axios.get(res.cover.file_url);
-        this.coverUrl = res.cover.file_url;
-      } catch (error) {
-        this.coverUrl = '/assets/previewCardDefaultImage.jpg';
-      }
-      console.log('[PostViewPost:preGetPost]: ', this.username);
     },
   },
 };
 </script>
 
 <style scoped>
+.list-posts-container {
+  max-width: 960px;
+}
 .form /deep/ .el-form-item__label {
   font-size: 25px;
-
+  padding-top: 10px;
+}
+.content {
+  border: 1px solid #e2e2e2;
+  padding: 10px;
 }
 </style>
