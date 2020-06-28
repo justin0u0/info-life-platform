@@ -92,7 +92,6 @@ export default {
 .question-container {
   font-family: 'Lucida Grande', '微軟正黑體', sans-serif;
   min-width: 150px;
-  min-width: 150px;
 }
 .question-container h1 {
   font-size: 21.2px;
