@@ -12,10 +12,19 @@
       type="success"
       plain
       class="mt-2"
-      @click="handleTogglePostIsPublished()"
+      @click="handleTogglePostIsPublished"
     >
       <div class="d-flex align-items-center">
-        <font-awesome-icon class="icon-size" :icon="['far', 'arrow-alt-circle-up']" />
+        <font-awesome-icon
+          v-if="isPublished"
+          class="icon-size"
+          :icon="['fas', 'folder-minus']"
+        />
+        <font-awesome-icon
+          v-else
+          class="icon-size"
+          :icon="['far', 'arrow-alt-circle-up']"
+        />
         <span class="ml-2">
           {{ isPublished ? '取消發佈' : '發佈' }}
         </span>
@@ -39,7 +48,7 @@ export default {
   },
   methods: {
     handleTogglePostIsPublished() {
-      this.$emit('handleTogglePostIsPublished');
+      this.$emit('toggle-is-published');
     },
   },
 };
