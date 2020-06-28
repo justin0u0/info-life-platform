@@ -7,7 +7,7 @@
       v-for="comment in comments"
       :key="comment._id"
     >
-      <ViewEditor :content-data="JSON.parse(comment.content)" />
+      <ViewEditor font-size="16px" :content-data="JSON.parse(comment.content)" />
     </div>
   </el-card>
 </template>

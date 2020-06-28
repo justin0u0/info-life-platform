@@ -1,6 +1,11 @@
 <template>
   <client-only>
-    <editor-content ref="editor" class="editor__content" :editor="editor" />
+    <editor-content
+      ref="editor"
+      class="editor__content"
+      :editor="editor"
+      :style="{ fontSize }"
+    />
   </client-only>
 </template>
 
@@ -18,6 +23,10 @@ export default {
       type: Object,
       required: true,
     },
+    fontSize: {
+      type: String,
+      default: '21px',
+    },
   },
   data() {
     return {
@@ -29,7 +38,6 @@ export default {
     contentData: {
       immediate: true,
       handler(contentData) {
-        console.log('[EditorViewEditor]: ', this.editor);
         if (Object.prototype.hasOwnProperty.call(contentData, 'type')
           && Object.prototype.hasOwnProperty.call(contentData, 'content')) {
           this.contentObj = contentData;
