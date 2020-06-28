@@ -14,7 +14,7 @@
 <script>
 
 export default {
-  name: 'QuestionAnswerUserInfo',
+  name: 'AnswerUserInfo',
   props: {
     answerData: {
       type: Object,
@@ -31,7 +31,6 @@ export default {
   margin-bottom: 10px;
 }
 .user-info {
-  font-family: "宋體", sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: #3f3f3f;
