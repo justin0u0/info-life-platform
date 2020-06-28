@@ -11,8 +11,8 @@
           <font-awesome-icon class="mr-3" :icon="['fas', 'user']" />
           <span class="font-weight-bold">使用者資訊</span>
         </template>
-        <el-menu-item class="text-right" index="/user/my/personalProfile">個人資料</el-menu-item>
-        <el-menu-item class="text-right" index="/user/modify">修改資料</el-menu-item>
+        <el-menu-item class="text-right" index="/user/personalProfile">個人資料</el-menu-item>
+        <el-menu-item class="text-right" index="/user/modifyProfile">修改資料</el-menu-item>
         <el-menu-item class="text-right" index="/user/password">修改密碼</el-menu-item>
       </el-submenu>
       <el-submenu index="2">
