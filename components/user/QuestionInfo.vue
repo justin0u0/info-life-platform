@@ -1,6 +1,11 @@
 <template>
   <div class="question-container">
     <h1><a :href="`/question/${questionData._id}`">{{ questionData.title }}</a></h1>
+    <div class="d-flex align-items-center col-12 pt-2 pb-2">
+      <div class="qa-tag-list mr-3">
+        <button class="btn btn-sm" :style="{ 'background-color': transformColor() }">{{ questionData.tag.name }}</button>
+      </div>
+    </div>
     <div class="d-flex">
       <div class="info-container">
         <font-awesome-icon :icon="['far', 'eye']" />
@@ -13,6 +18,12 @@
       <div class="info-container">
         <font-awesome-icon :icon="['far', 'thumbs-down']" />
         <span>{{ dislikes }}</span>
+      </div>
+      <div class="ml-auto pt-1">
+        <span class="questioner" style="color: #696969">
+          <a href="#" style="color: #696969">{{ questionData.user.name }}</a> asked at
+        </span>
+        <span class="ml-2 question-date" style="color: #696969">{{ transformDate(questionData.created_at) }}</span>
       </div>
     </div>
   </div>
@@ -54,6 +65,15 @@ export default {
       const res = await countReactions({ source_type: 'question', source_id: questionId });
       this.likes = res.like;
       this.dislikes = res.dislike;
+    },
+    transformDate(unixEpoch) {
+      const d = new Date(unixEpoch);
+      return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
+    },
+    transformColor() {
+      const hex = this.questionData.tag.color.toString(16);
+      const hexColor = '#'.concat(hex);
+      return hexColor;
     },
   },
 };
