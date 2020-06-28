@@ -11,25 +11,25 @@
     <div class="ml-auto mt-auto icon-container">
       <font-awesome-icon
         v-if="userReaction === 'like'"
-        class="mx-2"
+        class="mx-2 icon-decoration"
         :icon="['fas', 'thumbs-up']"
         @click="handleReaction('like')"
       />
       <font-awesome-icon
         v-else
-        class="mx-2"
+        class="mx-2 icon-decoration"
         :icon="['far', 'thumbs-up']"
         @click="handleReaction('like')"
       />
       <font-awesome-icon
         v-if="userReaction === 'dislike'"
-        class="mx-2"
+        class="mx-2 icon-decoration"
         :icon="['fas', 'thumbs-down']"
         @click="handleReaction('dislike')"
       />
       <font-awesome-icon
         v-else
-        class="mx-2"
+        class="mx-2 icon-decoration"
         :icon="['far', 'thumbs-down']"
         @click="handleReaction('dislike')"
       />
@@ -39,7 +39,7 @@
         :title="questionData.title"
         :quote="questionData.title"
       >
-        <font-awesome-icon class="mx-2" :icon="['fab', 'facebook-square']" />
+        <font-awesome-icon class="mx-2 icon-decoration" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
     </div>
   </div>
@@ -79,23 +79,14 @@ export default {
     },
   },
   methods: {
-    async preGetShareCount() {
-      const res = await this.$axios.get('https://graph.facebook.com/', {
-        params: {
-          id: this.$route.path,
-          fields: 'og_object{engagement}',
-        },
-      });
-      const { count } = res.og_object.engagement;
-      this.share_count = count;
-    },
     async handleReaction(reaction) {
       await removeReaction({
         source_type: 'question',
         source_id: this.questionData._id,
       });
+      const initialReaction = this.userReaction;
       this.userReaction = '';
-      if (this.userReaction !== reaction) {
+      if (initialReaction !== reaction) {
         await addReaction({
           source_type: 'question',
           source_id: this.questionData._id,
@@ -115,7 +106,6 @@ export default {
   margin-bottom: 45px;
 }
 .user-info {
-  font-family: "宋體", sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: #3f3f3f;
@@ -131,5 +121,9 @@ export default {
 }
 .icon-container {
   font-size: 20px;
+}
+.icon-decoration:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
 </style>
