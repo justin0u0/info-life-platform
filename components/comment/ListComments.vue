@@ -113,6 +113,10 @@ export default {
 </script>
 
 <style scoped>
+.comments-container {
+  margin-top: 50px;
+}
+
 .header {
   text-align: center;
   color: #505050;
