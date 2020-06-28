@@ -7,7 +7,7 @@
       :key="answer._id"
       class="mt-4"
     >
-      <ViewAnswer :answer-data="answer" />
+      <ViewAnswer :answer-data="answer" :question-id="questionId" :is-solved="isSolved" />
     </div>
   </div>
 </template>
@@ -24,6 +24,10 @@ export default {
   props: {
     questionId: {
       type: String,
+      required: true,
+    },
+    isSolved: {
+      type: Boolean,
       required: true,
     },
   },
@@ -57,6 +61,9 @@ export default {
       this.countAnswers += data.length;
       this.answers.push(...data);
     },
+    // questionGetSolved() {
+    //   this.isSolved = true;
+    // },
   },
 };
 </script>

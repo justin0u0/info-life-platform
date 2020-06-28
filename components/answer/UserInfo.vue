@@ -10,12 +10,13 @@
     </div>
     <div class="ml-auto mt-auto icon-container">
       <font-awesome-icon class="mr-3" :icon="['fas', 'edit']" />
-      <el-checkbox v-model="checked" border="true" size="medium">Best</el-checkbox>
+      <el-button v-show="!isSolved" type="primary" icon="el-icon-star-off" circle @click="handleTogglePostIsPublished()"></el-button>
     </div>
   </div>
 </template>
 
 <script>
+import { modifyQuestion } from '@/api/question';
 
 export default {
   name: 'AnswerUserInfo',
@@ -24,11 +25,44 @@ export default {
       type: Object,
       required: true,
     },
+    questionId: {
+      type: String,
+      required: true,
+    },
+    isSolved: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
-      checked: false,
+      // is_solved: false,
     };
+  },
+  methods: {
+    async handleTogglePostIsPublished() {
+      const message = `確定選定${this.answerData.user.name}的回答為最佳解嗎`;
+      const successMessage = '發佈成功';
+      const cancelMessage = '發佈取消';
+      try {
+        await this.$confirm(message, '提醒', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+        });
+        await modifyQuestion({ _id: this.questionId, is_solved: true, best_answer_id: this.answerData._id });
+        // this.$emit('question-solved');
+        this.$message({
+          type: 'success',
+          message: successMessage,
+        });
+        window.location.reload();
+      } catch (error) {
+        this.$message({
+          type: 'info',
+          message: cancelMessage,
+        });
+      }
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="container answer-container my-3">
-    <AnswerUserInfo :answer-data="answerData" />
+    <AnswerUserInfo :answer-data="answerData" :question-id="questionId" :is-solved="isSolved" />
     <div class="pb-3">
       <Editor :content-data="contentObj" />
     </div>
@@ -23,6 +23,14 @@ export default {
       type: Object,
       required: true,
     },
+    questionId: {
+      type: String,
+      required: true,
+    },
+    isSolved: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
@@ -42,6 +50,9 @@ export default {
       const d = new Date(unixEpoch);
       return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
     },
+    // questionGetSolved() {
+    //   this.$emit('question-solved');
+    // },
   },
 };
 </script>
