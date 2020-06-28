@@ -11,25 +11,25 @@
     <div class="ml-auto mt-auto icon-container">
       <font-awesome-icon
         v-if="userReaction === 'like'"
-        class="mx-2 pointer"
+        class="mx-2 icon-decoration"
         :icon="['fas', 'thumbs-up']"
         @click="handleReaction('like')"
       />
       <font-awesome-icon
         v-else
-        class="mx-2 pointer"
+        class="mx-2 icon-decoration"
         :icon="['far', 'thumbs-up']"
         @click="handleReaction('like')"
       />
       <font-awesome-icon
         v-if="userReaction === 'dislike'"
-        class="mx-2 pointer"
+        class="mx-2 icon-decoration"
         :icon="['fas', 'thumbs-down']"
         @click="handleReaction('dislike')"
       />
       <font-awesome-icon
         v-else
-        class="mx-2 pointer"
+        class="mx-2 icon-decoration"
         :icon="['far', 'thumbs-down']"
         @click="handleReaction('dislike')"
       />
@@ -39,7 +39,7 @@
         :title="questionData.title"
         :quote="questionData.title"
       >
-        <font-awesome-icon class="mx-2 pointer" :icon="['fab', 'facebook-square']" />
+        <font-awesome-icon class="mx-2 icon-decoration" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
     </div>
   </div>
@@ -84,8 +84,9 @@ export default {
         source_type: 'question',
         source_id: this.questionData._id,
       });
+      const initialReaction = this.userReaction;
       this.userReaction = '';
-      if (this.userReaction !== reaction) {
+      if (initialReaction !== reaction) {
         await addReaction({
           source_type: 'question',
           source_id: this.questionData._id,
@@ -93,6 +94,7 @@ export default {
         });
         this.userReaction = reaction;
       }
+      console.log(this.userReaction);
     },
   },
 };
@@ -122,7 +124,8 @@ export default {
 .icon-container {
   font-size: 20px;
 }
-.pointer {
+.icon-decoration:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 </style>
