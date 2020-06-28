@@ -15,7 +15,6 @@
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
         <ListComments :post-id="postId" />
-        <!-- <TableOfContent :content-data="contentObj" /> -->
       </div>
       <div class="col-lg-2 d-none d-md-block">
         <TableOfContent :content-data="contentObj" />
@@ -34,7 +33,7 @@ import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import UserInfo from '@/components/post/UserInfo.vue';
 import ListComments from '@/components/comment/ListComments.vue';
-import TableOfContent from '@/components/TableOfContent.vue';
+import TableOfContent from '@/components/post/TableOfContent.vue';
 
 export default {
   name: 'PostViewPost',
