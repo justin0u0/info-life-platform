@@ -15,8 +15,8 @@
         <span class="pr-2">28</span>
         <font-awesome-icon :icon="['far', 'comment-alt']" />
         <span class="pr-2">7</span>
-        <font-awesome-icon :icon="['far', 'heart']" />
-        <span>43</span>
+        <font-awesome-icon :icon="['far', 'thumbs-up']" />
+        <span>{{ likes }}</span>
       </p>
       <div class="ml-auto pt-1">
         <span class="questioner">
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { countReactions } from '@/api/reaction';
+
 export default {
   props: {
     questionData: {
@@ -36,7 +38,23 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      likes: 0,
+    };
+  },
+  async mounted() {
+    this.$store.dispatch('setIsProcessing', true);
+    await Promise.all([
+      this.preGetReactions(),
+    ]);
+    this.$store.dispatch('setIsProcessing', false);
+  },
   methods: {
+    async preGetReactions() {
+      const res = await countReactions({ source_type: 'question', source_id: this.questionData._id });
+      this.likes = res.like;
+    },
     transformDate(unixEpoch) {
       const d = new Date(unixEpoch);
       return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
