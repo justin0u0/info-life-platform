@@ -7,12 +7,12 @@
         <span>{{ questionData.view_count }}</span>
       </div>
       <div class="info-container">
-        <font-awesome-icon :icon="['far', 'heart']" />
+        <font-awesome-icon :icon="['far', 'thumbs-up']" />
         <span>{{ likes }}</span>
       </div>
       <div class="info-container">
-        <font-awesome-icon :icon="['far', 'bookmark']" />
-        <span>{{ collections }}</span>
+        <font-awesome-icon :icon="['far', 'thumbs-down']" />
+        <span>{{ dislikes }}</span>
       </div>
     </div>
   </div>
@@ -20,7 +20,6 @@
 
 <script>
 import { countReactions } from '@/api/reaction';
-import { countCollections } from '@/api/collection';
 
 export default {
   name: 'UserQuestionInfo',
@@ -33,7 +32,7 @@ export default {
   data() {
     return {
       likes: 0,
-      collections: 0,
+      dislikes: 0,
     };
   },
   watch: {
@@ -44,7 +43,6 @@ export default {
           this.$store.dispatch('setIsProcessing', true);
           await Promise.all([
             this.preGetReactions(questionData._id),
-            this.preGetCollections(questionData._id),
           ]);
           this.$store.dispatch('setIsProcessing', false);
         }
@@ -55,10 +53,7 @@ export default {
     async preGetReactions(questionId) {
       const res = await countReactions({ source_type: 'question', source_id: questionId });
       this.likes = res.like;
-    },
-    async preGetCollections(questionId) {
-      const res = await countCollections(questionId);
-      this.collections = res.total;
+      this.dislikes = res.dislike;
     },
   },
 };
