@@ -20,7 +20,7 @@
 import CreateOrModifyEditor from '@/components/editor/CreateOrModifyEditor.vue';
 
 export default {
-  name: 'QuestionCreateOrModifyAnswerForm',
+  name: 'AnswerCreateOrModifyAnswerForm',
   components: {
     CreateOrModifyEditor,
   },

@@ -50,7 +50,7 @@
       </el-carousel-item>
     </el-carousel>
     <hr class="featurette-divider">
-    <h3><font-awesome-icon :icon="['fas', 'paper-plane']" style="color: rgb(97, 97, 99); padding-bottom: 3px;" class="" /> 聯絡我們</h3>
+    <h3 id="contact"><font-awesome-icon :icon="['fas', 'paper-plane']" style="color: rgb(97, 97, 99); padding-bottom: 3px;" class="" /> 聯絡我們</h3>
     <Contact />
   </div>
 </template>
