@@ -7,19 +7,19 @@
       :key="answer._id"
       class="answer-card mt-4"
     >
-      <Answer :answer-data="answer" />
+      <ViewAnswer :answer-data="answer" />
     </div>
   </div>
 </template>
 
 <script>
 import { getAnswers } from '@/api/answer';
-import Answer from '@/components/answer/Answer.vue';
+import ViewAnswer from '@/components/answer/ViewAnswer.vue';
 
 export default {
-  name: 'ListAnswer',
+  name: 'AnswerListAnswers',
   components: {
-    Answer,
+    ViewAnswer,
   },
   props: {
     questionId: {
