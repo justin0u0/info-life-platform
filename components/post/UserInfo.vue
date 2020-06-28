@@ -9,18 +9,18 @@
       <span> </span>
     </div>
     <div class="ml-auto mt-auto icon-container">
-      <font-awesome-icon v-if="userLike === false" class="mx-2" :icon="['far', 'heart']" @click="handleReaction" />
-      <font-awesome-icon v-if="userLike === true" class="mx-2" :icon="['fas', 'heart']" @click="handleReaction" />
+      <font-awesome-icon v-if="userLike === false" class="mx-2 pointer" :icon="['far', 'heart']" @click="handleReaction" />
+      <font-awesome-icon v-if="userLike === true" class="mx-2 pointer" :icon="['fas', 'heart']" @click="handleReaction" />
       <ShareNetwork
         network="facebook"
         :url="$route.path"
         :title="postData.title"
         :quote="postData.title"
       >
-        <font-awesome-icon class="mx-2" :icon="['fab', 'facebook-square']" />
+        <font-awesome-icon class="mx-2 pointer" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
-      <font-awesome-icon v-if="userCollect === true" class="mx-2" :icon="['fas', 'bookmark']" @click="handleCollection" />
-      <font-awesome-icon v-else class="mx-2" :icon="['far', 'bookmark']" @click="handleCollection" />
+      <font-awesome-icon v-if="userCollect === true" class="mx-2 pointer" :icon="['fas', 'bookmark']" @click="handleCollection" />
+      <font-awesome-icon v-else class="mx-2 pointer" :icon="['far', 'bookmark']" @click="handleCollection" />
     </div>
   </div>
 </template>
@@ -70,24 +70,7 @@ export default {
       },
     },
   },
-  async mounted() {
-    this.$store.dispatch('setIsProcessing', true);
-    await Promise.all([
-      // this.preGetShareCount(),
-    ]);
-    this.$store.dispatch('setIsProcessing', false);
-  },
   methods: {
-    async preGetShareCount() {
-      const res = await this.$axios.get('https://graph.facebook.com/', {
-        params: {
-          id: this.$route.path,
-          fields: 'og_object{engagement}',
-        },
-      });
-      const { count } = res.og_object.engagement;
-      this.share_count = count;
-    },
     async handleReaction() {
       if (this.userLike === true) {
         try {
@@ -123,13 +106,6 @@ export default {
       }
     },
   },
-  head() {
-    return {
-      meta: [
-        { hid: 'og:image', property: 'og:image', content: 'https://rudrastyh.com/wp-content/uploads/2016/08/facebook-apps-list-add-new-app.jpg' },
-      ],
-    };
-  },
 };
 </script>
 
@@ -156,5 +132,8 @@ export default {
 }
 .icon-container {
   font-size: 20px;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>
