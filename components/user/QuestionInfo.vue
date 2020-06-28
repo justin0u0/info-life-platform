@@ -1,11 +1,10 @@
 <template>
-  <div class="post-container">
-    <h1><a :href="`/post/${postData._id}`">{{ postData.title }}</a></h1>
-    <h2>{{ postData.subtitle }}</h2>
+  <div class="question-container">
+    <h1><a :href="`/question/${questionData._id}`">{{ questionData.title }}</a></h1>
     <div class="d-flex">
       <div class="info-container">
         <font-awesome-icon :icon="['far', 'eye']" />
-        <span>{{ postData.view_count }}</span>
+        <span>{{ questionData.view_count }}</span>
       </div>
       <div class="info-container">
         <font-awesome-icon :icon="['far', 'heart']" />
@@ -24,9 +23,9 @@ import { countReactions } from '@/api/reaction';
 import { countCollections } from '@/api/collection';
 
 export default {
-  name: 'UserPostInfo',
+  name: 'UserQuestionInfo',
   props: {
-    postData: {
+    questionData: {
       type: Object,
       required: true,
     },
@@ -38,14 +37,14 @@ export default {
     };
   },
   watch: {
-    postData: {
+    questionData: {
       immediate: true,
-      async handler(postData) {
-        if (postData && postData._id) {
+      async handler(questionData) {
+        if (questionData && questionData._id) {
           this.$store.dispatch('setIsProcessing', true);
           await Promise.all([
-            this.preGetReactions(postData._id),
-            this.preGetCollections(postData._id),
+            this.preGetReactions(questionData._id),
+            this.preGetCollections(questionData._id),
           ]);
           this.$store.dispatch('setIsProcessing', false);
         }
@@ -53,12 +52,12 @@ export default {
     },
   },
   methods: {
-    async preGetReactions(postId) {
-      const res = await countReactions({ source_type: 'post', source_id: postId });
+    async preGetReactions(questionId) {
+      const res = await countReactions({ source_type: 'question', source_id: questionId });
       this.likes = res.like;
     },
-    async preGetCollections(postId) {
-      const res = await countCollections(postId);
+    async preGetCollections(questionId) {
+      const res = await countCollections(questionId);
       this.collections = res.total;
     },
   },
@@ -69,15 +68,15 @@ export default {
 a {
   color: #292929;
 }
-.post-container {
+.question-container {
   font-family: 'Lucida Grande', '微軟正黑體', sans-serif;
 }
-.post-container h1 {
+.question-container h1 {
   font-size: 21.2px;
   font-weight: 600;
   color: #292929;
 }
-.post-container h2 {
+.question-container h2 {
   font-size: 17px;
   color: #757575;
 }
