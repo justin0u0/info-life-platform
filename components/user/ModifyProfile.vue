@@ -1,6 +1,6 @@
 <template>
-  <div class="container user-profile-container mt-4">
-    <el-form ref="form" v-model="user" class="form justify-content-start" label-width="20%">
+  <div class="container mt-4">
+    <el-form ref="form" v-model="user" class="form justify-content-start" label-width="200px">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span style="font-size: 25px">Basic Information</span>
@@ -24,29 +24,29 @@
           <span style="font-size: 25px">Profiles</span>
         </div>
         <el-form-item label="Facebook : ">
-          <div class="row">
-            <el-input v-model="facebook.url" placeholder="Uncompleted" class="col-10"></el-input>
+          <div class="d-flex">
+            <el-input v-model="facebook.url" placeholder="Uncompleted" class="col-10"><template slot="prepend">facebook.com/</template></el-input>
             <el-switch v-model="facebook.show" class="justify-content-center col-2 my-auto">
             </el-switch>
           </div>
         </el-form-item>
         <el-form-item label="Gitlab : ">
-          <div class="row">
-            <el-input v-model="gitlab.url" placeholder="Uncompleted" class="col-10"></el-input>
+          <div class="d-flex">
+            <el-input v-model="gitlab.url" placeholder="Uncompleted" class="col-10"><template slot="prepend">gitlab.com/</template></el-input>
             <el-switch v-model="gitlab.show" class="justify-content-center col-2 my-auto">
             </el-switch>
           </div>
         </el-form-item>
         <el-form-item label="Github : ">
-          <div class="row">
-            <el-input v-model="github.url" placeholder="Uncompleted" class="col-10"></el-input>
+          <div class="d-flex">
+            <el-input v-model="github.url" placeholder="Uncompleted" class="col-10"><template slot="prepend">github.com/</template></el-input>
             <el-switch v-model="github.show" class="justify-content-center col-2 my-auto">
             </el-switch>
           </div>
         </el-form-item>
         <el-form-item label="Bitbucket : ">
-          <div class="row">
-            <el-input v-model="bitbucket.url" placeholder="Uncompleted" class="col-10"></el-input>
+          <div class="d-flex">
+            <el-input v-model="bitbucket.url" placeholder="Uncompleted" class="col-10"><template slot="prepend">bitbucket.com/</template></el-input>
             <el-switch v-model="bitbucket.show" class="justify-content-center col-2 my-auto">
             </el-switch>
           </div>
@@ -174,6 +174,9 @@ export default {
 .form /deep/ .el-switch {
   margin-right: 0px;
   margin-left: 0px;
+}
+.form /deep/ .el-input-group__prepend {
+  font-size: 20px;
 }
 .divider {
   height: 2px;
