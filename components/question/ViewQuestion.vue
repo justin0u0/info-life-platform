@@ -12,6 +12,7 @@
             :current-user-reaction="currentUserReaction"
           />
           <Editor :content-data="contentObj" />
+          <ListAnswers :question-id="questionId" />
           <CreateAnswer :question-id="questionId" />
         </div>
       </div>
@@ -27,7 +28,8 @@ import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import UserInfo from '@/components/question/UserInfo.vue';
-import CreateAnswer from '@/components/question/CreateAnswer.vue';
+import CreateAnswer from '@/components/answer/CreateAnswer.vue';
+import ListAnswers from '@/components/answer/ListAnswers.vue';
 
 export default {
   name: 'QuestionViewQuestion',
@@ -37,6 +39,7 @@ export default {
     ProgressBar,
     UserInfo,
     CreateAnswer,
+    ListAnswers,
   },
   props: {
     questionId: {
@@ -107,5 +110,16 @@ export default {
 }
 .question-container {
   max-width: 720px;
+  font-family: custom-sans-serif, sans-serif;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local("微軟正黑體"), local("Microsoft JhengHei");
+  unicode-range: U+4E00-9FFF;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local('Lucida Grande'), local(Segoe UI);
+  unicode-range: U+00-024F;
 }
 </style>

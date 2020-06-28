@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ProgressBar />
-    <div class="row">
+    <div class="row post-view">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
         <h1 class="post-title">{{ post.title }}</h1>
@@ -137,5 +137,18 @@ export default {
   letter-spacing: 0;
   font-weight: 300;
   color: #777;
+}
+.post-view {
+  font-family: custom-sans-serif, sans-serif;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local("微軟正黑體"), local("Microsoft JhengHei");
+  unicode-range: U+4E00-9FFF;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local('Lucida Grande'), local(Segoe UI);
+  unicode-range: U+00-024F;
 }
 </style>
