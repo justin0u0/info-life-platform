@@ -6,8 +6,13 @@
       <div class="col-lg-8 d-flex justify-content-center">
         <div class="question-container">
           <h1 class="question-title">{{ question.title }}</h1>
-          <UserInfo :user-data="user" :info-data="question" />
+          <UserInfo
+            :user-data="user"
+            :question-data="question"
+            :current-user-reaction="currentUserReaction"
+          />
           <Editor :content-data="contentObj" />
+          <ListAnswers :question-id="questionId" />
           <CreateAnswer :question-id="questionId" />
         </div>
       </div>
@@ -18,11 +23,13 @@
 
 <script>
 import { getQuestion } from '@/api/question';
+import { countReactions } from '@/api/reaction';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
-import UserInfo from '@/components/common/UserInfo.vue';
-import CreateAnswer from '@/components/question/CreateAnswer.vue';
+import UserInfo from '@/components/question/UserInfo.vue';
+import CreateAnswer from '@/components/answer/CreateAnswer.vue';
+import ListAnswers from '@/components/answer/ListAnswers.vue';
 
 export default {
   name: 'QuestionViewQuestion',
@@ -32,6 +39,7 @@ export default {
     ProgressBar,
     UserInfo,
     CreateAnswer,
+    ListAnswers,
   },
   props: {
     questionId: {
@@ -60,17 +68,14 @@ export default {
         avatar: null,
       },
       contentObj: {},
-      coverUrl: '/assets/previewCardDefaultImage.jpg',
-      heartShow: false,
-      bookmarkShow: false,
-      likes: 0,
-      collects: 0,
+      currentUserReaction: '',
     };
   },
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
     await Promise.all([
       this.preGetQuestion(),
+      this.preGetReaction(),
     ]);
     this.$store.dispatch('setIsProcessing', false);
   },
@@ -88,6 +93,11 @@ export default {
       }
       console.log('[QuestionViewQuestion:preGetQuestion]: ', this.contentObj);
     },
+    async preGetReaction() {
+      const res = await countReactions({ source_type: 'question', source_id: this.questionId });
+      console.log(res);
+      this.currentUserReaction = (res.current_user_reaction) ? res.current_user_reaction : '';
+    },
   },
 };
 </script>
@@ -100,5 +110,16 @@ export default {
 }
 .question-container {
   max-width: 720px;
+  font-family: custom-sans-serif, sans-serif;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local("微軟正黑體"), local("Microsoft JhengHei");
+  unicode-range: U+4E00-9FFF;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local('Lucida Grande'), local(Segoe UI);
+  unicode-range: U+00-024F;
 }
 </style>

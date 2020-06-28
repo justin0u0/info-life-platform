@@ -73,7 +73,6 @@ export default {
   methods: {
     async preGetReactions() {
       const res = await countReactions({ source_type: 'post', source_id: this.postData._id });
-      console.log(res);
       this.likes = res.like;
     },
     transformDate(unixEpoch) {
@@ -89,7 +88,6 @@ export default {
 
 <style scoped>
 .preview-card {
-  font-family: 'Lucida Grande', Arial;
   border: none;
   margin-bottom: 20px;
 }

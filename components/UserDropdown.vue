@@ -15,7 +15,7 @@
       </el-dropdown-item>
       <el-dropdown-item class="dropdown-item" command="/question/create">
         <font-awesome-icon class="mr-3" :icon="['fas', 'lightbulb']" />
-        我要提問
+        新增問題
       </el-dropdown-item>
       <el-dropdown-item class="dropdown-item" command="/user/my/post">
         <font-awesome-icon class="mr-3" :icon="['fas', 'sticky-note']" />

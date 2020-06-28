@@ -2,7 +2,7 @@
   <client-only>
     <div>
       <EditorMenuBar :editor="editor" />
-      <editor-content ref="editor" class="editor__content" :editor="editor" />
+      <editor-content ref="editor" class="editor__content" :editor="editor" style="font-size: 21px" />
     </div>
   </client-only>
 </template>

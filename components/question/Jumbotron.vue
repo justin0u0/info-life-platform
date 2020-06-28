@@ -70,7 +70,6 @@ export default {
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
-  font-family: '微軟正黑體', sans-serif;
 }
 .qa-total {
   font-size: 2rem;

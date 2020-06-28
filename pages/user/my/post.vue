@@ -3,14 +3,7 @@
     <AsideNav />
     <el-main>
       <div class="container post-container">
-        <el-tabs type="card">
-          <el-tab-pane label="已發佈">
-            <ListUserPosts :is-published="true" />
-          </el-tab-pane>
-          <el-tab-pane label="草稿">
-            <ListUserPosts :is-published="false" />
-          </el-tab-pane>
-        </el-tabs>
+        <PostTab />
       </div>
     </el-main>
   </el-container>
@@ -18,18 +11,18 @@
 
 <script>
 import AsideNav from '@/components/user/AsideNav.vue';
-import ListUserPosts from '@/components/user/ListUserPosts.vue';
+import PostTab from '@/components/user/PostTab.vue';
 
 export default {
   components: {
     AsideNav,
-    ListUserPosts,
+    PostTab,
   },
 };
 </script>
 
 <style scoped>
 .post-container {
-  max-width: 960px;
+  max-width: 1000px;
 }
 </style>
