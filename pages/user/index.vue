@@ -7,11 +7,15 @@
 </template>
 
 <script>
+import auth from '@/lib/auth';
 import UserAsideNav from '@/components/user/AsideNav.vue';
 
 export default {
   components: {
     UserAsideNav,
+  },
+  mounted() {
+    auth.bind(this)('/');
   },
 };
 </script>
