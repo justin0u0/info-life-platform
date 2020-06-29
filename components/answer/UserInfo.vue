@@ -7,6 +7,10 @@
       <a class="user-info" href="#">{{ answerData.user.name }} &lt; {{ answerData.user.username }} &gt;</a>
       <span class="date-info">{{ new Date(answerData.created_at).toLocaleString() }}</span>
       <span> </span>
+      <font-awesome-icon
+        :icon="['fas', 'trash']"
+        @click="handleDeletion('like')"
+      />
     </div>
   </div>
 </template>
