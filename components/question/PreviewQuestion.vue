@@ -5,11 +5,12 @@
     </a>
     <div class="d-flex align-items-center col-12 pt-2 pb-2">
       <div class="qa-tag-list mr-3">
-        <button class="btn btn-sm" :style="{ 'background-color': transformColor() }">{{ questionData.tag.name }}</button>
+        <button class="btn btn-sm" :style="{ 'background-color': transformColor() }">
+          {{ questionData.tag.name }}
+        </button>
       </div>
     </div>
     <div class="d-flex col-12">
-      <!-- TODO: question-info api-->
       <p class="pt-2 question-info">
         <font-awesome-icon :icon="['far', 'eye']" />
         <span class="pr-2">{{ questionData.view_count }}</span>
@@ -20,7 +21,8 @@
       </p>
       <div class="ml-auto pt-1">
         <span class="questioner">
-          <a href="#">{{ questionData.user.name }}</a> asked at
+          <ProfileLink :user-data="questionData.user" font-size="0.9rem" />
+          asked at
         </span>
         <span class="ml-2 question-date">{{ transformDate(questionData.created_at) }}</span>
       </div>
@@ -31,8 +33,13 @@
 <script>
 import { countReactions } from '@/api/reaction';
 import { getAnswers } from '@/api/answer';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
+  name: 'QuestionPreviewQuestion',
+  components: {
+    ProfileLink,
+  },
   props: {
     questionData: {
       type: Object,
@@ -86,26 +93,20 @@ export default {
   color: #232323;
 }
 .question-date {
-  color: #888;
+  color: #888888;
   font-size: 0.9rem;
 }
 .questioner {
-  color: #888;
+  color: #888888;
   font-size: 0.9rem;
   padding-left: 2.5px;
 }
-.questioner a {
-  color: rgba(64, 158, 255, 0.8);
-}
-.questioner a:hover {
-  color: rgb(64, 158, 255);
-}
 .question-info {
-  color: #888;
+  color: #888888;
   font-size: 0.9rem;
 }
 .qa-tag-list button {
-  color: rgb(60, 77, 133);
+  color: #3c4d85;
   padding: .1rem .3rem;
   margin-right: .5rem;
 }
