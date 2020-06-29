@@ -5,6 +5,10 @@ export function getUser() {
   return api('/user/getUser', {});
 }
 
+export function getUserProfile(_id) {
+  return api('/user/getUserProfile', { _id });
+}
+
 export function addUser(params) {
   return api('/user/addUser', params);
 }
