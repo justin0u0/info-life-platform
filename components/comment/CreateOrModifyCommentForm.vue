@@ -5,6 +5,7 @@
         ref="editor"
         class="editor-container"
         :class="{ 'editor-focus': editorFocus }"
+        font-size="17px"
         @click.native="handleEditorClick"
         @editor-focus="handleEditorFocus"
         @editor-blur="handleEditorBlur"
