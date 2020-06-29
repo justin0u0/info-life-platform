@@ -80,6 +80,7 @@ export default {
   max-width: 960px;
 }
 .question-container {
+  font-family: 'Lucida Grande', '微軟正黑體', sans-serif;
   min-width: 150px;
 }
 .divider {

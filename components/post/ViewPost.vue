@@ -16,6 +16,9 @@
         <Editor :content-data="contentObj" />
         <ListComments :post-id="postId" />
       </div>
+      <div class="col-lg-2">
+        <TableOfContent :content-data="contentObj" />
+      </div>
     </div>
     <BackToTop />
   </div>
@@ -30,6 +33,7 @@ import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import UserInfo from '@/components/post/UserInfo.vue';
 import ListComments from '@/components/comment/ListComments.vue';
+import TableOfContent from '@/components/post/TableOfContent.vue';
 
 export default {
   name: 'PostViewPost',
@@ -39,6 +43,7 @@ export default {
     ProgressBar,
     UserInfo,
     ListComments,
+    TableOfContent,
   },
   props: {
     postId: {
@@ -56,7 +61,7 @@ export default {
         subtitle: '',
         content: '',
         cover: null,
-        created_at: 0,
+        created_at: null,
         published_at: null,
         share_count: 0,
         view_count: 0,
@@ -93,6 +98,7 @@ export default {
       this.post = res;
       this.user = res.user;
       this.contentObj = JSON.parse(res.content);
+      // console.log(this.contentObj);
       try {
         await this.$axios.get(res.cover.file_url);
         this.coverUrl = res.cover.file_url;
