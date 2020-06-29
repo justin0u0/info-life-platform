@@ -1,11 +1,17 @@
 <template>
   <div class="container answer-container my-3">
-    <AnswerUserInfo :answer-data="answerData" :question-id="questionId" :is-solved="isSolved" :question-user-id="questionUserId" @edit-answer="editAnswer" />
+    <AnswerUserInfo
+      :answer-data="answerData"
+      :question-id="questionId"
+      :is-solved="isSolved"
+      :question-user-id="questionUserId"
+      @edit-answer="handleEditAnswer"
+    />
     <div v-if="!modifyMode" class="pb-3">
       <Editor :content-data="contentObj" />
     </div>
     <div v-else class="py-3">
-      <ModifyAnswer :answer-id="answerData._id" @show-answer="showAnswer" />
+      <ModifyAnswer :answer-id="answerData._id" @show-answer="handleShowAnswer" />
     </div>
   </div>
 </template>
@@ -60,10 +66,10 @@ export default {
       const d = new Date(unixEpoch);
       return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
     },
-    editAnswer() {
+    handleEditAnswer() {
       this.modifyMode = true;
     },
-    showAnswer() {
+    handleShowAnswer() {
       this.modifyMode = false;
     },
   },

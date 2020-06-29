@@ -41,7 +41,7 @@
       >
         <font-awesome-icon class="mx-2 icon-decoration" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
-      <a v-if="isAuthor()" :href="`/question/modify/${questionData._id}`" class="edit">
+      <a v-if="isAuthor" :href="`/question/modify/${questionData._id}`" class="edit">
         <font-awesome-icon class="mx-2" :icon="['fas', 'edit']" />
       </a>
     </div>
@@ -79,6 +79,11 @@ export default {
       'currentUser',
       'isLoggedIn',
     ]),
+    isAuthor() {
+      return (this.isLoggedIn
+        && this.currentUser.name === this.userData.name
+        && this.currentUser.username === this.userData.username);
+    },
   },
   watch: {
     currentUserReaction: {
@@ -104,9 +109,6 @@ export default {
         });
         this.userReaction = reaction;
       }
-    },
-    isAuthor() {
-      return (this.isLoggedIn && this.currentUser.name === this.userData.name && this.currentUser.username === this.userData.username);
     },
   },
 };

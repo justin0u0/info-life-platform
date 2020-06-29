@@ -65,9 +65,7 @@ export default {
   },
   methods: {
     async handleTogglePostIsPublished() {
-      const message = `確定選定${this.answerData.user.name}的回答為最佳解嗎`;
-      const successMessage = '選定成功';
-      const cancelMessage = '選定取消';
+      const message = `確定選定「${this.answerData.user.name}」的回答為最佳解嗎`;
       try {
         await this.$confirm(message, '提醒', {
           confirmButtonText: '確定',
@@ -76,13 +74,13 @@ export default {
         await modifyQuestion({ _id: this.questionId, is_solved: true, best_answer_id: this.answerData._id });
         this.$message({
           type: 'success',
-          message: successMessage,
+          message: '選定成功',
         });
         window.location.reload();
       } catch (error) {
         this.$message({
           type: 'info',
-          message: cancelMessage,
+          message: '選定取消',
         });
       }
     },
