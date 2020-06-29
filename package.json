@@ -5,12 +5,12 @@
   "author": "justin0u0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "NODE_ENV=dev nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
+    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
@@ -36,12 +36,12 @@
     "@nuxtjs/eslint-config": "^2.0.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
+    "eslint-auto-fix": "^1.0.1",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-nuxt": "^0.5.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "eslint-auto-fix": "^1.0.1",
     "ss-loader": "^1.0.1",
     "style-loader": "^1.2.1"
   }
