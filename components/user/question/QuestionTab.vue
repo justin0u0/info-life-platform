@@ -2,10 +2,10 @@
   <div>
     <el-tabs type="card" @tab-click="handleToggleTab">
       <el-tab-pane label="已解決">
-        <ListUserQuestions ref="question" :is-solved="true" />
+        <ListUserQuestions ref="isSolved" :is-solved="true" />
       </el-tab-pane>
       <el-tab-pane label="未解決">
-        <ListUserQuestions ref="draft" :is-solved="false" />
+        <ListUserQuestions ref="unSolved" :is-solved="false" />
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     async handleToggleTab(tab) {
-      const target = (tab.label === '已解決') ? this.$refs.question : this.$refs.draft;
+      const target = (tab.label === '已解決') ? this.$refs.isSolved : this.$refs.unSolved;
       this.$store.dispatch('setIsProcessing', true);
       await Promise.all([
         target.preGetQuestions(),
