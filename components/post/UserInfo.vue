@@ -23,7 +23,7 @@
       />
       <ShareNetwork
         network="facebook"
-        :url="$route.path"
+        :url="`https://infolife-e5a3f.web.app${$route.path}`"
         :title="postData.title"
         :quote="postData.title"
       >
