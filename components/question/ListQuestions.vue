@@ -1,6 +1,6 @@
 <template>
   <div class="question-page">
-    <Jumbotron />
+    <Jumbotron @tag-click="handleTagClick" />
     <div class="container">
       <ListTags :current-tag="currentTag" @tag-click="handleTagClick" />
       <transition-group

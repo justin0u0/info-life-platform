@@ -14,7 +14,7 @@
         新增文章
       </el-dropdown-item>
       <el-dropdown-item class="dropdown-item" command="/question/create">
-        <font-awesome-icon class="mr-3" :icon="['fas', 'lightbulb']" />
+        <font-awesome-icon class="mr-3" :icon="['fas', 'question']" />
         新增問題
       </el-dropdown-item>
       <el-dropdown-item class="dropdown-item" command="/user/my/post">
@@ -22,7 +22,7 @@
         我的文章
       </el-dropdown-item>
       <el-dropdown-item class="dropdown-item" command="/user/my/question">
-        <font-awesome-icon class="mr-3" :icon="['fas', 'question']" />
+        <font-awesome-icon class="mr-3" :icon="['fas', 'lightbulb']" />
         我的問題
       </el-dropdown-item>
     </el-dropdown-menu>
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px){
   .dropdown-item {
     width: 100vw;
     text-align: center;
