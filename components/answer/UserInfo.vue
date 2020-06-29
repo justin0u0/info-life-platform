@@ -36,13 +36,13 @@
       />
       <span class="pr-2">{{ dislikes }}</span>
       <font-awesome-icon
-        v-show="canEdit"
+        v-show="isCurrentUserAnswer"
         class="mx-2 edit-icon"
         :icon="['fas', 'edit']"
         @click="handleEditAnswer"
       />
       <font-awesome-icon
-        v-show="canEdit"
+        v-show="isCurrentUserAnswer"
         class="mx-2 edit-icon"
         :icon="['fas', 'trash']"
         @click="handleDeleteAnswer"
@@ -109,7 +109,7 @@ export default {
     canChooseBestAnswer() {
       return (!this.isSolved && this.currentUserId === this.questionData.user_id);
     },
-    canEdit() {
+    isCurrentUserAnswer() {
       return (this.isLoggedIn && this.currentUserId === this.answerData.user_id);
     },
     isBestAnswer() {
@@ -138,7 +138,7 @@ export default {
       this.dislikes = res.dislike;
     },
     async handleTogglePostIsPublished() {
-      const message = `確定選定「${this.answerData.user.name}」的回答為最佳解嗎`;
+      const message = `確定選定「${this.answerData.user.name}」的回答為最佳答案嗎`;
       try {
         await this.$confirm(message, '提醒', {
           confirmButtonText: '確定',
@@ -147,13 +147,13 @@ export default {
         await modifyQuestion({ _id: this.questionData._id, is_solved: true, best_answer_id: this.answerData._id });
         this.$message({
           type: 'success',
-          message: '選定成功',
+          message: '成功選擇最佳答案',
         });
         window.location.reload();
       } catch (error) {
         this.$message({
           type: 'info',
-          message: '選定取消',
+          message: '取消選擇最佳答案',
         });
       }
     },
