@@ -118,9 +118,13 @@ export default {
   top: 70px;
   right: 10px;
   max-width: 260px;
+  width: 100%;
   font-size: 20px;
   font-weight: 600;
   color: #2f2f2f;
+}
+.table-of-content.fully-disappear {
+  width: auto;
 }
 .table-of-content.fully-disappear /deep/ .el-card__body {
   display: none;

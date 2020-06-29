@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import auth from '@/lib/auth';
 import ModifyProfile from '@/components/user/ModifyProfile.vue';
 import AsideNav from '@/components/user/AsideNav.vue';
 
@@ -15,6 +16,9 @@ export default {
   components: {
     ModifyProfile,
     AsideNav,
+  },
+  mounted() {
+    auth.bind(this)('/');
   },
 };
 </script>
