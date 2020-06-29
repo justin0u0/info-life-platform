@@ -1,15 +1,15 @@
 <template>
   <el-container class="justify-content-center">
-    <AboutUs />
+    <Register />
   </el-container>
 </template>
 
 <script>
-import AboutUs from '@/components/about/Index.vue';
+import Register from '@/components/Register';
 
 export default {
   components: {
-    AboutUs,
+    Register,
   },
 };
 </script>
@@ -17,6 +17,5 @@ export default {
 <style scoped>
 .el-container {
   margin: 20px 0;
-  text-align: center;
 }
 </style>
