@@ -2,7 +2,12 @@
   <client-only>
     <div>
       <EditorMenuBar :editor="editor" />
-      <editor-content ref="editor" class="editor__content" :editor="editor" style="font-size: 21px" />
+      <editor-content
+        ref="editor"
+        class="editor__content"
+        :editor="editor"
+        :style="{ fontSize }"
+      />
     </div>
   </client-only>
 </template>
@@ -17,6 +22,12 @@ export default {
   components: {
     EditorContent,
     EditorMenuBar,
+  },
+  props: {
+    fontSize: {
+      type: String,
+      default: '21px',
+    },
   },
   data() {
     return {
