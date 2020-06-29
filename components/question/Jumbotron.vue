@@ -13,19 +13,17 @@
           </span>
         </div>
         <div class="card-footer d-flex">
-          <div class="w-50 text-center ">
+          <div class="w-50 text-center ask">
             <a href="/question/create">
               <font-awesome-icon :icon="['fas', 'question']" />
               <br>
               提問
             </a>
           </div>
-          <div class="w-50 text-center ml-auto">
-            <a href="/question/#questions" @click="handleTagClick">
-              <font-awesome-icon :icon="['far', 'comment-alt']" />
-              <br>
-              回答
-            </a>
+          <div class="w-50 text-center ml-auto answer" @click="handleTagClick">
+            <font-awesome-icon :icon="['far', 'comment-alt']" />
+            <br>
+            回答
           </div>
         </div>
       </div>
@@ -58,7 +56,7 @@ export default {
       this.totalQuestions = total;
     },
     async preGetAnswersTotal() {
-      const { total } = await getAnswers({ });
+      const { total } = await getAnswers({});
       this.totalAnswers = total;
     },
     async handleTagClick() {
@@ -104,8 +102,16 @@ export default {
 .qa-card .card-footer {
   border: none;
 }
-.qa-card .card-footer a {
-  text-decoration: none;
+a {
   color: black;
+  text-decoration: none;
+}
+.answer:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.ask:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 </style>
