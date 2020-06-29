@@ -24,7 +24,7 @@
         </div>
         <el-form-item label="Facebook : ">
           <div class="d-flex">
-            <el-input v-model="facebook.url" placeholder="Uncompleted" class="col-8 col-md-10">
+            <el-input v-model="facebook.url" placeholder="請填寫資料" class="col-8 col-md-10">
               <template slot="prepend">facebook.com/</template>
             </el-input>
             <el-switch v-model="facebook.show" class="justify-content-center col-4 col-md-2">
@@ -33,7 +33,7 @@
         </el-form-item>
         <el-form-item label="Gitlab : ">
           <div class="d-flex">
-            <el-input v-model="gitlab.url" placeholder="Uncompleted" class="col-8 col-md-10">
+            <el-input v-model="gitlab.url" placeholder="請填寫資料" class="col-8 col-md-10">
               <template slot="prepend">gitlab.com/</template>
             </el-input>
             <el-switch v-model="gitlab.show" class="justify-content-center col-4 col-md-2">
@@ -42,7 +42,7 @@
         </el-form-item>
         <el-form-item label="Github : ">
           <div class="d-flex">
-            <el-input v-model="github.url" placeholder="Uncompleted" class="col-8 col-md-10">
+            <el-input v-model="github.url" placeholder="請填寫資料" class="col-8 col-md-10">
               <template slot="prepend">github.com/</template>
             </el-input>
             <el-switch v-model="github.show" class="justify-content-center col-4 col-md-2">
@@ -51,7 +51,7 @@
         </el-form-item>
         <el-form-item label="Bitbucket : ">
           <div class="d-flex">
-            <el-input v-model="bitbucket.url" placeholder="Uncompleted" class="col-8 col-md-10">
+            <el-input v-model="bitbucket.url" placeholder="請填寫資料" class="col-8 col-md-10">
               <template slot="prepend">bitbucket.com/</template>
             </el-input>
             <el-switch v-model="bitbucket.show" class="justify-content-center col-4 col-md-2">
@@ -74,7 +74,7 @@ import { getUser, modifyUser } from '@/api/user';
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'ModifyProfile',
+  name: 'UserProfileModifyProfile',
   data() {
     return {
       user: {
@@ -151,7 +151,7 @@ export default {
         this.$store.dispatch('setIsProcessing', true);
         await modifyUser(params);
         this.$message({ type: 'success', message: '修改成功', duration: 1000 });
-        this.$router.push('/user/profile/modify');
+        this.$router.push('/user/profile');
         this.$store.dispatch('setIsProcessing', false);
       } catch (error) {
         this.$message({ type: 'error', message: '修改失敗', duration: 1000 });
