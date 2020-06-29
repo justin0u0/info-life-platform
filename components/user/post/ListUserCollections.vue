@@ -8,7 +8,7 @@
           class="mx-2"
         >
           <div v-if="post !== posts[0]" class="divider" />
-          <PreviewCard :post-data="post" />
+          <CollectionPreview :post-data="post" />
         </div>
         <div class="row justify-content-center mt-5">
           <el-pagination
@@ -26,12 +26,12 @@
 <script>
 import { mapGetters } from 'vuex';
 import { getCollections } from '@/api/collection';
-import PreviewCard from '@/components/user/post/CollectionPreview.vue';
+import CollectionPreview from '@/components/user/post/CollectionPreview.vue';
 
 export default {
-  name: 'UserListUserCollections',
+  name: 'UserPostListUserCollections',
   components: {
-    PreviewCard,
+    CollectionPreview,
   },
   data() {
     return {
