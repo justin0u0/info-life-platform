@@ -79,7 +79,7 @@ export default {
       this.dislikes = res.dislike;
     },
     async preGetAnswers(questionId) {
-      const { total } = await getAnswers({ filter: {question_id: questionId } });
+      const { total } = await getAnswers({ filter: { question_id: questionId } });
       this.answers = total;
     },
     transformDate(unixEpoch) {
