@@ -9,9 +9,8 @@
     >
       <ViewAnswer
         :answer-data="answer"
-        :question-id="questionId"
         :is-solved="isSolved"
-        :question-user-id="questionUserId"
+        :question-data="questionData"
       />
     </div>
   </div>
@@ -27,16 +26,12 @@ export default {
     ViewAnswer,
   },
   props: {
-    questionId: {
-      type: String,
+    questionData: {
+      type: Object,
       required: true,
     },
     isSolved: {
       type: Boolean,
-      required: true,
-    },
-    questionUserId: {
-      type: String,
       required: true,
     },
   },
@@ -48,21 +43,32 @@ export default {
       limit: 10,
     };
   },
-  async mounted() {
-    this.$store.dispatch('setIsProcessing', true);
-    await Promise.all([
-      this.preGetAnswers(),
-    ]);
-    this.$store.dispatch('setIsProcessing', false);
+  watch: {
+    questionData: {
+      immediate: true,
+      handler(questionData) {
+        if (questionData._id !== null) {
+          this.preGetAnswers();
+        }
+      },
+    },
   },
+  // async mounted() {
+  //   this.$store.dispatch('setIsProcessing', true);
+  //   await Promise.all([
+  //     this.preGetAnswers(),
+  //   ]);
+  //   this.$store.dispatch('setIsProcessing', false);
+  // },
   methods: {
     async preGetAnswers() {
       // Get Questions
       await this.getAnswersProcess();
     },
     async getAnswersProcess() {
+      console.log(this.questionData);
       const { total, data } = await getAnswers({
-        filter: { question_id: this.questionId },
+        filter: { question_id: this.questionData._id },
         limit: this.limit,
         skip: this.countAnswers,
       });
