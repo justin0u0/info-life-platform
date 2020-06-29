@@ -42,7 +42,7 @@
         <font-awesome-icon class="mx-2 icon-decoration" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
       <a v-if="isAuthor" :href="`/question/modify/${questionData._id}`" class="edit">
-        <font-awesome-icon class="mx-2" :icon="['fas', 'edit']" />
+        <font-awesome-icon class="mx-2 icon-decoration" :icon="['fas', 'edit']" />
       </a>
     </div>
   </div>
