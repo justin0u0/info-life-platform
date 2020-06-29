@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import auth from '@/lib/auth';
 import AsideNav from '@/components/user/AsideNav.vue';
 import ListUserQuestions from '@/components/user/ListUserQuestions.vue';
 
@@ -24,6 +25,9 @@ export default {
   components: {
     AsideNav,
     ListUserQuestions,
+  },
+  mounted() {
+    auth.bind(this)('/');
   },
 };
 </script>
