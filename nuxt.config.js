@@ -22,7 +22,7 @@ export default {
    * Process Env Config
    */
   env: {
-    baseUrl: process.env.baseUrl || 'http://localhost:7001',
+    baseUrl: process.env.NODE_ENV === 'dev' ? 'http://localhost:7001' : 'http://54.174.162.111:7001',
   },
   /*
   ** Customize the progress-bar color
