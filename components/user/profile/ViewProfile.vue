@@ -68,7 +68,7 @@ import { getUser } from '@/api/user';
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'ModifyProfile',
+  name: 'UserProfileViewProfile',
   data() {
     return {
       user: {
