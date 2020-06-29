@@ -23,10 +23,10 @@
 
 <script>
 import { getQuestionsByCurrentUser } from '@/api/question';
-import QuestionInfo from '@/components/user/QuestionInfo.vue';
+import QuestionInfo from '@/components/user/question/QuestionInfo.vue';
 
 export default {
-  name: 'UserListUserQuestions',
+  name: 'UserQuestionListUserQuestions',
   components: {
     QuestionInfo,
   },

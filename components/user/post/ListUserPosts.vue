@@ -30,11 +30,11 @@
 
 <script>
 import { getPostsByCurrentUser, modifyIsPublished } from '@/api/post';
-import PostInfo from '@/components/user/PostInfo.vue';
-import PostButton from '@/components/user/PostButton.vue';
+import PostInfo from '@/components/user/post/PostInfo.vue';
+import PostButton from '@/components/user/post/PostButton.vue';
 
 export default {
-  name: 'UserListUserPosts',
+  name: 'UserPostListUserPosts',
   components: {
     PostInfo,
     PostButton,

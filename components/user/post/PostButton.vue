@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'UserPostButton',
+  name: 'UserPostPostButton',
   props: {
     postData: {
       type: Object,
