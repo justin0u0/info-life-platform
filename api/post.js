@@ -25,6 +25,10 @@ export function modifyIsPublished(params) {
   return api('/post/modifyIsPublished', params);
 }
 
+export function removePost(_id) {
+  return api('/post/removePost', { _id });
+}
+
 export function increaseViewCount(_id) {
   return api('/post/increaseViewCount', { _id });
 }
