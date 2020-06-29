@@ -12,9 +12,10 @@
 </template>
 
 <script>
-import ListUserQuestions from '@/components/user/ListUserQuestions.vue';
+import ListUserQuestions from '@/components/user/question/ListUserQuestions.vue';
 
 export default {
+  name: 'UserQuestionQuestionTab',
   components: {
     ListUserQuestions,
   },
