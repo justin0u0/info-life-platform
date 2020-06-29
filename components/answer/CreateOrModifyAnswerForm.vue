@@ -12,7 +12,8 @@
       />
     </el-form-item>
     <div class="button-container">
-      <el-button type="primary" @click="handleSubmit">回答</el-button>
+      <el-button v-show="!isCreating" type="info" @click="handleCancel">取消</el-button>
+      <el-button type="primary" @click="handleSubmit">確認送出</el-button>
     </div>
   </el-form>
 </template>
@@ -31,6 +32,10 @@ export default {
       default: () => ({
         contentObj: null,
       }),
+    },
+    isCreating: {
+      type: Boolean,
+      required: true,
     },
   },
   data() {
@@ -51,6 +56,9 @@ export default {
     },
     handleEditorBlur() {
       this.editorFocus = false;
+    },
+    handleCancel() {
+      this.$emit('cancel');
     },
     handleSubmit() {
       const contentObj = this.$refs.editor.getJSON();
