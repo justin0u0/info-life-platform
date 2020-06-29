@@ -6,6 +6,7 @@
       :question-data="questionData"
       :current-user-reaction="currentUserReaction"
       @edit-answer="setIsModifying"
+      @delete-answer="handleDeleteAnswer"
     />
     <div v-show="!isModifying" class="pb-3">
       <Editor ref="editor" :content-data="contentObj" />
@@ -83,6 +84,9 @@ export default {
     },
     setNotModifying() {
       this.isModifying = false;
+    },
+    handleDeleteAnswer() {
+      this.$emit('delete-answer');
     },
     async preGetReaction() {
       const res = await countReactions({ source_type: 'answer', source_id: this.answerData._id });
