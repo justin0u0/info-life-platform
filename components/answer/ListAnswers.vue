@@ -7,7 +7,12 @@
       :key="answer._id"
       class="mt-4"
     >
-      <ViewAnswer :answer-data="answer" />
+      <ViewAnswer
+        :answer-data="answer"
+        :question-id="questionId"
+        :is-solved="isSolved"
+        :question-user-id="questionUserId"
+      />
     </div>
   </div>
 </template>
@@ -23,6 +28,14 @@ export default {
   },
   props: {
     questionId: {
+      type: String,
+      required: true,
+    },
+    isSolved: {
+      type: Boolean,
+      required: true,
+    },
+    questionUserId: {
       type: String,
       required: true,
     },
