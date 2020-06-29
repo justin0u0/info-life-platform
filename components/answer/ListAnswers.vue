@@ -71,6 +71,7 @@ export default {
     },
     handleDeleteAnswer(index) {
       this.answers.splice(index, 1);
+      this.totalAnswers -= 1;
     },
   },
 };
