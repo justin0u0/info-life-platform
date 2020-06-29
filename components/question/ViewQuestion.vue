@@ -12,7 +12,7 @@
             :current-user-reaction="currentUserReaction"
           />
           <Editor :content-data="contentObj" />
-          <ListAnswers :question-id="questionId" :is-solved="question.is_solved" :question-user-id="question.user_id" />
+          <ListAnswers :is-solved="question.is_solved" :question-data="question" />
           <CreateAnswer :question-id="questionId" />
         </div>
       </div>
