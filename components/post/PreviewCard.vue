@@ -16,7 +16,9 @@
           <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png" alt="user image">
         </div>
         <div class="ml-2">
-          <p class="mb-1">{{ postData.user.username }}</p>
+          <p class="mb-1 author">
+            <a href="#">{{ postData.user.name }}</a>
+          </p>
           <p class="mb-1">{{ transformDate(postData.created_at) }}</p>
         </div>
         <div class="ml-auto mt-2">
@@ -110,4 +112,10 @@ export default {
 .card-title { color: black; }
 .card-subtitle { color: #777; }
 .card-title-link { text-decoration-color: black; }
+.author a {
+  color: rgba(64, 158, 255, 0.8);
+}
+.author a:hover {
+  color: rgb(64, 158, 255);
+}
 </style>
