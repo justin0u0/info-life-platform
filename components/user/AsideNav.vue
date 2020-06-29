@@ -22,7 +22,7 @@
             <span class="font-weight-bold">主題專欄</span>
           </template>
           <el-menu-item class="text-right" index="/user/my/post">我的文章</el-menu-item>
-          <el-menu-item class="text-right" index="/user/collection">收藏文章</el-menu-item>
+          <el-menu-item class="text-right" index="/user/my/collection">收藏文章</el-menu-item>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">

@@ -109,7 +109,7 @@ export default {
     },
     async handleIncreaseViewCount() {
       const { success } = await increaseViewCount(this.postId);
-      if (success === true) this.view_count += 1;
+      if (success === true) this.post.view_count += 1;
     },
     async preGetReaction() {
       const res = await countReactions({ source_type: 'post', source_id: this.postId });
