@@ -1,12 +1,12 @@
 <template>
   <div class="container list-questions-container mt-4">
     <div
-      v-for="(question) in questions"
+      v-for="question in questions"
       :key="question._id"
       class="row"
     >
-      <div v-if="question !== questions[0]" class="divider" />
-      <div class="col-lg-9">
+      <div class="col-12">
+        <div v-if="question !== questions[0]" class="divider" />
         <QuestionInfo :question-data="question" />
       </div>
     </div>

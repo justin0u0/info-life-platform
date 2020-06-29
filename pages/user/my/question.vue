@@ -2,7 +2,7 @@
   <el-container>
     <AsideNav />
     <el-main>
-      <div class="container post-container">
+      <div class="container question-container">
         <QuestionTab />
       </div>
     </el-main>
