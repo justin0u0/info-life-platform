@@ -4,9 +4,9 @@
       <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png">
     </div>
     <div class="ml-2 d-flex flex-column justify-content-between">
-      <a class="user-info" href="#">{{ userData.name }} &lt; {{ userData.username }} &gt;</a>
+      <ProfileLink :user-data="userData" :font-weight="600" />
       <span class="date-info">{{ new Date(questionData.created_at).toLocaleString() }}</span>
-      <span> </span>
+      <span>&nbsp;</span>
     </div>
     <div class="ml-auto mt-auto icon-container">
       <font-awesome-icon
@@ -42,7 +42,7 @@
         <font-awesome-icon class="mx-2 icon-decoration" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
       <a v-if="isAuthor" :href="`/question/modify/${questionData._id}`" class="edit">
-        <font-awesome-icon class="mx-2" :icon="['fas', 'edit']" />
+        <font-awesome-icon class="mx-2 icon-decoration" :icon="['fas', 'edit']" />
       </a>
     </div>
   </div>
@@ -51,9 +51,13 @@
 <script>
 import { addReaction, removeReaction } from '@/api/reaction';
 import { mapGetters } from 'vuex';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'QuestionUserInfo',
+  components: {
+    ProfileLink,
+  },
   props: {
     userData: {
       type: Object,
@@ -119,11 +123,6 @@ export default {
   display: flex;
   margin-top: 30px;
   margin-bottom: 45px;
-}
-.user-info {
-  font-size: 16px;
-  font-weight: 600;
-  color: #3f3f3f;
 }
 .date-info {
   font-size: 15px;

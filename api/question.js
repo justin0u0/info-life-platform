@@ -21,6 +21,10 @@ export function modifyQuestion(params) {
   return api('/question/modifyQuestion', params);
 }
 
+export function removeQuestion(_id) {
+  return api('/question/removeQuestion', { _id });
+}
+
 export function increaseViewCount(_id) {
   return api('question/increaseViewCount', { _id });
 }

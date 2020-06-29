@@ -2,9 +2,9 @@
   <div class="container answer-container my-3">
     <AnswerUserInfo
       :answer-data="answerData"
-      :question-id="questionId"
       :is-solved="isSolved"
-      :question-user-id="questionUserId"
+      :question-data="questionData"
+      :current-user-reaction="currentUserReaction"
       @edit-answer="handleEditAnswer"
     />
     <div v-if="!modifyMode" class="pb-3">
@@ -20,6 +20,7 @@
 import Editor from '@/components/editor/ViewEditor.vue';
 import AnswerUserInfo from '@/components/answer/UserInfo.vue';
 import ModifyAnswer from '@/components/answer/ModifyAnswer.vue';
+import { countReactions } from '@/api/reaction';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -34,16 +35,12 @@ export default {
       type: Object,
       required: true,
     },
-    questionId: {
-      type: String,
+    questionData: {
+      type: Object,
       required: true,
     },
     isSolved: {
       type: Boolean,
-      required: true,
-    },
-    questionUserId: {
-      type: String,
       required: true,
     },
   },
@@ -51,6 +48,7 @@ export default {
     return {
       contentObj: {},
       modifyMode: false,
+      currentUserReaction: '',
     };
   },
   computed: {
@@ -58,8 +56,13 @@ export default {
       'isLoggedIn',
     ]),
   },
-  mounted() {
+  async mounted() {
     this.contentObj = JSON.parse(this.answerData.content);
+    this.$store.dispatch('setIsProcessing', true);
+    await Promise.all([
+      this.preGetReaction(),
+    ]);
+    this.$store.dispatch('setIsProcessing', false);
   },
   methods: {
     transformDate(unixEpoch) {
@@ -71,6 +74,11 @@ export default {
     },
     handleShowAnswer() {
       this.modifyMode = false;
+    },
+    async preGetReaction() {
+      const res = await countReactions({ source_type: 'answer', source_id: this.answerData._id });
+      console.log(res);
+      this.currentUserReaction = (res.current_user_reaction) ? res.current_user_reaction : '';
     },
   },
 };
