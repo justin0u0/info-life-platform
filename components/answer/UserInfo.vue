@@ -17,10 +17,11 @@
       />
       <font-awesome-icon
         v-else
-        class="mx-2 edit-icon"
+        class="ml-2 edit-icon"
         :icon="['far', 'thumbs-up']"
         @click="handleReaction('like')"
       />
+      <span class="pr-2">{{ likes }}</span>
       <font-awesome-icon
         v-if="userReaction === 'dislike'"
         class="mx-2 edit-icon"
@@ -29,11 +30,11 @@
       />
       <font-awesome-icon
         v-else
-        class="mx-2 edit-icon"
+        class="ml-2 edit-icon"
         :icon="['far', 'thumbs-down']"
         @click="handleReaction('dislike')"
       />
-      10
+      <span class="pr-2">{{ dislikes }}</span>
       <font-awesome-icon
         v-show="canEdit"
         class="mx-2 edit-icon"
@@ -67,7 +68,7 @@
 import { modifyQuestion } from '@/api/question';
 import { mapGetters } from 'vuex';
 import { removeAnswer } from '@/api/answer';
-import { addReaction, removeReaction } from '@/api/reaction';
+import { addReaction, removeReaction, countReactions } from '@/api/reaction';
 
 export default {
   name: 'AnswerUserInfo',
@@ -92,6 +93,8 @@ export default {
   data() {
     return {
       userReaction: '',
+      likes: 0,
+      dislikes: 0,
     };
   },
   computed: {
@@ -117,7 +120,19 @@ export default {
       },
     },
   },
+  async mounted() {
+    this.$store.dispatch('setIsProcessing', true);
+    await Promise.all([
+      this.preGetReactions(),
+    ]);
+    this.$store.dispatch('setIsProcessing', false);
+  },
   methods: {
+    async preGetReactions() {
+      const res = await countReactions({ source_type: 'answer', source_id: this.answerData._id });
+      this.likes = res.like;
+      this.dislikes = res.dislike;
+    },
     async handleTogglePostIsPublished() {
       const message = `確定選定「${this.answerData.user.name}」的回答為最佳解嗎`;
       try {
@@ -164,6 +179,17 @@ export default {
       }
     },
     async handleReaction(reaction) {
+      if (reaction === 'like') {
+        if (this.userReaction === 'like')
+          this.likes -= 1;
+        else
+          this.likes += 1;
+      } else { // reaction === 'dislike'
+        if (this.userReaction === 'dislike')
+          this.dislikes -= 1;
+        else
+          this.dislikes += 1;
+      }
       await removeReaction({
         source_type: 'answer',
         source_id: this.answerData._id,
@@ -178,6 +204,7 @@ export default {
         });
         this.userReaction = reaction;
       }
+      this.preGetReactions();
     },
   },
 };
