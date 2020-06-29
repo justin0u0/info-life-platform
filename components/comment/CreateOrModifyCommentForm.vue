@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="form" :model="formData" label-width="0px">
+  <el-form>
     <el-form-item>
       <CreateOrModifyEditor
         ref="editor"
@@ -10,8 +10,8 @@
         @editor-blur="handleEditorBlur"
       />
     </el-form-item>
-    <div class="button-container">
-      <el-button type="primary" @click="handleSubmit">回答</el-button>
+    <div class="text-right">
+      <el-button type="primary" @click="handleSubmit">留言</el-button>
     </div>
   </el-form>
 </template>
@@ -20,7 +20,7 @@
 import CreateOrModifyEditor from '@/components/editor/CreateOrModifyEditor.vue';
 
 export default {
-  name: 'AnswerCreateOrModifyAnswerForm',
+  name: 'CommentCreateOrModifyCommentForm',
   components: {
     CreateOrModifyEditor,
   },
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     setContent(content) {
-      console.log('[AnswerCreateOrModifyAnswerForm:updateContent]');
+      console.log('[CommentCreateOrModifyCommentForm:updateContent]');
       this.$refs.editor.setContent(content);
     },
     handleEditorClick() {
@@ -66,6 +66,7 @@ export default {
 
 <style scoped>
 .editor-container {
+  font-size: 16px;
   width: 100%;
   border: 1px solid #DCDFE6;
   background-color: white;
@@ -73,16 +74,11 @@ export default {
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 2em;
+  /* padding-top: 1em; */
   cursor: text;
 }
 .editor-focus {
   outline: 0;
-  border-color: #409eff;
-}
-
-.button-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 100px;
+  border-color:#409eff;
 }
 </style>

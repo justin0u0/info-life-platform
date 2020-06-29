@@ -101,7 +101,6 @@ export default {
     },
     async preGetReaction() {
       const res = await countReactions({ source_type: 'question', source_id: this.questionId });
-      console.log(res);
       this.currentUserReaction = (res.current_user_reaction) ? res.current_user_reaction : '';
     },
   },
