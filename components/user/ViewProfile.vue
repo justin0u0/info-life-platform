@@ -17,7 +17,7 @@
             <span>
               <a
                 v-if="facebookUrl"
-                :href="`facebook.com/${facebookUrl}`"
+                :href="`https://facebook.com/${facebookUrl}`"
                 target="_blank"
               >
                 facebook.com/{{ facebookUrl }}
@@ -139,7 +139,6 @@ export default {
   width: 100%;
 }
 .user-info {
-  font-family: "宋體", sans-serif;
   font-size: 18px;
   font-weight: 500;
   color: #343434;

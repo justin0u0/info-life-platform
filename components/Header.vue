@@ -93,7 +93,6 @@ export default {
 
 <style scoped>
 .header-tag{
-  font-family: "微軟正黑體", sans-serif;
   font-size: 18px;
   color: #000000;
   letter-spacing: 0.05rem;

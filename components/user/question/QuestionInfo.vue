@@ -104,9 +104,6 @@ export default {
 a {
   color: #292929;
 }
-.question-container {
-  font-family: 'Lucida Grande', '微軟正黑體', sans-serif;
-}
 .question-container h1 {
   font-size: 21.2px;
   font-weight: 600;
