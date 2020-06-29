@@ -6,14 +6,15 @@
       class="row"
     >
       <div v-if="post !== posts[0]" class="divider" />
-      <div class="col-lg-9">
+      <div class="col-lg-10">
         <PostInfo :post-data="post" />
       </div>
-      <div class="col-lg-3 col-sm-12">
+      <div class="col-lg-2 col-sm-12">
         <PostButton
           :post-data="post"
           :is-published="isPublished"
           @toggle-is-published="handleTogglePostIsPublished(post._id, post.title, index)"
+          @delete-post="handleDeletePost(post._id, post.title, index)"
         />
       </div>
     </div>
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-import { getPostsByCurrentUser, modifyIsPublished } from '@/api/post';
+import { getPostsByCurrentUser, modifyIsPublished, removePost } from '@/api/post';
 import PostInfo from '@/components/user/post/PostInfo.vue';
 import PostButton from '@/components/user/post/PostButton.vue';
 
@@ -100,6 +101,30 @@ export default {
           cancelButtonText: '取消',
         });
         await modifyIsPublished({ _id: postId, is_published: !this.isPublished });
+        this.posts.splice(index, 1);
+        this.$message({
+          type: 'success',
+          message: successMessage,
+        });
+      } catch (error) {
+        this.$message({
+          type: 'info',
+          message: cancelMessage,
+        });
+      }
+    },
+    async handleDeletePost(postId, title, index) {
+      console.log('qqq');
+      const message = `確定要刪除「${title}」?`;
+      const successMessage = '刪除成功';
+      const cancelMessage = '取消刪除';
+      try {
+        await this.$confirm(message, '提醒', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        });
+        await removePost(postId);
         this.posts.splice(index, 1);
         this.$message({
           type: 'success',
