@@ -4,7 +4,7 @@
       <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png">
     </div>
     <div class="ml-2 d-flex flex-column justify-content-between">
-      <a class="user-info" href="#">{{ answerData.user.name }} &lt; {{ answerData.user.username }} &gt;</a>
+      <ProfileLink :user-data="answerData.user" />
       <span class="date-info">{{ new Date(answerData.created_at).toLocaleString() }}</span>
       <span> </span>
     </div>
@@ -65,13 +65,17 @@
 </template>
 
 <script>
-import { modifyQuestion } from '@/api/question';
 import { mapGetters } from 'vuex';
+import { modifyQuestion } from '@/api/question';
 import { removeAnswer } from '@/api/answer';
 import { addReaction, removeReaction, countReactions } from '@/api/reaction';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'AnswerUserInfo',
+  components: {
+    ProfileLink,
+  },
   props: {
     answerData: {
       type: Object,
@@ -158,8 +162,6 @@ export default {
     },
     async handleDeleteAnswer() {
       const message = '確定刪除自己的回答嗎';
-      const successMessage = '刪除成功';
-      const cancelMessage = '刪除取消';
       try {
         await this.$confirm(message, '提醒', {
           confirmButtonText: '確定',
@@ -168,13 +170,13 @@ export default {
         await removeAnswer(this.answerData._id);
         this.$message({
           type: 'success',
-          message: successMessage,
+          message: '刪除成功',
         });
         window.location.reload();
       } catch (error) {
         this.$message({
           type: 'info',
-          message: cancelMessage,
+          message: '刪除取消',
         });
       }
     },
@@ -182,8 +184,11 @@ export default {
       if (reaction === 'like') {
         if (this.userReaction === 'like') this.likes -= 1;
         else this.likes += 1;
-      } else if (this.userReaction === 'dislike') this.dislikes -= 1;
-      else this.dislikes += 1;
+      } else if (this.userReaction === 'dislike') {
+        this.dislikes -= 1;
+      } else {
+        this.dislikes += 1;
+      }
       await removeReaction({
         source_type: 'answer',
         source_id: this.answerData._id,
@@ -198,7 +203,6 @@ export default {
         });
         this.userReaction = reaction;
       }
-      this.preGetReactions();
     },
   },
 };
@@ -209,11 +213,6 @@ export default {
   display: flex;
   margin-top: 15px;
   margin-bottom: 10px;
-}
-.user-info {
-  font-size: 16px;
-  font-weight: 600;
-  color: #3f3f3f;
 }
 .date-info {
   font-size: 15px;
