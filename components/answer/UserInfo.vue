@@ -7,17 +7,44 @@
       <a class="user-info" href="#">{{ answerData.user.name }} &lt; {{ answerData.user.username }} &gt;</a>
       <span class="date-info">{{ new Date(answerData.created_at).toLocaleString() }}</span>
       <span> </span>
-      <font-awesome-icon
-        :icon="['fas', 'trash']"
-        @click="handleDeletion('like')"
-      />
     </div>
     <div class="ml-auto mt-auto icon-container">
+      <font-awesome-icon
+        v-if="userReaction === 'like'"
+        class="mx-2 edit-icon"
+        :icon="['fas', 'thumbs-up']"
+        @click="handleReaction('like')"
+      />
+      <font-awesome-icon
+        v-else
+        class="mx-2 edit-icon"
+        :icon="['far', 'thumbs-up']"
+        @click="handleReaction('like')"
+      />
+      <font-awesome-icon
+        v-if="userReaction === 'dislike'"
+        class="mx-2 edit-icon"
+        :icon="['fas', 'thumbs-down']"
+        @click="handleReaction('dislike')"
+      />
+      <font-awesome-icon
+        v-else
+        class="mx-2 edit-icon"
+        :icon="['far', 'thumbs-down']"
+        @click="handleReaction('dislike')"
+      />
+      10
       <font-awesome-icon
         v-show="canEdit"
         class="mx-2 edit-icon"
         :icon="['fas', 'edit']"
         @click="handleEditAnswer"
+      />
+      <font-awesome-icon
+        v-show="canEdit"
+        class="mx-2 edit-icon"
+        :icon="['fas', 'trash']"
+        @click="handleDeletion"
       />
       <el-button
         v-show="canChooseBestAnswer"
@@ -27,6 +54,11 @@
         class="mx-2"
         @click="handleTogglePostIsPublished"
       />
+      <font-awesome-icon
+        v-show="bestAnswer"
+        class="check-icon mx-2"
+        :icon="['far', 'check-circle']"
+      />
     </div>
   </div>
 </template>
@@ -34,6 +66,8 @@
 <script>
 import { modifyQuestion } from '@/api/question';
 import { mapGetters } from 'vuex';
+import { removeAnswer } from '@/api/answer';
+import { addReaction, removeReaction } from '@/api/reaction';
 
 export default {
   name: 'AnswerUserInfo',
@@ -42,18 +76,23 @@ export default {
       type: Object,
       required: true,
     },
-    questionId: {
-      type: String,
+    questionData: {
+      type: Object,
       required: true,
     },
     isSolved: {
       type: Boolean,
       required: true,
     },
-    questionUserId: {
+    currentUserReaction: {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      userReaction: '',
+    };
   },
   computed: {
     ...mapGetters([
@@ -61,10 +100,21 @@ export default {
       'isLoggedIn',
     ]),
     canChooseBestAnswer() {
-      return (!this.isSolved && this.currentUserId === this.questionUserId);
+      return (!this.isSolved && this.currentUserId === this.questionData.user_id);
     },
     canEdit() {
       return (this.isLoggedIn && this.currentUserId === this.answerData.user_id);
+    },
+    bestAnswer() {
+      return this.questionData.best_answer_id === this.answerData._id;
+    },
+  },
+  watch: {
+    currentUserReaction: {
+      immediate: true,
+      handler(currentUserReaction) {
+        this.userReaction = currentUserReaction;
+      },
     },
   },
   methods: {
@@ -75,7 +125,7 @@ export default {
           confirmButtonText: '確定',
           cancelButtonText: '取消',
         });
-        await modifyQuestion({ _id: this.questionId, is_solved: true, best_answer_id: this.answerData._id });
+        await modifyQuestion({ _id: this.questionData._id, is_solved: true, best_answer_id: this.answerData._id });
         this.$message({
           type: 'success',
           message: '選定成功',
@@ -91,18 +141,16 @@ export default {
     handleEditAnswer() {
       this.$emit('edit-answer');
     },
-  },
-  methods: {
     async handleDeletion() {
-      const message = `確定選定${this.answerData.user.name}的回答為最佳解嗎`;
-      const successMessage = '選定成功';
-      const cancelMessage = '選定取消';
+      const message = '確定刪除自己的回答嗎';
+      const successMessage = '刪除成功';
+      const cancelMessage = '刪除取消';
       try {
         await this.$confirm(message, '提醒', {
           confirmButtonText: '確定',
           cancelButtonText: '取消',
         });
-        await modifyQuestion({ _id: this.questionId, is_solved: true, best_answer_id: this.answerData._id });
+        await removeAnswer(this.answerData._id);
         this.$message({
           type: 'success',
           message: successMessage,
@@ -114,8 +162,23 @@ export default {
           message: cancelMessage,
         });
       }
-
-    }
+    },
+    async handleReaction(reaction) {
+      await removeReaction({
+        source_type: 'answer',
+        source_id: this.answerData._id,
+      });
+      const initialReaction = this.userReaction;
+      this.userReaction = '';
+      if (initialReaction !== reaction) {
+        await addReaction({
+          source_type: 'answer',
+          source_id: this.answerData._id,
+          type: reaction,
+        });
+        this.userReaction = reaction;
+      }
+    },
   },
 };
 </script>
@@ -143,7 +206,12 @@ export default {
 .icon-container {
   font-size: 20px;
 }
-.edit-icon {
+.edit-icon:hover {
+  opacity: 0.6;
   cursor: pointer;
+}
+.check-icon {
+  color: #67C23A;
+  font-size: 2rem;
 }
 </style>
