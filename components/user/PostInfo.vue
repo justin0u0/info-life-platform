@@ -17,7 +17,7 @@
       </div>
       <div class="ml-auto pt-1">
         <span class="poster" style="color: #696969">
-          <a href="#" style="color: #696969">{{ postData.user.name }}</a> asked at
+          <a href="#">{{ postData.user.name }}</a> asked at
         </span>
         <span class="ml-2 post-date" style="color: #696969">{{ transformDate(postData.created_at) }}</span>
       </div>
@@ -91,10 +91,13 @@ a {
   font-size: 17px;
   color: #757575;
 }
+.poster a:hover {
+  color: rgb(64, 158, 255);
+}
 .info-container {
   text-align: center;
   font-size: 14px;
-  color: #696969;
+  color: #888;
   margin-right: 1rem;
   margin-top: 10px;
 }
