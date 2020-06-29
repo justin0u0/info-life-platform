@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { getQuestion } from '@/api/question';
+import { getQuestion, increaseViewCount } from '@/api/question';
 import { countReactions } from '@/api/reaction';
 import Editor from '@/components/editor/ViewEditor.vue';
 import BackToTop from '@/components/BackToTop.vue';
@@ -77,6 +77,7 @@ export default {
       this.preGetQuestion(),
       this.preGetReaction(),
     ]);
+    setTimeout(this.handleIncreaseViewCount, 10000);
     this.$store.dispatch('setIsProcessing', false);
   },
   methods: {
@@ -92,6 +93,10 @@ export default {
         this.coverUrl = '/assets/previewCardDefaultImage.jpg';
       }
       console.log('[QuestionViewQuestion:preGetQuestion]: ', this.contentObj);
+    },
+    async handleIncreaseViewCount() {
+      const { success } = await increaseViewCount(this.questionId);
+      if (success === true) this.question.view_count += 1;
     },
     async preGetReaction() {
       const res = await countReactions({ source_type: 'question', source_id: this.questionId });
