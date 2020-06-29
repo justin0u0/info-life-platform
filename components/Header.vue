@@ -102,7 +102,7 @@ export default {
   border-bottom: 3px solid #409eff;
 }
 .toggler {
-  border-color:#00001a;
+  border-color:#0000001a;
 }
 .info-deco {
   color: #616163;

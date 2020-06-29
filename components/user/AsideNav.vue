@@ -1,9 +1,10 @@
 <template>
   <div>
-    <el-aside width="200px">
+    <el-aside :width="asideWidth">
       <el-menu
         ref="menu"
         :default-active="$route.path"
+        :collapse="windowWidth <= 576"
         class="side-navbar"
         router
       >
@@ -40,6 +41,31 @@
 <script>
 export default {
   name: 'UserAsideNav',
+  data() {
+    return {
+      windowWidth: 0,
+    };
+  },
+  computed: {
+    asideWidth() {
+      if (this.windowWidth <= 576) {
+        return '70px';
+      }
+      return '200px';
+    },
+  },
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.windowWidth = window.innerWidth;
+    },
+  },
 };
 </script>
 
@@ -52,5 +78,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+.aside-menu /deep/ .el-aside {
+  width: 200px;
+}
+@media only screen and (max-width: 576px) {
+  .aside-menu /deep/ .el-aside {
+    width: 50px;
+  }
 }
 </style>

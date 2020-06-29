@@ -17,7 +17,7 @@
             <span>
               <a
                 v-if="facebookUrl"
-                :href="`facebook.com/${facebookUrl}`"
+                :href="`https://facebook.com/${facebookUrl}`"
                 target="_blank"
               >
                 facebook.com/{{ facebookUrl }}
