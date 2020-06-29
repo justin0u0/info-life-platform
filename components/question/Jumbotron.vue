@@ -14,14 +14,14 @@
         </div>
         <div class="card-footer d-flex">
           <div class="w-50 text-center ">
-            <a href="#">
+            <a href="/question/create">
               <font-awesome-icon :icon="['fas', 'question']" />
               <br>
               提問
             </a>
           </div>
           <div class="w-50 text-center ml-auto">
-            <a href="#">
+            <a href="/question/#questions" @click="handleTagClick">
               <font-awesome-icon :icon="['far', 'comment-alt']" />
               <br>
               回答
@@ -35,6 +35,7 @@
 
 <script>
 import { getQuestions } from '@/api/question';
+import { getAnswers } from '@/api/answer';
 
 export default {
   data() {
@@ -57,8 +58,12 @@ export default {
       this.totalQuestions = total;
     },
     async preGetAnswersTotal() {
-      const { total } = await getQuestions({ filter: { is_solved: true } });
+      const { total } = await getAnswers({ });
       this.totalAnswers = total;
+    },
+    async handleTagClick() {
+      const tag = { name: '未解決', filter: { is_solved: false }, sort: { created_at: -1 } };
+      this.$emit('tag-click', tag);
     },
   },
 };
