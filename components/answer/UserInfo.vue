@@ -9,8 +9,8 @@
       <span> </span>
     </div>
     <div class="ml-auto mt-auto icon-container">
-      <font-awesome-icon class="mr-3" :icon="['fas', 'edit']" />
-      <el-button v-show="!isSolved" type="primary" icon="el-icon-star-off" circle @click="handleTogglePostIsPublished()"></el-button>
+      <font-awesome-icon class="mx-2" :icon="['fas', 'edit']" />
+      <el-button v-show="ableToChooseBestAnswer()" type="primary" icon="el-icon-star-off" circle class="mx-2" @click="handleTogglePostIsPublished()"></el-button>
     </div>
   </div>
 </template>
@@ -62,6 +62,9 @@ export default {
           message: cancelMessage,
         });
       }
+    },
+    ableToChooseBestAnswer() {
+      return !this.isSolved;
     },
   },
 };
