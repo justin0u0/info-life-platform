@@ -1,9 +1,14 @@
 <template>
   <div class="question-container">
     <h1><a :href="`/question/${questionData._id}`">{{ questionData.title }}</a></h1>
-    <div class="d-flex align-items-center col-12 pt-2 pb-2">
+    <div class="d-flex align-items-center pt-2 pb-2">
       <div class="qa-tag-list mr-3">
-        <button class="btn btn-sm" :style="{ 'background-color': transformColor() }">{{ questionData.tag.name }}</button>
+        <button
+          class="btn btn-sm"
+          :style="{ 'background-color': transformColor() }"
+        >
+          {{ questionData.tag.name }}
+        </button>
       </div>
     </div>
     <div class="d-flex">
@@ -20,10 +25,10 @@
         <span>{{ dislikes }}</span>
       </div>
       <div class="ml-auto pt-1">
-        <span class="questioner" style="color: #696969">
+        <span class="questioner">
           <a href="#">{{ questionData.user.name }}</a> asked at
         </span>
-        <span class="ml-2 question-date" style="color: #696969">{{ transformDate(questionData.created_at) }}</span>
+        <span class="ml-2 question-date">{{ transformDate(questionData.created_at) }}</span>
       </div>
     </div>
   </div>
@@ -95,8 +100,14 @@ a {
   font-size: 17px;
   color: #757575;
 }
+.questioner {
+  color : #696969;
+}
 .questioner a:hover {
-  color: rgb(64, 158, 255);
+  color: #409eff;
+}
+.question-date {
+  color: #696969;
 }
 .info-container {
   text-align: center;
@@ -110,7 +121,7 @@ a {
   width: 16px
 }
 .qa-tag-list button {
-  color: rgb(60, 77, 133);
+  color: #3c4d85;
   padding: .1rem .3rem;
   margin-right: .5rem;
 }

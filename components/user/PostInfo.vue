@@ -16,7 +16,7 @@
         <span>{{ collections }}</span>
       </div>
       <div class="ml-auto pt-1">
-        <span class="poster" style="color: #696969">
+        <span class="poster">
           <a href="#">{{ postData.user.name }}</a> asked at
         </span>
         <span class="ml-2 post-date" style="color: #696969">{{ transformDate(postData.created_at) }}</span>
@@ -91,13 +91,16 @@ a {
   font-size: 17px;
   color: #757575;
 }
+.poster {
+  color: #696969;
+}
 .poster a:hover {
-  color: rgb(64, 158, 255);
+  color: #409eff;
 }
 .info-container {
   text-align: center;
   font-size: 14px;
-  color: #888;
+  color: #888888;
   margin-right: 1rem;
   margin-top: 10px;
 }
