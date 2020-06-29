@@ -4,7 +4,9 @@
       <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png">
     </div>
     <div class="ml-2 d-flex flex-column justify-content-between">
-      <a class="user-info" href="#">{{ userData.name }} &lt; {{ userData.username }} &gt;</a>
+      <a class="user-info" :href="`/user/${userData._id}`">
+        {{ userData.name }} &lt; {{ userData.username }} &gt;
+      </a>
       <span class="date-info">{{ new Date(postData.created_at).toLocaleString() }}</span>
       <span> </span>
     </div>
@@ -135,7 +137,7 @@ export default {
   margin-top: 30px;
   margin-bottom: 45px;
 }
-.user-info {
+.user-info, .user-info a {
   font-size: 16px;
   font-weight: 600;
   color: #3f3f3f;
