@@ -15,7 +15,7 @@
           </template>
           <el-menu-item class="text-right" index="/user/profile">個人資料</el-menu-item>
           <el-menu-item class="text-right" index="/user/profile/modify">修改資料</el-menu-item>
-          <el-menu-item class="text-right" index="/user/password">修改密碼</el-menu-item>
+          <el-menu-item class="text-right" index="#">修改密碼</el-menu-item>
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">
