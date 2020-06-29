@@ -175,7 +175,7 @@ export default {
           type: 'success',
           message: '刪除成功',
         });
-        window.location.reload();
+        this.$emit('delete-answer');
       } catch (error) {
         this.$message({
           type: 'info',

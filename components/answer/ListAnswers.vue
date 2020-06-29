@@ -3,7 +3,7 @@
     <hr>
     <h5 class="font-weight-bold pt-1">{{ totalAnswers }} 個回答</h5>
     <div
-      v-for="answer in answers"
+      v-for="(answer, index) in answers"
       :key="answer._id"
       class="mt-4"
     >
@@ -11,6 +11,7 @@
         :answer-data="answer"
         :is-solved="isSolved"
         :question-data="questionData"
+        @delete-answer="handleDeleteAnswer(index)"
       />
     </div>
   </div>
@@ -67,6 +68,10 @@ export default {
       this.totalAnswers = total;
       this.countAnswers += data.length;
       this.answers.push(...data);
+    },
+    handleDeleteAnswer(index) {
+      this.answers.splice(index, 1);
+      this.totalAnswers -= 1;
     },
   },
 };
