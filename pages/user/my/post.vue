@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import auth from '@/lib/auth';
 import AsideNav from '@/components/user/AsideNav.vue';
 import PostTab from '@/components/user/PostTab.vue';
 
@@ -17,6 +18,9 @@ export default {
   components: {
     AsideNav,
     PostTab,
+  },
+  mounted() {
+    auth.bind(this)('/');
   },
 };
 </script>
