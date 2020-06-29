@@ -1,6 +1,6 @@
 <template>
-  <div class="container page">
-    <h3><font-awesome-icon :icon="['fas', 'book-reader']" style="color: rgb(97, 97, 99); padding-bottom: 3px;" class="" /> 關於 <span style="color: rgb(97, 97, 99)">Info</span><span style="color: rgb(64, 158, 255)">Life</span></h3>
+  <div class="container">
+    <h3><font-awesome-icon :icon="['fas', 'book-reader']" style="color: rgb(97, 97, 99); padding-bottom: 3px;" /> 關於 <span style="color: rgb(97, 97, 99)">Info</span><span style="color: rgb(64, 158, 255)">Life</span></h3>
     <div class="about-us">
       <h5>Infolife 是一個由學生製作的知識分享平台。</h5>
       <h5>希望能透過讓學生來寫文章、問問題、回答問題的方式，</h5>
@@ -10,7 +10,7 @@
       <h5>在QA問答，你可以是問問題的學生，也可以當解答疑惑的學者。</h5>
     </div>
     <hr class="featurette-divider">
-    <h3 class="mb-5"><font-awesome-icon :icon="['fas', 'laptop']" style="color: rgb(97, 97, 99); padding-bottom: 3px;" class="" /> 開發團隊</h3>
+    <h3 class="mb-5"><font-awesome-icon :icon="['fas', 'laptop']" style="color: rgb(97, 97, 99); padding-bottom: 3px;" /> 開發團隊</h3>
     <el-carousel :interval="5000" type="card" height="30rem">
       <el-carousel-item>
         <div style="background-color: rgba(225, 179, 128, 0.8)" class="mb-2">
@@ -50,7 +50,7 @@
       </el-carousel-item>
     </el-carousel>
     <hr class="featurette-divider">
-    <h3 id="contact"><font-awesome-icon :icon="['fas', 'paper-plane']" style="color: rgb(97, 97, 99); padding-bottom: 3px;" class="" /> 聯絡我們</h3>
+    <h3 id="contact"><font-awesome-icon :icon="['fas', 'paper-plane']" style="color: rgb(97, 97, 99); padding-bottom: 3px;" /> 聯絡我們</h3>
     <Contact />
   </div>
 </template>
@@ -79,9 +79,6 @@ a {
 .container {
   margin-bottom: 2rem;
 }
-.page {
-  font-family: '微軟正黑體', sans-serif;
-}
 .about-us h5 {
   text-align: center;
 }
@@ -95,7 +92,6 @@ a {
   padding: 15px 0px;
 }
 .el-carousel__item {
-  font-family: '微軟正黑體', sans-serif;
   border-radius: 15px;
 }
 .el-carousel__item:nth-child(2n) {

@@ -10,7 +10,7 @@
     </div>
     <div class="col-12 col-md-9 d-flex flex-column">
       <a class="title-link mt-1" :href="`/post/${postData._id}`">
-        <h4 class="title">{{ postData.title }}</h4>
+        <h4 class="title font-weight-bold">{{ postData.title }}</h4>
       </a>
       <h5 class="subtitle">{{ postData.subtitle }}</h5>
       <div class="d-flex mt-auto user-info">

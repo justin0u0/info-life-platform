@@ -1,5 +1,5 @@
 <template>
-  <div class="user-page-font">
+  <div>
     <el-aside width="200px">
       <el-menu
         ref="menu"
@@ -52,18 +52,5 @@ export default {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-}
-.user-page-font {
-  font-family: custom-sans-serif, sans-serif;
-}
-@font-face {
-  font-family: custom-sans-serif;
-  src: local("微軟正黑體"), local("Microsoft JhengHei");
-  unicode-range: U+4E00-9FFF;
-}
-@font-face {
-  font-family: custom-sans-serif;
-  src: local('Lucida Grande'), local(Segoe UI);
-  unicode-range: U+00-024F;
 }
 </style>

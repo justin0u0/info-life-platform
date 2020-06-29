@@ -150,17 +150,4 @@ export default {
   font-weight: 300;
   color: #777;
 }
-.post-view {
-  font-family: custom-sans-serif, sans-serif;
-}
-@font-face {
-  font-family: custom-sans-serif;
-  src: local("微軟正黑體"), local("Microsoft JhengHei");
-  unicode-range: U+4E00-9FFF;
-}
-@font-face {
-  font-family: custom-sans-serif;
-  src: local('Lucida Grande'), local(Segoe UI);
-  unicode-range: U+00-024F;
-}
 </style>

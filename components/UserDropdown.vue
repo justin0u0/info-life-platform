@@ -57,7 +57,6 @@ export default {
 }
 
 .header-tag{
-  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
   font-size: 18px;
   color: #000000;
   letter-spacing: 0.05rem;

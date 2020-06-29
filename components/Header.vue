@@ -93,7 +93,6 @@ export default {
 
 <style scoped>
 .header-tag{
-  font-family: "微軟正黑體", sans-serif;
   font-size: 18px;
   color: #000000;
   letter-spacing: 0.05rem;
@@ -103,7 +102,7 @@ export default {
   border-bottom: 3px solid #409eff;
 }
 .toggler {
-  border-color:#0000001a;
+  border-color:#00001a;
 }
 .info-deco {
   color: #616163;
