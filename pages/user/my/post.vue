@@ -27,6 +27,6 @@ export default {
 
 <style scoped>
 .post-container {
-  max-width: 1000px;
+  max-width: 960px;
 }
 </style>

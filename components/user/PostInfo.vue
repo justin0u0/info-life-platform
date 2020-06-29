@@ -1,6 +1,6 @@
 <template>
   <div class="post-container">
-    <h1>{{ postData.title }}</h1>
+    <h1><a :href="`/post/${postData._id}`">{{ postData.title }}</a></h1>
     <h2>{{ postData.subtitle }}</h2>
     <div class="d-flex">
       <div class="info-container">
@@ -14,6 +14,12 @@
       <div class="info-container">
         <font-awesome-icon :icon="['far', 'bookmark']" />
         <span>{{ collections }}</span>
+      </div>
+      <div class="ml-auto pt-1">
+        <span class="poster">
+          <a href="#">{{ postData.user.name }}</a> asked at
+        </span>
+        <span class="ml-2 post-date" style="color: #696969">{{ transformDate(postData.created_at) }}</span>
       </div>
     </div>
   </div>
@@ -61,11 +67,18 @@ export default {
       const res = await countCollections(postId);
       this.collections = res.total;
     },
+    transformDate(unixEpoch) {
+      const d = new Date(unixEpoch);
+      return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
+    },
   },
 };
 </script>
 
 <style scoped>
+a {
+  color: #292929;
+}
 .post-container {
   font-family: 'Lucida Grande', '微軟正黑體', sans-serif;
 }
@@ -78,10 +91,16 @@ export default {
   font-size: 17px;
   color: #757575;
 }
+.poster {
+  color: #696969;
+}
+.poster a:hover {
+  color: #409eff;
+}
 .info-container {
   text-align: center;
   font-size: 14px;
-  color: #696969;
+  color: #888888;
   margin-right: 1rem;
   margin-top: 10px;
 }
