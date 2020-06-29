@@ -11,13 +11,19 @@
         </button>
       </div>
       <div class="ml-auto pt-1">
-        <ProfileLink :user-data="answerData.question.user" />
+        <span>
+          <ProfileLink :user-data="answerData.question.user" />
+          asked at
+        </span>
         <span class="ml-2 post-date">{{ transformDate(answerData.question.created_at) }}</span>
       </div>
     </div>
     <div class="d-flex">
       <div class="ml-auto pt-1">
-        <ProfileLink :user-data="answerData.user" />
+        <span>
+          <ProfileLink :user-data="answerData.user" />
+          answered at
+        </span>
         <span class="ml-2 post-date">{{ transformDate(answerData.created_at) }}</span>
       </div>
     </div>
