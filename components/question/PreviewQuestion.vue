@@ -12,9 +12,9 @@
       <!-- TODO: question-info api-->
       <p class="pt-2 question-info">
         <font-awesome-icon :icon="['far', 'eye']" />
-        <span class="pr-2">28</span>
+        <span class="pr-2">{{ questionData.view_count }}</span>
         <font-awesome-icon :icon="['far', 'comment-alt']" />
-        <span class="pr-2">7</span>
+        <span class="pr-2">{{ answers }}</span>
         <font-awesome-icon :icon="['far', 'thumbs-up']" />
         <span>{{ likes }}</span>
       </p>
@@ -30,6 +30,7 @@
 
 <script>
 import { countReactions } from '@/api/reaction';
+import { getAnswers } from '@/api/answer';
 
 export default {
   props: {
@@ -41,12 +42,14 @@ export default {
   data() {
     return {
       likes: 0,
+      answers: 0,
     };
   },
   async mounted() {
     this.$store.dispatch('setIsProcessing', true);
     await Promise.all([
       this.preGetReactions(),
+      this.preGetAnswers(),
     ]);
     this.$store.dispatch('setIsProcessing', false);
   },
@@ -54,6 +57,12 @@ export default {
     async preGetReactions() {
       const res = await countReactions({ source_type: 'question', source_id: this.questionData._id });
       this.likes = res.like;
+    },
+    async preGetAnswers() {
+      const { total } = await getAnswers({
+        filter: { question_id: this.questionData._id },
+      });
+      this.answers = total;
     },
     transformDate(unixEpoch) {
       const d = new Date(unixEpoch);
