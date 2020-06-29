@@ -10,7 +10,7 @@
         <span>我要留言</span>
       </el-button>
       <div v-show="visible" class="pb-3 px-4">
-        <CurrentUserInfo class="mb-0" />
+        <CurrentUserInfo class="mb-3" />
         <CreateOrModifyCommentForm ref="form" @submit="handleCreateComment" />
       </div>
     </el-card>
