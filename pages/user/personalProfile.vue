@@ -2,22 +2,20 @@
   <el-container>
     <AsideNav />
     <el-main>
-      <div class="container post-container">
-        <PostTab />
-      </div>
+      <PersonalProfile />
     </el-main>
   </el-container>
 </template>
 
 <script>
 import auth from '@/lib/auth';
+import PersonalProfile from '@/components/user/PersonalProfile.vue';
 import AsideNav from '@/components/user/AsideNav.vue';
-import PostTab from '@/components/user/PostTab.vue';
 
 export default {
   components: {
+    PersonalProfile,
     AsideNav,
-    PostTab,
   },
   mounted() {
     auth.bind(this)('/');
@@ -26,7 +24,4 @@ export default {
 </script>
 
 <style scoped>
-.post-container {
-  max-width: 1000px;
-}
 </style>
