@@ -3,7 +3,7 @@
     :visible.sync="dialogVisible"
     width="60%"
   >
-    <div class="d-flex justify-content-center align-items-stretch">
+    <div class="d-flex justify-content-center align-items-stretch dialog">
       <template v-if="currentDisplay === 'login'">
         <Login ref="login" @on-success="handleDialogClose" />
         <el-button
@@ -78,5 +78,8 @@ export default {
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+.dialog {
+  font-family: Arial;
 }
 </style>

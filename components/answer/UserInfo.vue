@@ -61,6 +61,7 @@
         :icon="['far', 'check-circle']"
       />
     </div>
+    <LoginRegisterDialog ref="dialog" />
   </div>
 </template>
 
@@ -70,11 +71,13 @@ import { modifyQuestion } from '@/api/question';
 import { removeAnswer } from '@/api/answer';
 import { addReaction, removeReaction, countReactions } from '@/api/reaction';
 import ProfileLink from '@/components/user/ProfileLink.vue';
+import LoginRegisterDialog from '@/components/LoginRegisterDialog.vue';
 
 export default {
   name: 'AnswerUserInfo',
   components: {
     ProfileLink,
+    LoginRegisterDialog,
   },
   props: {
     answerData: {
@@ -181,21 +184,31 @@ export default {
       }
     },
     async handleReaction(reaction) {
-      await removeReaction({
-        source_type: 'answer',
-        source_id: this.answerData._id,
-      });
-      const initialReaction = this.userReaction;
-      this.userReaction = '';
-      if (initialReaction !== reaction) {
-        await addReaction({
+      if (this.isLoggedIn) {
+        await removeReaction({
           source_type: 'answer',
           source_id: this.answerData._id,
-          type: reaction,
         });
-        this.userReaction = reaction;
+        const initialReaction = this.userReaction;
+        this.userReaction = '';
+        if (initialReaction !== reaction) {
+          await addReaction({
+            source_type: 'answer',
+            source_id: this.answerData._id,
+            type: reaction,
+          });
+          this.userReaction = reaction;
+        }
+        this.preGetReactions();
+      } else {
+        this.$message({
+          type: 'error',
+          message: '尚未登入',
+          duration: 1500,
+        });
+        console.log('[AnswerUserInfo:handleDialogOpen]');
+        this.$refs.dialog.handleDialogOpen();
       }
-      this.preGetReactions();
     },
   },
 };
