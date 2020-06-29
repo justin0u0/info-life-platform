@@ -9,7 +9,7 @@
       <div class="col-lg-10">
         <PostInfo :post-data="post" />
       </div>
-      <div class="col-lg-2 col-sm-12">
+      <div class="col-lg-2 col-12">
         <PostButton
           :post-data="post"
           :is-published="isPublished"
