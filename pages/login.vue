@@ -1,22 +1,18 @@
 <template>
   <el-container class="justify-content-center">
-    <AboutUs />
+    <Login />
   </el-container>
 </template>
 
 <script>
-import AboutUs from '@/components/about/Index.vue';
+import Login from '@/components/Login';
 
 export default {
   components: {
-    AboutUs,
+    Login,
   },
 };
 </script>
 
 <style scoped>
-.el-container {
-  margin: 20px 0;
-  text-align: center;
-}
 </style>
