@@ -16,13 +16,13 @@
           <div class="col-8 col-lg-9">
             <span>
               <a
-                v-if="facebookUrl"
+                v-show="facebookUrl"
                 :href="`https://facebook.com/${facebookUrl}`"
                 target="_blank"
               >
-                facebook.com/{{ facebookUrl }}
+                https://facebook.com/{{ facebookUrl }}
               </a>
-              <span v-else>使用者尚未公開</span>
+              <span v-show="!facebookUrl">使用者尚未公開</span>
             </span>
           </div>
           <div class="col-12 divider"><el-divider /></div>
@@ -30,13 +30,13 @@
           <div class="col-8 col-lg-9">
             <span>
               <a
-                v-if="githubUrl"
+                v-show="githubUrl"
                 :href="`https://github.com/${githubUrl}`"
                 target="_blank"
               >
                 https://github.com/{{ githubUrl }}
               </a>
-              <span v-else>使用者尚未公開</span>
+              <span v-show="!githubUrl">使用者尚未公開</span>
             </span>
           </div>
           <div class="col-12 divider"><el-divider /></div>
@@ -44,13 +44,13 @@
           <div class="col-8 col-lg-9">
             <span>
               <a
-                v-if="gitlabUrl"
+                v-show="gitlabUrl"
                 :href="`https://gitlab.com/${githubUrl}`"
                 target="_blank"
               >
                 https://gitlab.com/{{ githubUrl }}
               </a>
-              <span v-else>使用者尚未公開</span>
+              <span v-show="!gitlabUrl">使用者尚未公開</span>
             </span>
           </div>
           <div class="col-12 divider"><el-divider /></div>
@@ -58,13 +58,13 @@
           <div class="col-8 col-lg-9">
             <span>
               <a
-                v-if="bitbucketUrl"
+                v-show="bitbucketUrl"
                 :href="`https://bitbucket.org/${bitbucketUrl}`"
                 target="_blank"
               >
                 https://bitbucket.org/{{ bitbucketUrl }}
               </a>
-              <span v-else>使用者尚未公開</span>
+              <span v-show="!bitbucketUrl">使用者尚未公開</span>
             </span>
           </div>
           <div class="col-12 divider"><el-divider /></div>
