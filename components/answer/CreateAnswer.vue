@@ -40,13 +40,10 @@ export default {
       console.log('[CreateAnswer:handleCreateAnswer]: ', data);
       this.$store.dispatch('setIsProcessing', true);
       try {
-        const isValid = await this.$refs.form.validateForm();
-        if (isValid) {
-          await addAnswer({ question_id: this.questionId, ...data });
-          this.$message({ type: 'success', message: '新增回答成功' });
-          // TODO: fix me
-          window.location.reload();
-        }
+        await addAnswer({ question_id: this.questionId, ...data });
+        this.$message({ type: 'success', message: '新增回答成功' });
+        // TODO: fix me
+        window.location.reload();
         this.$store.dispatch('setIsProcessing', false);
       } catch (error) {
         this.$store.dispatch('setIsProcessing', false);

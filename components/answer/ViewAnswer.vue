@@ -1,8 +1,11 @@
 <template>
   <div class="container answer-container my-3">
-    <AnswerUserInfo :answer-data="answerData" :question-id="questionId" :is-solved="isSolved" />
-    <div class="pb-3">
+    <AnswerUserInfo :answer-data="answerData" :question-id="questionId" :is-solved="isSolved" :question-user-id="questionUserId" @edit-answer="editAnswer" />
+    <div v-if="!modifyMode" class="pb-3">
       <Editor :content-data="contentObj" />
+    </div>
+    <div v-else class="py-3">
+      <ModifyAnswer :answer-id="answerData._id" @show-answer="showAnswer" />
     </div>
   </div>
 </template>
@@ -10,6 +13,7 @@
 <script>
 import Editor from '@/components/editor/ViewEditor.vue';
 import AnswerUserInfo from '@/components/answer/UserInfo.vue';
+import ModifyAnswer from '@/components/answer/ModifyAnswer.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -17,6 +21,7 @@ export default {
   components: {
     Editor,
     AnswerUserInfo,
+    ModifyAnswer,
   },
   props: {
     answerData: {
@@ -31,10 +36,15 @@ export default {
       type: Boolean,
       required: true,
     },
+    questionUserId: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
       contentObj: {},
+      modifyMode: false,
     };
   },
   computed: {
@@ -50,9 +60,12 @@ export default {
       const d = new Date(unixEpoch);
       return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
     },
-    // questionGetSolved() {
-    //   this.$emit('question-solved');
-    // },
+    editAnswer() {
+      this.modifyMode = true;
+    },
+    showAnswer() {
+      this.modifyMode = false;
+    },
   },
 };
 </script>
