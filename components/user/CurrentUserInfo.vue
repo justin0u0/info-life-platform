@@ -4,7 +4,7 @@
       <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png">
     </div>
     <div class="ml-2 d-flex flex-column justify-content-center">
-      <ProfileLink :user-data="currentUser" font-weight="600" />
+      <ProfileLink :user-data="currentUser" :font-weight="600" />
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@ import { mapGetters } from 'vuex';
 import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
-  name: 'AnswerCurrentUserInfo',
+  name: 'UserCurrentUserInfo',
   components: {
     ProfileLink,
   },

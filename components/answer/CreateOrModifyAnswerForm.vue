@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     setContent(content) {
-      console.log('[QuestionCreateOrModifyAnswerForm:updateContent]');
+      console.log('[AnswerCreateOrModifyAnswerForm:updateContent]');
       this.$refs.editor.setContent(content);
     },
     handleEditorClick() {
