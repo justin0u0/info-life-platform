@@ -14,7 +14,7 @@
 <script>
 import { addAnswer } from '@/api/answer';
 import CreateOrModifyAnswerForm from '@/components/answer/CreateOrModifyAnswerForm.vue';
-import CurrentUserInfo from '@/components/answer/CurrentUserInfo.vue';
+import CurrentUserInfo from '@/components/user/CurrentUserInfo.vue';
 import { mapGetters } from 'vuex';
 
 export default {
