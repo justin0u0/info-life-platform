@@ -4,7 +4,7 @@
       <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png">
     </div>
     <div class="ml-2 d-flex flex-column justify-content-between">
-      <a class="user-info" href="#">{{ answerData.user.name }} &lt; {{ answerData.user.username }} &gt;</a>
+      <ProfileLink :user-data="answerData.user" />
       <span class="date-info">{{ new Date(answerData.created_at).toLocaleString() }}</span>
       <span> </span>
     </div>
@@ -30,9 +30,13 @@
 <script>
 import { modifyQuestion } from '@/api/question';
 import { mapGetters } from 'vuex';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'AnswerUserInfo',
+  components: {
+    ProfileLink,
+  },
   props: {
     answerData: {
       type: Object,
