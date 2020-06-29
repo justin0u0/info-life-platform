@@ -42,6 +42,7 @@
         @click="handleCollection"
       />
     </div>
+    <LoginRegisterDialog ref="dialog" />
   </div>
 </template>
 
@@ -49,11 +50,15 @@
 import { addReaction, removeReaction } from '@/api/reaction';
 import { addCollection, removeCollection } from '@/api/collection';
 import ProfileLink from '@/components/user/ProfileLink.vue';
+import { mapGetters } from 'vuex';
+import LoginRegisterDialog from '@/components/LoginRegisterDialog.vue';
+
 
 export default {
   name: 'PosrUserInfo',
   components: {
     ProfileLink,
+    LoginRegisterDialog,
   },
   props: {
     userData: {
@@ -80,6 +85,12 @@ export default {
       userCollect: false,
     };
   },
+  computed: {
+    ...mapGetters([
+      'currentUserId',
+      'isLoggedIn',
+    ]),
+  },
   watch: {
     currentUserLike: {
       immediate: true,
@@ -96,37 +107,57 @@ export default {
   },
   methods: {
     async handleReaction() {
-      if (this.userLike === true) {
-        try {
-          await removeReaction({ source_type: 'post', source_id: this.postData._id });
-          this.userLike = false;
-        } catch (error) {
-          console.log(error);
+      if (this.isLoggedIn) {
+        if (this.userLike === true) {
+          try {
+            await removeReaction({ source_type: 'post', source_id: this.postData._id });
+            this.userLike = false;
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          try {
+            await addReaction({ type: 'like', source_type: 'post', source_id: this.postData._id });
+            this.userLike = true;
+          } catch (error) {
+            console.log(error);
+          }
         }
       } else {
-        try {
-          await addReaction({ type: 'like', source_type: 'post', source_id: this.postData._id });
-          this.userLike = true;
-        } catch (error) {
-          console.log(error);
-        }
+        this.$message({
+          type: 'error',
+          message: '尚未登入',
+          duration: 1500,
+        });
+        console.log('[AnswerUserInfo:handleDialogOpen]');
+        this.$refs.dialog.handleDialogOpen();
       }
     },
     async handleCollection() {
-      if (this.userCollect === true) {
-        try {
-          await removeCollection(this.postData._id);
-          this.userCollect = false;
-        } catch (error) {
-          console.log(error);
+      if (this.isLoggedIn) {
+        if (this.userCollect === true) {
+          try {
+            await removeCollection(this.postData._id);
+            this.userCollect = false;
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          try {
+            await addCollection(this.postData._id);
+            this.userCollect = true;
+          } catch (error) {
+            console.log(error);
+          }
         }
       } else {
-        try {
-          await addCollection(this.postData._id);
-          this.userCollect = true;
-        } catch (error) {
-          console.log(error);
-        }
+        this.$message({
+          type: 'error',
+          message: '尚未登入',
+          duration: 1500,
+        });
+        console.log('[AnswerUserInfo:handleDialogOpen]');
+        this.$refs.dialog.handleDialogOpen();
       }
     },
   },
