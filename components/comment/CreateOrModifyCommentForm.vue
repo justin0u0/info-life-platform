@@ -67,5 +67,18 @@ export default {
 <style scoped>
 .editor-container {
   font-size: 16px;
+  width: 100%;
+  border: 1px solid #DCDFE6;
+  background-color: white;
+  border-radius: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 2em;
+  /* padding-top: 1em; */
+  cursor: text;
+}
+.editor-focus {
+  outline: 0;
+  border-color:#409eff;
 }
 </style>
