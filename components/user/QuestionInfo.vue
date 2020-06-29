@@ -21,7 +21,7 @@
       </div>
       <div class="ml-auto pt-1">
         <span class="questioner" style="color: #696969">
-          <a href="#" style="color: #696969">{{ questionData.user.name }}</a> asked at
+          <a href="#">{{ questionData.user.name }}</a> asked at
         </span>
         <span class="ml-2 question-date" style="color: #696969">{{ transformDate(questionData.created_at) }}</span>
       </div>
@@ -95,15 +95,23 @@ a {
   font-size: 17px;
   color: #757575;
 }
+.questioner a:hover {
+  color: rgb(64, 158, 255);
+}
 .info-container {
   text-align: center;
   font-size: 14px;
-  color: #696969;
+  color: #888;
   margin-right: 1rem;
   margin-top: 10px;
 }
 .icon-size {
   height: 16px;
   width: 16px
+}
+.qa-tag-list button {
+  color: rgb(60, 77, 133);
+  padding: .1rem .3rem;
+  margin-right: .5rem;
 }
 </style>
