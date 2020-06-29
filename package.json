@@ -5,7 +5,7 @@
   "author": "justin0u0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "NODE_ENV=dev nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -20,6 +20,8 @@
     "@nuxtjs/axios": "^5.11.0",
     "bootstrap": "^4.5.0",
     "element-ui": "^2.4.11",
+    "firebase-admin": "^8.12.1",
+    "firebase-functions": "^3.7.0",
     "highlight.js": "^10.0.3",
     "jquery": "^3.5.1",
     "nuxt": "^2.0.0",
@@ -36,12 +38,12 @@
     "@nuxtjs/eslint-config": "^2.0.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
+    "eslint-auto-fix": "^1.0.1",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-nuxt": "^0.5.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "eslint-auto-fix": "^1.0.1",
     "ss-loader": "^1.0.1",
     "style-loader": "^1.2.1"
   }
