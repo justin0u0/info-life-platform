@@ -38,7 +38,7 @@
 import { countReactions } from '@/api/reaction';
 
 export default {
-  name: 'UserQuestionInfo',
+  name: 'UserQuestionQuestionInfo',
   props: {
     questionData: {
       type: Object,
