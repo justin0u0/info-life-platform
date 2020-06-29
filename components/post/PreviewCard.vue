@@ -113,9 +113,9 @@ export default {
 .card-subtitle { color: #777; }
 .card-title-link { text-decoration-color: black; }
 .author a {
-  color: rgba(64, 158, 255, 0.8);
+  color: #409effcc;
 }
 .author a:hover {
-  color: rgb(64, 158, 255);
+  color: #409eff;
 }
 </style>

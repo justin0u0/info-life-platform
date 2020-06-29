@@ -97,10 +97,10 @@ export default {
   width: 50px;
 }
 .questioner a {
-  color: rgba(64, 158, 255, 0.8);
+  color: #409effcc;
 }
 .questioner a:hover {
-  color: rgb(64, 158, 255);
+  color: #409eff;
 }
 .title { color: black; }
 .subtitle { color: #777; }
