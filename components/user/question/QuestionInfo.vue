@@ -30,7 +30,8 @@
       </div>
       <div class="ml-auto pt-1">
         <span class="questioner">
-          <a href="#">{{ questionData.user.name }}</a> asked at
+          <ProfileLink :user-data="questionData.user" />
+          asked at
         </span>
         <span class="ml-2 question-date">{{ transformDate(questionData.created_at) }}</span>
       </div>
@@ -41,9 +42,13 @@
 <script>
 import { countReactions } from '@/api/reaction';
 import { getAnswers } from '@/api/answer';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'UserQuestionQuestionInfo',
+  components: {
+    ProfileLink,
+  },
   props: {
     questionData: {
       type: Object,

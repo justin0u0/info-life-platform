@@ -4,7 +4,7 @@
     <div>
       <h4 class="pb-2 answer-font">我要回答</h4>
       <div class="create-answer-container pb-3 px-4">
-        <CurrentUserInfo />
+        <CurrentUserInfo v-if="isLoggedIn" />
         <CreateOrModifyAnswerForm ref="form" @submit="handleCreateAnswer" />
       </div>
     </div>
@@ -14,7 +14,7 @@
 <script>
 import { addAnswer } from '@/api/answer';
 import CreateOrModifyAnswerForm from '@/components/answer/CreateOrModifyAnswerForm.vue';
-import CurrentUserInfo from '@/components/CurrentUserInfo.vue';
+import CurrentUserInfo from '@/components/user/CurrentUserInfo.vue';
 import { mapGetters } from 'vuex';
 
 export default {
