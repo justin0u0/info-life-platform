@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer" class="font-small mt-auto"> <!-- mt-auto pt-4 -->
+  <footer id="footer" class="font-small mt-auto footer-color"> <!-- mt-auto pt-4 -->
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left pt-4">
       <div class="row">
@@ -11,7 +11,7 @@
         </div>
         <hr class="w-100 d-md-none pb-2">
         <div class="col-md-3 mb-md-0 mb-md-3">
-          <h5 class="font-weight-bold mb-3"><span class="underline pl-0 pr-2">關於</span></h5> <!-- mb-3 -->
+          <h5 class="font-weight-bold mb-3"><span class="underline pl-0 px-1">關於</span></h5>
           <ul class="list-unstyled">
             <li><a href="/about">關於我們</a></li>
             <li><a href="/about#contact">聯繫我們</a></li>
@@ -20,7 +20,7 @@
         </div>
         <hr class="w-100 d-md-none pb-2">
         <div class="col-md-3 mb-md-0">
-          <h5 class="font-weight-bold mb-3"><span class="underline pl-0 pr-2">商務</span></h5> <!-- mb-3 -->
+          <h5 class="font-weight-bold mb-3"><span class="underline pl-0 px-1">商務</span></h5>
           <ul class="list-unstyled">
             <li><a class="a-font" href="#!">行銷業務合作</a></li>
             <li><a class="a-font" href="#!">合作媒體</a></li>
@@ -38,13 +38,14 @@ export default {
 </script>
 
 <style scoped>
+.footer-color {
+  color: #ddd;
+}
 .list-unstyled a {
-  color: white;
-  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+  color: #ddd;
 }
 .underline {
-  border-bottom: 2px solid rgb(35, 113, 192);
+  border-bottom: 2px solid #2371c0;
   padding-bottom: 5px;
-  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
 }
 </style>

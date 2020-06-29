@@ -66,7 +66,7 @@ export default {
       console.log('[UserListUserCollections:handleCurrentChange]: ', page);
       this.$store.dispatch('setIsProcessing', true);
       const { data } = await getCollections({
-        filter: { user_id: this.currentUser._id },
+        filter: { user_id: this.currentUser._id, is_published: true },
         limit: this.limit,
         skip: (page - 1) * this.limit,
       });
