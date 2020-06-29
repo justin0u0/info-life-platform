@@ -22,8 +22,8 @@
         <div class="col-md-3 mb-md-0">
           <h5 class="font-weight-bold mb-3"><span class="underline pl-0 px-1">商務</span></h5>
           <ul class="list-unstyled">
-            <li><a class="a-font" href="#!">行銷業務合作</a></li>
-            <li><a class="a-font" href="#!">合作媒體</a></li>
+            <li><a class="a-font" href="#">行銷業務合作</a></li>
+            <li><a class="a-font" href="#">合作媒體</a></li>
           </ul>
         </div>
       </div>
