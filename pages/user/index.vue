@@ -1,18 +1,21 @@
 <template>
   <el-container>
-    <UserAsideNav />
+    <AsideNav />
     <el-main>
+      <ViewProfile />
     </el-main>
   </el-container>
 </template>
 
 <script>
 import auth from '@/lib/auth';
-import UserAsideNav from '@/components/user/AsideNav.vue';
+import ViewProfile from '@/components/user/profile/ViewProfile.vue';
+import AsideNav from '@/components/user/AsideNav.vue';
 
 export default {
   components: {
-    UserAsideNav,
+    ViewProfile,
+    AsideNav,
   },
   mounted() {
     auth.bind(this)('/');
@@ -20,6 +23,5 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
 </style>

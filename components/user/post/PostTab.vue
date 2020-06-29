@@ -12,9 +12,10 @@
 </template>
 
 <script>
-import ListUserPosts from '@/components/user/ListUserPosts.vue';
+import ListUserPosts from '@/components/user/post/ListUserPosts.vue';
 
 export default {
+  name: 'UserPostPostTab',
   components: {
     ListUserPosts,
   },
