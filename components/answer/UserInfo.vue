@@ -9,15 +9,20 @@
       <span> </span>
     </div>
     <div class="ml-auto mt-auto icon-container">
-      <font-awesome-icon v-show="ableToEdit()" class="mx-2 edit" :icon="['fas', 'edit']" @click="editAnswer" />
+      <font-awesome-icon
+        v-show="canEdit"
+        class="mx-2 edit-icon"
+        :icon="['fas', 'edit']"
+        @click="handleEditAnswer"
+      />
       <el-button
-        v-show="ableToChooseBestAnswer()"
+        v-show="canChooseBestAnswer"
         type="primary"
         icon="el-icon-star-off"
         circle
         class="mx-2"
-        @click="handleTogglePostIsPublished()"
-      ></el-button>
+        @click="handleTogglePostIsPublished"
+      />
     </div>
   </div>
 </template>
@@ -46,16 +51,17 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      // is_solved: false,
-    };
-  },
   computed: {
     ...mapGetters([
       'currentUserId',
       'isLoggedIn',
     ]),
+    canChooseBestAnswer() {
+      return (!this.isSolved && this.currentUserId === this.questionUserId);
+    },
+    canEdit() {
+      return (this.isLoggedIn && this.currentUserId === this.answerData.user_id);
+    },
   },
   methods: {
     async handleTogglePostIsPublished() {
@@ -80,14 +86,8 @@ export default {
         });
       }
     },
-    editAnswer() {
+    handleEditAnswer() {
       this.$emit('edit-answer');
-    },
-    ableToChooseBestAnswer() {
-      return (!this.isSolved && this.currentUserId === this.questionUserId);
-    },
-    ableToEdit() {
-      return (this.isLoggedIn && this.currentUserId === this.answerData.user_id);
     },
   },
 };
@@ -116,7 +116,7 @@ export default {
 .icon-container {
   font-size: 20px;
 }
-.edit {
+.edit-icon {
   cursor: pointer;
 }
 </style>

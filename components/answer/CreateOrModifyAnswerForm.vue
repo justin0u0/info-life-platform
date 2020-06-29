@@ -60,15 +60,6 @@ export default {
       };
       this.$emit('submit', data);
     },
-    // async validateForm() {
-    //   const isValid = await new Promise((resolve) => {
-    //     this.$refs.form.validate((valid) => {
-    //       if (valid) resolve(true);
-    //       else resolve(false);
-    //     });
-    //   });
-    //   return isValid;
-    // },
   },
 };
 </script>

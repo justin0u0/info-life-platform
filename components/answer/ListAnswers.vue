@@ -7,7 +7,12 @@
       :key="answer._id"
       class="mt-4"
     >
-      <ViewAnswer :answer-data="answer" :question-id="questionId" :is-solved="isSolved" :question-user-id="questionUserId" />
+      <ViewAnswer
+        :answer-data="answer"
+        :question-id="questionId"
+        :is-solved="isSolved"
+        :question-user-id="questionUserId"
+      />
     </div>
   </div>
 </template>
@@ -65,9 +70,6 @@ export default {
       this.countAnswers += data.length;
       this.answers.push(...data);
     },
-    // questionGetSolved() {
-    //   this.isSolved = true;
-    // },
   },
 };
 </script>
