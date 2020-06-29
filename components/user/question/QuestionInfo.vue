@@ -17,6 +17,10 @@
         <span>{{ questionData.view_count }}</span>
       </div>
       <div class="info-container">
+        <font-awesome-icon :icon="['far', 'comment-alt']" />
+        <span>{{ answers }}</span>
+      </div>
+      <div class="info-container">
         <font-awesome-icon :icon="['far', 'thumbs-up']" />
         <span>{{ likes }}</span>
       </div>
@@ -26,7 +30,8 @@
       </div>
       <div class="ml-auto pt-1">
         <span class="questioner">
-          <a href="#">{{ questionData.user.name }}</a> asked at
+          <ProfileLink :user-data="questionData.user" />
+          asked at
         </span>
         <span class="ml-2 question-date">{{ transformDate(questionData.created_at) }}</span>
       </div>
@@ -36,9 +41,14 @@
 
 <script>
 import { countReactions } from '@/api/reaction';
+import { getAnswers } from '@/api/answer';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'UserQuestionQuestionInfo',
+  components: {
+    ProfileLink,
+  },
   props: {
     questionData: {
       type: Object,
@@ -49,6 +59,7 @@ export default {
     return {
       likes: 0,
       dislikes: 0,
+      answers: 0,
     };
   },
   watch: {
@@ -59,6 +70,7 @@ export default {
           this.$store.dispatch('setIsProcessing', true);
           await Promise.all([
             this.preGetReactions(questionData._id),
+            this.preGetAnswers(questionData._id),
           ]);
           this.$store.dispatch('setIsProcessing', false);
         }
@@ -70,6 +82,10 @@ export default {
       const res = await countReactions({ source_type: 'question', source_id: questionId });
       this.likes = res.like;
       this.dislikes = res.dislike;
+    },
+    async preGetAnswers(questionId) {
+      const { total } = await getAnswers({ filter: { question_id: questionId } });
+      this.answers = total;
     },
     transformDate(unixEpoch) {
       const d = new Date(unixEpoch);

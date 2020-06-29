@@ -13,6 +13,6 @@ export function getAnswer(_id) {
   return api('/answer/getAnswer', { _id });
 }
 
-export function modifyPost(params) {
+export function modifyAnswer(params) {
   return api('/answer/modifyAnswer', params);
 }

@@ -15,6 +15,7 @@
         <div class="post-cover" :style="{ backgroundImage: `url(${coverUrl})` }"></div>
         <Editor :content-data="contentObj" />
         <ListComments :post-id="postId" />
+        <CreateComment :post-id="postId" />
       </div>
       <div class="col-lg-2">
         <TableOfContent :content-data="contentObj" />
@@ -33,6 +34,7 @@ import BackToTop from '@/components/BackToTop.vue';
 import ProgressBar from '@/components/ProgressBar.vue';
 import UserInfo from '@/components/post/UserInfo.vue';
 import ListComments from '@/components/comment/ListComments.vue';
+import CreateComment from '@/components/comment/CreateComment.vue';
 import TableOfContent from '@/components/post/TableOfContent.vue';
 
 export default {
@@ -43,6 +45,7 @@ export default {
     ProgressBar,
     UserInfo,
     ListComments,
+    CreateComment,
     TableOfContent,
   },
   props: {
@@ -109,7 +112,7 @@ export default {
     },
     async handleIncreaseViewCount() {
       const { success } = await increaseViewCount(this.postId);
-      if (success === true) this.view_count += 1;
+      if (success === true) this.post.view_count += 1;
     },
     async preGetReaction() {
       const res = await countReactions({ source_type: 'post', source_id: this.postId });
