@@ -1,5 +1,5 @@
 <template>
-  <div class="question-page">
+  <div>
     <Jumbotron @tag-click="handleTagClick" />
     <div class="container">
       <ListTags :current-tag="currentTag" @tag-click="handleTagClick" />
@@ -88,9 +88,6 @@ export default {
   width: 100%;
   height: 30px;
 }
-.question-page {
-  font-family: custom-sans-serif, sans-serif;
-}
 .container {
   max-width: 700px;
 }
@@ -107,15 +104,5 @@ export default {
 }
 .question-enter, .question-leave-to {
   opacity: 0;
-}
-@font-face {
-  font-family: custom-sans-serif;
-  src: local("微軟正黑體"), local("Microsoft JhengHei");
-  unicode-range: U+4E00-9FFF;
-}
-@font-face {
-  font-family: custom-sans-serif;
-  src: local('Lucida Grande'), local(Segoe UI);
-  unicode-range: U+00-024F;
 }
 </style>

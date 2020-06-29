@@ -81,9 +81,6 @@ export default {
 a {
   color: #292929;
 }
-.post-container {
-  font-family: 'Lucida Grande', '微軟正黑體', sans-serif;
-}
 .post-container h1 {
   font-size: 21.2px;
   font-weight: 600;

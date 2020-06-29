@@ -1,7 +1,7 @@
 <template>
   <div
     v-loading.fullscreen="isProcessing"
-    class="layout"
+    class="layout infolife-font"
     :element-loading-text="processTitle"
   >
     <div class="wrapper">
@@ -107,6 +107,9 @@ html, body {
   /* Distance from footer */
   margin-bottom: 20px;
 }
+.infolife-font {
+  font-family: custom-sans-serif, sans-serif;
+}
 
 @media (max-width: 768px) {
   .footer {
@@ -116,5 +119,15 @@ html, body {
     margin-bottom: -400px;
     padding-bottom: 400px;
   }
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local("微軟正黑體"), local("Microsoft JhengHei");
+  unicode-range: U+4E00-9FFF;
+}
+@font-face {
+  font-family: custom-sans-serif;
+  src: local('Lucida Grande'), local(Segoe UI);
+  unicode-range: U+00-024F;
 }
 </style>
