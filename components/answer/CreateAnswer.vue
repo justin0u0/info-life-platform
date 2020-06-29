@@ -5,7 +5,7 @@
       <h4 class="pb-2 answer-font">我要回答</h4>
       <div class="create-answer-container pb-3 px-4">
         <CurrentUserInfo v-if="isLoggedIn" />
-        <CreateOrModifyAnswerForm ref="form" @submit="handleCreateAnswer" />
+        <CreateOrModifyAnswerForm ref="form" :is-creating="true" @submit="handleCreateAnswer" />
       </div>
     </div>
   </div>
