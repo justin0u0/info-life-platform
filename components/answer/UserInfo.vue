@@ -25,6 +25,31 @@ export default {
       required: true,
     },
   },
+  methods: {
+    async handleDeletion() {
+      const message = `確定選定${this.answerData.user.name}的回答為最佳解嗎`;
+      const successMessage = '選定成功';
+      const cancelMessage = '選定取消';
+      try {
+        await this.$confirm(message, '提醒', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+        });
+        await modifyQuestion({ _id: this.questionId, is_solved: true, best_answer_id: this.answerData._id });
+        this.$message({
+          type: 'success',
+          message: successMessage,
+        });
+        window.location.reload();
+      } catch (error) {
+        this.$message({
+          type: 'info',
+          message: cancelMessage,
+        });
+      }
+
+    }
+  },
 };
 </script>
 
