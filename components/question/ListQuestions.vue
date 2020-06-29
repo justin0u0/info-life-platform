@@ -1,7 +1,7 @@
 <template>
   <div class="question-page">
     <Jumbotron @tag-click="handleTagClick" />
-    <div id="questions" class="container">
+    <div class="container">
       <ListTags :current-tag="currentTag" @tag-click="handleTagClick" />
       <transition-group
         v-infinite-scroll="loadQuestions"

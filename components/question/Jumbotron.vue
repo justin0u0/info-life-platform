@@ -13,14 +13,14 @@
           </span>
         </div>
         <div class="card-footer d-flex">
-          <div class="w-50 text-center ask">
+          <div class="w-50 text-center ask-question">
             <a href="/question/create">
               <font-awesome-icon :icon="['fas', 'question']" />
               <br>
               提問
             </a>
           </div>
-          <div class="w-50 text-center ml-auto answer" @click="handleTagClick">
+          <div class="w-50 text-center ml-auto answer-question" @click="handleTagClick">
             <font-awesome-icon :icon="['far', 'comment-alt']" />
             <br>
             回答
@@ -106,11 +106,11 @@ a {
   color: black;
   text-decoration: none;
 }
-.answer:hover {
+.answer-question:hover {
   cursor: pointer;
   opacity: 0.7;
 }
-.ask:hover {
+.ask-question:hover {
   cursor: pointer;
   opacity: 0.7;
 }

@@ -80,12 +80,8 @@ export default {
       this.$store.dispatch('setIsProcessing', false);
     },
     async handleDeleteQuestion(questionId, title, index) {
-      console.log('qqq');
-      const message = `確定要刪除「${title}」?`;
-      const successMessage = '刪除成功';
-      const cancelMessage = '取消刪除';
       try {
-        await this.$confirm(message, '提醒', {
+        await this.$confirm(`確定要刪除「${title}」?`, '提醒', {
           confirmButtonText: '確定',
           cancelButtonText: '取消',
           type: 'warning',
@@ -94,12 +90,12 @@ export default {
         this.questions.splice(index, 1);
         this.$message({
           type: 'success',
-          message: successMessage,
+          message: '刪除成功',
         });
       } catch (error) {
         this.$message({
           type: 'info',
-          message: cancelMessage,
+          message: '取消刪除',
         });
       }
     },
