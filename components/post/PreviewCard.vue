@@ -16,9 +16,7 @@
           <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png" alt="user image">
         </div>
         <div class="ml-2">
-          <p class="mb-1 author">
-            <a href="#">{{ postData.user.name }}</a>
-          </p>
+          <ProfileLink :user-data="postData.user" />
           <p class="mb-1">{{ transformDate(postData.created_at) }}</p>
         </div>
         <div class="ml-auto mt-2">
@@ -36,9 +34,13 @@
 
 <script>
 import { countReactions } from '@/api/reaction';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'PostPreviewCard',
+  components: {
+    ProfileLink,
+  },
   props: {
     postData: {
       type: Object,
@@ -112,10 +114,4 @@ export default {
 .card-title { color: black; }
 .card-subtitle { color: #777; }
 .card-title-link { text-decoration-color: black; }
-.author a {
-  color: #409effcc;
-}
-.author a:hover {
-  color: #409eff;
-}
 </style>

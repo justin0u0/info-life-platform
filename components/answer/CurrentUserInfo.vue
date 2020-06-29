@@ -4,17 +4,20 @@
       <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png">
     </div>
     <div class="ml-2 d-flex flex-column justify-content-center">
-      <a class="user-info" href="#">{{ currentUser.name }} &lt; {{ currentUser.username }} &gt;</a>
+      <ProfileLink :user-data="currentUser" font-weight="600" />
     </div>
   </div>
 </template>
 
 <script>
-
 import { mapGetters } from 'vuex';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
-  name: 'CurrentUserInfo',
+  name: 'AnswerCurrentUserInfo',
+  components: {
+    ProfileLink,
+  },
   computed: {
     ...mapGetters([
       'currentUser',
@@ -28,12 +31,6 @@ export default {
   display: flex;
   margin-top: 30px;
   margin-bottom: 45px;
-}
-.user-info {
-  font-family: "宋體", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: #3f3f3f;
 }
 .user-image {
   height: 50px;

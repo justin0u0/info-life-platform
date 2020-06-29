@@ -21,7 +21,7 @@
             <div class="user-container">
               <el-avatar size="medium" src="/assets/img_avatar.png" />
               <div class="d-flex flex-column ml-3">
-                <span>{{ comment.user.name }}</span>
+                <ProfileLink :user-data="comment.user" />
                 <span class="date-container">{{ new Date(comment.created_at).toLocaleString() }}</span>
               </div>
             </div>
@@ -45,11 +45,13 @@
 <script>
 import { getComments } from '@/api/comment';
 import ViewEditor from '@/components/editor/ViewEditor.vue';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'CommentListComments',
   components: {
     ViewEditor,
+    ProfileLink,
   },
   props: {
     postId: {
