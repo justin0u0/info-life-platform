@@ -66,9 +66,12 @@
 
 <script>
 import { mapGetters } from 'vuex';
+<<<<<<< HEAD
 import { modifyQuestion } from '@/api/question';
 import { removeAnswer } from '@/api/answer';
 import { addReaction, removeReaction, countReactions } from '@/api/reaction';
+=======
+>>>>>>> dev
 import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {

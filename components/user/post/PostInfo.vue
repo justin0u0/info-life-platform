@@ -16,10 +16,8 @@
         <span>{{ collections }}</span>
       </div>
       <div class="ml-auto pt-1">
-        <span class="poster">
-          <a href="#">{{ postData.user.name }}</a> asked at
-        </span>
-        <span class="ml-2 post-date" style="color: #696969">{{ transformDate(postData.created_at) }}</span>
+        <ProfileLink :user-data="postData.user" />
+        <span class="ml-2 post-date">{{ transformDate(postData.created_at) }}</span>
       </div>
     </div>
   </div>
@@ -28,9 +26,13 @@
 <script>
 import { countReactions } from '@/api/reaction';
 import { countCollections } from '@/api/collection';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'UserPostPostInfo',
+  components: {
+    ProfileLink,
+  },
   props: {
     postData: {
       type: Object,
@@ -91,11 +93,8 @@ a {
   font-size: 17px;
   color: #757575;
 }
-.poster {
+.post-date {
   color: #696969;
-}
-.poster a:hover {
-  color: #409eff;
 }
 .info-container {
   text-align: center;

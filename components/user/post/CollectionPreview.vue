@@ -15,11 +15,11 @@
       <h5 class="subtitle">{{ postData.subtitle }}</h5>
       <div class="d-flex mt-auto user-info">
         <div class="mr-2">
-          <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png" alt="user image">
+          <img class="rounded-circle img-fluid user-image" src="@/assets/img_avatar.png">
         </div>
         <div class="ml-2">
-          <p class="mb-1 questioner">
-            <a href="#">{{ postData.user.name }}</a>
+          <p class="mb-1">
+            <ProfileLink :user-data="postData.user" />
           </p>
           <p class="mb-1">{{ transformDate(postData.created_at) }}</p>
         </div>
@@ -30,9 +30,13 @@
 
 <script>
 import { countReactions } from '@/api/reaction';
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
-  name: 'PostPreviewCard',
+  name: 'UserPostCollectionPreview',
+  components: {
+    ProfileLink,
+  },
   props: {
     postData: {
       type: Object,
@@ -95,12 +99,6 @@ export default {
 .user-image {
   height: 50px;
   width: 50px;
-}
-.questioner a {
-  color: #409effcc;
-}
-.questioner a:hover {
-  color: #409eff;
 }
 .title { color: black; }
 .subtitle { color: #777; }
