@@ -22,36 +22,36 @@
           <font-awesome-icon class="mr-1" :icon="['fas', 'info']" />
           <span>資訊卡</span>
         </div>
-        <el-form-item label="Facebook : ">
+        <el-form-item label="Facebook：">
           <div class="d-flex">
-            <el-input v-model="facebook.url" placeholder="Uncompleted" class="col-12 col-md-10" disabled>
+            <el-input v-model="facebook.url" placeholder="未填寫" class="col-12 col-md-10" disabled>
               <template slot="prepend">facebook.com/</template>
             </el-input>
             <el-switch v-model="facebook.show" class="justify-content-center col-2 my-auto" disabled>
             </el-switch>
           </div>
         </el-form-item>
-        <el-form-item label="Gitlab : ">
+        <el-form-item label="Gitlab：">
           <div class="d-flex">
-            <el-input v-model="gitlab.url" placeholder="Uncompleted" class="col-10" disabled>
+            <el-input v-model="gitlab.url" placeholder="未填寫" class="col-10" disabled>
               <template slot="prepend">gitlab.com/</template>
             </el-input>
             <el-switch v-model="gitlab.show" class="justify-content-center col-2 my-auto" disabled>
             </el-switch>
           </div>
         </el-form-item>
-        <el-form-item label="Github : ">
+        <el-form-item label="Github：">
           <div class="d-flex">
-            <el-input v-model="github.url" placeholder="Uncompleted" class="col-10" disabled>
+            <el-input v-model="github.url" placeholder="未填寫" class="col-10" disabled>
               <template slot="prepend">github.com/</template>
             </el-input>
             <el-switch v-model="github.show" class="justify-content-center col-2 my-auto" disabled>
             </el-switch>
           </div>
         </el-form-item>
-        <el-form-item label="Bitbucket : ">
+        <el-form-item label="Bitbucket：">
           <div class="d-flex">
-            <el-input v-model="bitbucket.url" placeholder="Uncompleted" class="col-10" disabled>
+            <el-input v-model="bitbucket.url" placeholder="未填寫" class="col-10" disabled>
               <template slot="prepend">bitbucket.com/</template>
             </el-input>
             <el-switch v-model="bitbucket.show" class="justify-content-center col-2 my-auto" disabled>
@@ -68,7 +68,7 @@ import { getUser } from '@/api/user';
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'ModifyProfile',
+  name: 'UserProfileViewProfile',
   data() {
     return {
       user: {
