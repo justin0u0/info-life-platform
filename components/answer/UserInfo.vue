@@ -180,16 +180,10 @@ export default {
     },
     async handleReaction(reaction) {
       if (reaction === 'like') {
-        if (this.userReaction === 'like')
-          this.likes -= 1;
-        else
-          this.likes += 1;
-      } else { // reaction === 'dislike'
-        if (this.userReaction === 'dislike')
-          this.dislikes -= 1;
-        else
-          this.dislikes += 1;
-      }
+        if (this.userReaction === 'like') this.likes -= 1;
+        else this.likes += 1;
+      } else if (this.userReaction === 'dislike') this.dislikes -= 1;
+      else this.dislikes += 1;
       await removeReaction({
         source_type: 'answer',
         source_id: this.answerData._id,
