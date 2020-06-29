@@ -3,6 +3,8 @@
     <CreateOrModifyAnswerForm
       ref="form"
       :form-data="formData"
+      :is-creating="false"
+      @cancel="handleCancel"
       @submit="handleModifyAnswer"
     />
   </div>
@@ -47,15 +49,17 @@ export default {
       this.answer = res;
       this.$refs.form.setContent(res.content);
     },
+    handleCancel() {
+      this.$emit('cancel');
+    },
     async handleModifyAnswer(data) {
       console.log('[AnswerModifyAnswer:handleModifyAnswer]: ', data);
       try {
         this.$store.dispatch('setIsProcessing', true);
         await modifyAnswer({ _id: this.answer._id, ...data });
         this.$message({ type: 'success', message: '儲存修改成功', duration: 1000 });
-        this.$emit('show-answer');
+        this.$emit('modify-answer', data);
         this.$store.dispatch('setIsProcessing', false);
-        window.location.reload();
       } catch (error) {
         console.log(error);
         this.$message({ type: 'error', message: '儲存修改失敗', duration: 1000 });

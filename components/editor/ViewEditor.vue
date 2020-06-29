@@ -55,6 +55,12 @@ export default {
       editable: false,
     });
   },
+  methods: {
+    setContent(contentObj) {
+      console.log('[EditorViewEditor:setContent]: ', this.editor, contentObj);
+      this.editor.setContent(contentObj);
+    },
+  },
 };
 </script>
 

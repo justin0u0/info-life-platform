@@ -5,13 +5,17 @@
       :is-solved="isSolved"
       :question-data="questionData"
       :current-user-reaction="currentUserReaction"
-      @edit-answer="handleEditAnswer"
+      @edit-answer="setIsModifying"
     />
-    <div v-if="!modifyMode" class="pb-3">
-      <Editor :content-data="contentObj" />
+    <div v-show="!isModifying" class="pb-3">
+      <Editor ref="editor" :content-data="contentObj" />
     </div>
-    <div v-else class="py-3">
-      <ModifyAnswer :answer-id="answerData._id" @show-answer="handleShowAnswer" />
+    <div v-show="isModifying" class="py-3">
+      <ModifyAnswer
+        :answer-id="answerData._id"
+        @modify-answer="handleModifyAnswer"
+        @cancel="setNotModifying"
+      />
     </div>
   </div>
 </template>
@@ -47,7 +51,7 @@ export default {
   data() {
     return {
       contentObj: {},
-      modifyMode: false,
+      isModifying: false,
       currentUserReaction: '',
     };
   },
@@ -69,11 +73,16 @@ export default {
       const d = new Date(unixEpoch);
       return d.toLocaleDateString().concat(` ${d.toLocaleTimeString('it-IT')}`);
     },
-    handleEditAnswer() {
-      this.modifyMode = true;
+    handleModifyAnswer({ content }) {
+      const contentObj = JSON.parse(content);
+      this.$refs.editor.setContent(contentObj);
+      this.isModifying = false;
     },
-    handleShowAnswer() {
-      this.modifyMode = false;
+    setIsModifying() {
+      this.isModifying = true;
+    },
+    setNotModifying() {
+      this.isModifying = false;
     },
     async preGetReaction() {
       const res = await countReactions({ source_type: 'answer', source_id: this.answerData._id });
