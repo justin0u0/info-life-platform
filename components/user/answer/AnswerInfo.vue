@@ -10,28 +10,28 @@
           {{ answerData.question.tag.name }}
         </button>
       </div>
-      <div class="d-flex ml-auto pt-1">
-        <span class="answerer">
-          <a href="#">{{ answerData.user.name }}</a> asked at
-        </span>
-        <span class="ml-2 answer-date">{{ transformDate(answerData.created_at) }}</span>
+      <div class="ml-auto pt-1">
+        <ProfileLink :user-data="answerData.question.user" />
+        <span class="ml-2 post-date">{{ transformDate(answerData.question.created_at) }}</span>
       </div>
     </div>
     <div class="d-flex">
-      <div class="d-flex ml-auto pt-1">
-        <span class="answerer">
-          <a href="#">{{ answerData.question.user.name }}</a> asked at
-        </span>
-        <span class="ml-2 answer-date">{{ transformDate(answerData.question.created_at) }}</span>
+      <div class="ml-auto pt-1">
+        <ProfileLink :user-data="answerData.user" />
+        <span class="ml-2 post-date">{{ transformDate(answerData.created_at) }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
   name: 'UserAnswerAnswerInfo',
+  components: {
+    ProfileLink,
+  },
   props: {
     answerData: {
       type: Object,
