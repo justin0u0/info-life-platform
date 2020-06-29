@@ -17,6 +17,10 @@
         <span>{{ questionData.view_count }}</span>
       </div>
       <div class="info-container">
+        <font-awesome-icon :icon="['far', 'comment-alt']" />
+        <span>{{ answers }}</span>
+      </div>
+      <div class="info-container">
         <font-awesome-icon :icon="['far', 'thumbs-up']" />
         <span>{{ likes }}</span>
       </div>
@@ -36,6 +40,7 @@
 
 <script>
 import { countReactions } from '@/api/reaction';
+import { getAnswers } from '@/api/answer';
 
 export default {
   name: 'UserQuestionQuestionInfo',
@@ -49,6 +54,7 @@ export default {
     return {
       likes: 0,
       dislikes: 0,
+      answers: 0,
     };
   },
   watch: {
@@ -59,6 +65,7 @@ export default {
           this.$store.dispatch('setIsProcessing', true);
           await Promise.all([
             this.preGetReactions(questionData._id),
+            this.preGetAnswers(questionData._id),
           ]);
           this.$store.dispatch('setIsProcessing', false);
         }
@@ -70,6 +77,10 @@ export default {
       const res = await countReactions({ source_type: 'question', source_id: questionId });
       this.likes = res.like;
       this.dislikes = res.dislike;
+    },
+    async preGetAnswers(questionId) {
+      const { total } = await getAnswers({ filter: {question_id: questionId } });
+      this.answers = total;
     },
     transformDate(unixEpoch) {
       const d = new Date(unixEpoch);
