@@ -53,20 +53,12 @@ export default {
       },
     },
   },
-  // async mounted() {
-  //   this.$store.dispatch('setIsProcessing', true);
-  //   await Promise.all([
-  //     this.preGetAnswers(),
-  //   ]);
-  //   this.$store.dispatch('setIsProcessing', false);
-  // },
   methods: {
     async preGetAnswers() {
       // Get Questions
       await this.getAnswersProcess();
     },
     async getAnswersProcess() {
-      console.log(this.questionData);
       const { total, data } = await getAnswers({
         filter: { question_id: this.questionData._id },
         limit: this.limit,

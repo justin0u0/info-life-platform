@@ -45,7 +45,7 @@
         v-show="canEdit"
         class="mx-2 edit-icon"
         :icon="['fas', 'trash']"
-        @click="handleDeletion"
+        @click="handleDeleteAnswer"
       />
       <el-button
         v-show="canChooseBestAnswer"
@@ -56,7 +56,7 @@
         @click="handleTogglePostIsPublished"
       />
       <font-awesome-icon
-        v-show="bestAnswer"
+        v-show="isBestAnswer"
         class="check-icon mx-2"
         :icon="['far', 'check-circle']"
       />
@@ -108,7 +108,7 @@ export default {
     canEdit() {
       return (this.isLoggedIn && this.currentUserId === this.answerData.user_id);
     },
-    bestAnswer() {
+    isBestAnswer() {
       return this.questionData.best_answer_id === this.answerData._id;
     },
   },
@@ -156,7 +156,7 @@ export default {
     handleEditAnswer() {
       this.$emit('edit-answer');
     },
-    async handleDeletion() {
+    async handleDeleteAnswer() {
       const message = '確定刪除自己的回答嗎';
       const successMessage = '刪除成功';
       const cancelMessage = '刪除取消';
