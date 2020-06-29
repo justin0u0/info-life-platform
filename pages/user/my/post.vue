@@ -12,7 +12,7 @@
 <script>
 import auth from '@/lib/auth';
 import AsideNav from '@/components/user/AsideNav.vue';
-import PostTab from '@/components/user/PostTab.vue';
+import PostTab from '@/components/user/post/PostTab.vue';
 
 export default {
   components: {

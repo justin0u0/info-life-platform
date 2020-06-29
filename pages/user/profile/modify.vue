@@ -9,7 +9,7 @@
 
 <script>
 import auth from '@/lib/auth';
-import ModifyProfile from '@/components/user/ModifyProfile.vue';
+import ModifyProfile from '@/components/user/profile/ModifyProfile.vue';
 import AsideNav from '@/components/user/AsideNav.vue';
 
 export default {
