@@ -12,7 +12,7 @@
             :current-user-reaction="currentUserReaction"
           />
           <Editor :content-data="contentObj" />
-          <ListAnswers :question-id="questionId" :is-solved="question.is_solved" />
+          <ListAnswers :question-id="questionId" :is-solved="question.is_solved" :question-user-id="question.user_id" />
           <CreateAnswer :question-id="questionId" />
         </div>
       </div>
@@ -51,7 +51,7 @@ export default {
     return {
       question: {
         _id: null,
-        user_id: null,
+        user_id: '',
         tag_id: null,
         title: '',
         content: '',
