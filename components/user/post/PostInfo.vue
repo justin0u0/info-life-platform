@@ -30,7 +30,7 @@ import { countReactions } from '@/api/reaction';
 import { countCollections } from '@/api/collection';
 
 export default {
-  name: 'UserPostInfo',
+  name: 'UserPostPostInfo',
   props: {
     postData: {
       type: Object,
