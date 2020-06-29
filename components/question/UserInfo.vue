@@ -45,6 +45,7 @@
         <font-awesome-icon class="mx-2 icon-decoration" :icon="['fas', 'edit']" />
       </a>
     </div>
+    <LoginRegisterDialog ref="dialog" />
   </div>
 </template>
 
@@ -52,11 +53,14 @@
 import { addReaction, removeReaction } from '@/api/reaction';
 import { mapGetters } from 'vuex';
 import ProfileLink from '@/components/user/ProfileLink.vue';
+import LoginRegisterDialog from '@/components/LoginRegisterDialog.vue';
+
 
 export default {
   name: 'QuestionUserInfo',
   components: {
     ProfileLink,
+    LoginRegisterDialog,
   },
   props: {
     userData: {
@@ -99,19 +103,29 @@ export default {
   },
   methods: {
     async handleReaction(reaction) {
-      await removeReaction({
-        source_type: 'question',
-        source_id: this.questionData._id,
-      });
-      const initialReaction = this.userReaction;
-      this.userReaction = '';
-      if (initialReaction !== reaction) {
-        await addReaction({
+      if (this.isLoggedIn) {
+        await removeReaction({
           source_type: 'question',
           source_id: this.questionData._id,
-          type: reaction,
         });
-        this.userReaction = reaction;
+        const initialReaction = this.userReaction;
+        this.userReaction = '';
+        if (initialReaction !== reaction) {
+          await addReaction({
+            source_type: 'question',
+            source_id: this.questionData._id,
+            type: reaction,
+          });
+          this.userReaction = reaction;
+        }
+      } else {
+        this.$message({
+          type: 'error',
+          message: '尚未登入',
+          duration: 1500,
+        });
+        console.log('[AnswerUserInfo:handleDialogOpen]');
+        this.$refs.dialog.handleDialogOpen();
       }
     },
   },
