@@ -41,12 +41,16 @@
       >
         <font-awesome-icon class="mx-2 icon-decoration" :icon="['fab', 'facebook-square']" />
       </ShareNetwork>
+      <a v-if="isAuthor()" :href="`/question/modify/${questionData._id}`" class="edit">
+        <font-awesome-icon class="mx-2" :icon="['fas', 'edit']" />
+      </a>
     </div>
   </div>
 </template>
 
 <script>
 import { addReaction, removeReaction } from '@/api/reaction';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'QuestionUserInfo',
@@ -69,6 +73,12 @@ export default {
       shareCount: 0,
       userReaction: '',
     };
+  },
+  computed: {
+    ...mapGetters([
+      'currentUser',
+      'isLoggedIn',
+    ]),
   },
   watch: {
     currentUserReaction: {
@@ -94,6 +104,9 @@ export default {
         });
         this.userReaction = reaction;
       }
+    },
+    isAuthor() {
+      return (this.isLoggedIn && this.currentUser.name === this.userData.name && this.currentUser.username === this.userData.username);
     },
   },
 };
@@ -125,5 +138,8 @@ export default {
 .icon-decoration:hover {
   cursor: pointer;
   opacity: 0.6;
+}
+.edit {
+  color: black;
 }
 </style>
