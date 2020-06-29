@@ -5,7 +5,7 @@
       <i class="el-icon-arrow-down el-icon--right" />
     </span>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item class="dropdown-item" command="/user/personalProfile">
+      <el-dropdown-item class="dropdown-item" command="/user/profile">
         <font-awesome-icon class="mr-3" :icon="['fas', 'user']" />
         個人資料
       </el-dropdown-item>

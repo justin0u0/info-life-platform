@@ -5,11 +5,15 @@
 </template>
 
 <script>
+import auth from '@/lib/auth';
 import ModifyPost from '@/components/post/ModifyPost.vue';
 
 export default {
   components: {
     ModifyPost,
+  },
+  mounted() {
+    auth.bind(this)('/post');
   },
 };
 </script>
