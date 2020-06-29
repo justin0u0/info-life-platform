@@ -20,6 +20,8 @@
     "@nuxtjs/axios": "^5.11.0",
     "bootstrap": "^4.5.0",
     "element-ui": "^2.4.11",
+    "firebase-admin": "^8.12.1",
+    "firebase-functions": "^3.7.0",
     "highlight.js": "^10.0.3",
     "jquery": "^3.5.1",
     "nuxt": "^2.0.0",
