@@ -2,7 +2,7 @@
   <el-container>
     <AsideNav />
     <el-main>
-      <div class="container question-container">
+      <div class="container answer-container">
         <AnswerTab />
       </div>
     </el-main>
@@ -12,7 +12,7 @@
 <script>
 import auth from '@/lib/auth';
 import AsideNav from '@/components/user/AsideNav.vue';
-import AnswerTab from '@/components/user/AnswerTab.vue';
+import AnswerTab from '@/components/user/answer/AnswerTab.vue';
 
 export default {
   components: {
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-.question-container {
+.answer-container {
   max-width: 960px;
 }
 </style>
