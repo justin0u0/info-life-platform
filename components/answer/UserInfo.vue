@@ -11,7 +11,7 @@
     <div class="ml-auto mt-auto icon-container">
       <font-awesome-icon
         v-if="userReaction === 'like'"
-        class="mx-2 edit-icon"
+        class="ml-2 edit-icon"
         :icon="['fas', 'thumbs-up']"
         @click="handleReaction('like')"
       />
@@ -24,7 +24,7 @@
       <span class="pr-2">{{ likes }}</span>
       <font-awesome-icon
         v-if="userReaction === 'dislike'"
-        class="mx-2 edit-icon"
+        class="ml-2 edit-icon"
         :icon="['fas', 'thumbs-down']"
         @click="handleReaction('dislike')"
       />
@@ -66,12 +66,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
-<<<<<<< HEAD
 import { modifyQuestion } from '@/api/question';
 import { removeAnswer } from '@/api/answer';
 import { addReaction, removeReaction, countReactions } from '@/api/reaction';
-=======
->>>>>>> dev
 import ProfileLink from '@/components/user/ProfileLink.vue';
 
 export default {
@@ -184,14 +181,6 @@ export default {
       }
     },
     async handleReaction(reaction) {
-      if (reaction === 'like') {
-        if (this.userReaction === 'like') this.likes -= 1;
-        else this.likes += 1;
-      } else if (this.userReaction === 'dislike') {
-        this.dislikes -= 1;
-      } else {
-        this.dislikes += 1;
-      }
       await removeReaction({
         source_type: 'answer',
         source_id: this.answerData._id,
@@ -206,6 +195,7 @@ export default {
         });
         this.userReaction = reaction;
       }
+      this.preGetReactions();
     },
   },
 };
