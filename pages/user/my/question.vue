@@ -3,27 +3,24 @@
     <AsideNav />
     <el-main>
       <div class="container question-container">
-        <el-tabs type="card">
-          <el-tab-pane label="已解決">
-            <ListUserQuestions :is-solved="true" />
-          </el-tab-pane>
-          <el-tab-pane label="未解決">
-            <ListUserQuestions :is-solved="false" />
-          </el-tab-pane>
-        </el-tabs>
+        <QuestionTab />
       </div>
     </el-main>
   </el-container>
 </template>
 
 <script>
+import auth from '@/lib/auth';
 import AsideNav from '@/components/user/AsideNav.vue';
-import ListUserQuestions from '@/components/user/ListUserQuestions.vue';
+import QuestionTab from '@/components/user/question/QuestionTab.vue';
 
 export default {
   components: {
     AsideNav,
-    ListUserQuestions,
+    QuestionTab,
+  },
+  mounted() {
+    auth.bind(this)('/');
   },
 };
 </script>

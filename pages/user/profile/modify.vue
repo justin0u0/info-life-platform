@@ -2,19 +2,23 @@
   <el-container>
     <AsideNav />
     <el-main>
-      <PersonalProfile />
+      <ModifyProfile />
     </el-main>
   </el-container>
 </template>
 
 <script>
-import PersonalProfile from '@/components/user/PersonalProfile.vue';
+import auth from '@/lib/auth';
+import ModifyProfile from '@/components/user/profile/ModifyProfile.vue';
 import AsideNav from '@/components/user/AsideNav.vue';
 
 export default {
   components: {
-    PersonalProfile,
+    ModifyProfile,
     AsideNav,
+  },
+  mounted() {
+    auth.bind(this)('/');
   },
 };
 </script>

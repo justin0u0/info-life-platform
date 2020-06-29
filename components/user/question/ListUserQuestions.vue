@@ -5,23 +5,9 @@
       :key="question._id"
       class="row"
     >
-      <div v-if="question !== questions[0]" class="divider" />
-      <div class="question-container">
-        <h1>{{ question.title }}</h1>
-        <div class="d-flex">
-          <div class="info-container">
-            <font-awesome-icon :icon="['far', 'eye']" />
-            <span>1234</span>
-          </div>
-          <div class="info-container">
-            <font-awesome-icon :icon="['far', 'heart']" />
-            <span>1234</span>
-          </div>
-          <div class="info-container">
-            <font-awesome-icon :icon="['far', 'bookmark']" />
-            <span>1234</span>
-          </div>
-        </div>
+      <div class="col-12">
+        <div v-if="question !== questions[0]" class="divider" />
+        <QuestionInfo :question-data="question" />
       </div>
     </div>
     <div class="row justify-content-center mt-5">
@@ -37,9 +23,13 @@
 
 <script>
 import { getQuestionsByCurrentUser } from '@/api/question';
+import QuestionInfo from '@/components/user/question/QuestionInfo.vue';
 
 export default {
-  name: 'UserListUserQuestions',
+  name: 'UserQuestionListUserQuestions',
+  components: {
+    QuestionInfo,
+  },
   props: {
     isSolved: {
       type: Boolean,
@@ -93,23 +83,11 @@ export default {
   font-family: 'Lucida Grande', '微軟正黑體', sans-serif;
   min-width: 150px;
 }
-.question-container h1 {
-  font-size: 21.2px;
-  font-weight: 600;
-  color: #292929;
-}
 .divider {
   height: 2px;
   width: 100%;
   background-color: #d3d3d3;
   margin-top: 1.3rem;
   margin-bottom: 1.3rem;
-}
-.info-container {
-  text-align: center;
-  font-size: 14px;
-  color: #696969;
-  margin-right: 1rem;
-  margin-top: 10px;
 }
 </style>
