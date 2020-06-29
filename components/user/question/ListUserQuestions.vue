@@ -5,9 +5,15 @@
       :key="question._id"
       class="row"
     >
-      <div class="col-12">
-        <div v-if="question !== questions[0]" class="divider" />
+      <div v-if="question !== questions[0]" class="divider" />
+      <div class="col-lg-10">
         <QuestionInfo :question-data="question" />
+      </div>
+      <div class="col-lg-2 col-12">
+        <QuestionButton
+          :question-id="question._id"
+          @delete-question="handleDeleteQuestion(question._id, question.title, index)"
+        />
       </div>
     </div>
     <div class="row justify-content-center mt-5">
@@ -22,13 +28,15 @@
 </template>
 
 <script>
-import { getQuestionsByCurrentUser } from '@/api/question';
+import { getQuestionsByCurrentUser, removeQuestion } from '@/api/question';
 import QuestionInfo from '@/components/user/question/QuestionInfo.vue';
+import QuestionButton from '@/components/user/question/QuestionButton.vue';
 
 export default {
   name: 'UserQuestionListUserQuestions',
   components: {
     QuestionInfo,
+    QuestionButton,
   },
   props: {
     isSolved: {
@@ -70,6 +78,30 @@ export default {
       });
       this.questions = data;
       this.$store.dispatch('setIsProcessing', false);
+    },
+    async handleDeleteQuestion(questionId, title, index) {
+      console.log('qqq');
+      const message = `確定要刪除「${title}」?`;
+      const successMessage = '刪除成功';
+      const cancelMessage = '取消刪除';
+      try {
+        await this.$confirm(message, '提醒', {
+          confirmButtonText: '確定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        });
+        await removeQuestion(questionId);
+        this.questions.splice(index, 1);
+        this.$message({
+          type: 'success',
+          message: successMessage,
+        });
+      } catch (error) {
+        this.$message({
+          type: 'info',
+          message: cancelMessage,
+        });
+      }
     },
   },
 };
