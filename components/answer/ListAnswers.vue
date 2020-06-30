@@ -64,6 +64,7 @@ export default {
         filter: { question_id: this.questionData._id },
         limit: this.limit,
         skip: this.countAnswers,
+        sort: { created_at: 1 },
       });
       this.totalAnswers = total;
       this.countAnswers += data.length;
