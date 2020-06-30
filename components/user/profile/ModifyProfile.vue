@@ -52,7 +52,7 @@
         <el-form-item label="Bitbucket : ">
           <div class="d-flex">
             <el-input v-model="bitbucket.url" placeholder="請填寫資料" class="col-8 col-md-10">
-              <template slot="prepend">bitbucket.com/</template>
+              <template slot="prepend">bitbucket.org/</template>
             </el-input>
             <el-switch v-model="bitbucket.show" class="justify-content-center col-4 col-md-2">
             </el-switch>
