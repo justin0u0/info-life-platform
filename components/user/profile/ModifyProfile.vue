@@ -7,16 +7,16 @@
           <span>基本資料</span>
         </div>
         <el-form-item label="帳號：">
-          <el-input v-model="user.username" disabled></el-input>
+          <el-input v-model="user.username" disabled />
         </el-form-item>
         <el-form-item label="姓名：">
-          <el-input v-model="user.name"></el-input>
+          <el-input v-model="user.name" />
         </el-form-item>
         <el-form-item label="信箱：">
-          <el-input v-model="user.email"></el-input>
+          <el-input v-model="user.email" />
         </el-form-item>
       </el-card>
-      <div class="divider"></div>
+      <div class="divider" />
       <el-card>
         <div slot="header">
           <font-awesome-icon class="mr-1" :icon="['fas', 'info']" />
