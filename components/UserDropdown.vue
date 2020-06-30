@@ -1,29 +1,39 @@
 <template>
-  <el-dropdown v-show="isLoggedIn" @command="handleCommand">
+  <el-dropdown v-show="isLoggedIn">
     <span class="el-dropdown-link header-tag">
       {{ currentUser.username }}
       <i class="el-icon-arrow-down el-icon--right" />
     </span>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item class="dropdown-item" command="/user/profile">
-        <font-awesome-icon class="mr-3" :icon="['fas', 'user']" />
-        個人資料
+      <el-dropdown-item class="dropdown-item">
+        <a href="/user/profile">
+          <font-awesome-icon class="mr-3" :icon="['fas', 'user']" />
+          個人資料
+        </a>
       </el-dropdown-item>
-      <el-dropdown-item class="dropdown-item" command="/post/create">
-        <font-awesome-icon class="mr-3" :icon="['fas', 'plus']" />
-        新增文章
+      <el-dropdown-item class="dropdown-item">
+        <a href="/post/create">
+          <font-awesome-icon class="mr-3" :icon="['fas', 'plus']" />
+          新增文章
+        </a>
       </el-dropdown-item>
-      <el-dropdown-item class="dropdown-item" command="/question/create">
-        <font-awesome-icon class="mr-3" :icon="['fas', 'question']" />
-        新增問題
+      <el-dropdown-item class="dropdown-item">
+        <a href="/question/create">
+          <font-awesome-icon class="mr-3" :icon="['fas', 'question']" />
+          新增問題
+        </a>
       </el-dropdown-item>
-      <el-dropdown-item class="dropdown-item" command="/user/my/post">
-        <font-awesome-icon class="mr-3" :icon="['fas', 'sticky-note']" />
-        我的文章
+      <el-dropdown-item class="dropdown-item">
+        <a href="/user/my/post">
+          <font-awesome-icon class="mr-3" :icon="['fas', 'sticky-note']" />
+          我的文章
+        </a>
       </el-dropdown-item>
-      <el-dropdown-item class="dropdown-item" command="/user/my/question">
-        <font-awesome-icon class="mr-3" :icon="['fas', 'lightbulb']" />
-        我的問題
+      <el-dropdown-item class="dropdown-item">
+        <a href="/user/my/question">
+          <font-awesome-icon class="mr-3" :icon="['fas', 'lightbulb']" />
+          我的問題
+        </a>
       </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
@@ -39,11 +49,6 @@ export default {
       'isLoggedIn',
       'currentUser',
     ]),
-  },
-  methods: {
-    handleCommand(command) {
-      this.$router.push({ path: command });
-    },
   },
 };
 </script>
@@ -72,5 +77,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.dropdown-item a {
+  color: #000000;
+  text-decoration: none;
+}
+.dropdown-item a:hover {
+  color: #409eff;
+  text-decoration: none;
 }
 </style>
