@@ -105,6 +105,7 @@ export default {
         },
         limit: this.limit,
         skip: this.countComments,
+        sort: { created_at: 1 },
       });
       this.comments.push(...data);
       this.countComments += data.length;

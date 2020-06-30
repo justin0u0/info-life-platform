@@ -58,6 +58,11 @@
             </el-switch>
           </div>
         </el-form-item>
+        <el-form-item label="自我介紹：">
+          <div class="d-flex">
+            <el-input v-model="description" type="textarea" placeholder="請填寫資料" class="col-12" />
+          </div>
+        </el-form-item>
       </el-card>
       <div class="mt-3"></div>
       <el-form-item class="d-flex justify-content-end">
@@ -102,6 +107,7 @@ export default {
         url: '',
         show: false,
       },
+      description: '',
     };
   },
   computed: {
@@ -133,6 +139,7 @@ export default {
         if (github !== null) this.github = github;
         if (bitbucket !== null) this.bitbucket = bitbucket;
       }
+      if (res.description !== null) this.description = res.description;
     },
     async handleModifyUser() {
       console.log('[PostModifyUser:handleModifyUser]: ');
@@ -145,6 +152,7 @@ export default {
           github: this.github,
           bitbucket: this.bitbucket,
         },
+        description: this.description,
       };
       console.log(params);
       try {
