@@ -58,6 +58,9 @@
             </el-switch>
           </div>
         </el-form-item>
+        <el-form-item label="自我介紹：">
+          <el-input v-model="description" placeholder="未填寫" class="col-12" disabled></el-input>
+        </el-form-item>
       </el-card>
     </el-form>
   </div>
@@ -96,6 +99,7 @@ export default {
         url: '',
         show: false,
       },
+      description: '',
     };
   },
   computed: {
@@ -127,6 +131,7 @@ export default {
         if (github !== null) this.github = github;
         if (bitbucket !== null) this.bitbucket = bitbucket;
       }
+      if (res.description !== null) this.description = res.description;
     },
   },
 };
