@@ -52,14 +52,14 @@
         <el-form-item label="Bitbucket：">
           <div class="d-flex">
             <el-input v-model="bitbucket.url" placeholder="未填寫" class="col-10" disabled>
-              <template slot="prepend">bitbucket.com/</template>
+              <template slot="prepend">bitbucket.org/</template>
             </el-input>
             <el-switch v-model="bitbucket.show" class="justify-content-center col-2 my-auto" disabled>
             </el-switch>
           </div>
         </el-form-item>
         <el-form-item label="自我介紹：">
-          <el-input v-model="description" placeholder="未填寫" class="col-12" disabled></el-input>
+          <el-input v-model="description" type="textarea" placeholder="未填寫" class="col-12" disabled />
         </el-form-item>
       </el-card>
     </el-form>
