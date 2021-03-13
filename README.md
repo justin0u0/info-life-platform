@@ -2,6 +2,8 @@
 
 > Info Life Frontend Server
 
+**THIS PROJECT IS COPIED FROM GITLAB, AND IS FOR VIEWED ONLY, DO NOT DO ANY CHANGE ON THIS PROJECT.**
+
 ## Build Setup
 
 ``` bash
